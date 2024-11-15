@@ -11,5 +11,5 @@ Travl - мобильное приложение, которое поможет �
 # Стэк технологий
 Kotlin, FireBase
 
-#Дизайн приложения
+# Дизайн приложения
 https://www.figma.com/design/r8ohLIQEQ8E6qLGzSwzuEt/Travl?m=auto&t=0OotxGyXQcZstrlz-6
