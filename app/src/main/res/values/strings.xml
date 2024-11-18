@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Travl</string>
+    <string name="slogan1">Приложение которое поможет</string>
+    <string name="slogan2">найти лучшее путешествие</string>
+    <string name="Name">Имя</string>
+    <string name="Email">Почта</string>
+    <string name="Password">Пароль</string>
+    <string name="Register">Зарегистрироваться</string>
+    <string name="forget_password">Забыли пароль?</string>
 </resources>
