@@ -3,4 +3,8 @@
     <string name="travl">TRAVL</string>
     <string name="signin">Войти</string>
     <string name="createacc">Создать аккаунт</string>
+    <string name="main">Главная</string>
+    <string name="plans">Планы</string>
+    <string name="profile">Профиль</string>
+    <string name="friends">Друзья</string>
 </resources>
