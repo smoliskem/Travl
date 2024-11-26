@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/welcome_cut"
-    android:padding="10dp"
-    >
+    android:padding="10dp">
 
     <include
         android:id="@+id/Title"
@@ -21,7 +20,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="450dp"
         android:paddingBottom="45dp"
         app:cardCornerRadius="40dp"
         app:cardPreventCornerOverlap="false"
@@ -40,7 +39,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Register"
+                android:fontFamily="@font/roboto_black"
+                android:text="@string/register"
                 android:textColor="#000000"
                 android:textFontWeight="800"
                 android:textSize="25sp" />
@@ -52,7 +52,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Name"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/name"
                 android:textColor="#000000"
                 android:textFontWeight="200"
                 android:textSize="15sp" />
@@ -63,9 +64,12 @@
                 android:layout_height="37dp"
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#EBEBEB"
-                android:hint="@string/Name"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/name"
                 android:inputType="text"
                 android:paddingHorizontal="5dp"
+                android:textFontWeight="300"
+                android:textSize="15sp"
                 app:cornerRadius="10dp"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -76,8 +80,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:text="@string/Email"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/email"
                 android:textColor="#000000"
                 android:textFontWeight="200"
                 android:textSize="15sp" />
@@ -88,9 +92,12 @@
                 android:layout_height="37dp"
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#EBEBEB"
+                android:fontFamily="@font/roboto_regular"
                 android:hint="youremail@mail.ru"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="5dp"
+                android:textFontWeight="300"
+                android:textSize="15sp"
                 app:cornerRadius="10dp"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -101,8 +108,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:text="@string/Password"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/password"
                 android:textColor="#000000"
                 android:textFontWeight="200"
                 android:textSize="15sp" />
@@ -113,9 +120,12 @@
                 android:layout_height="37dp"
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#EBEBEB"
-                android:hint="@string/Password"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:paddingHorizontal="5dp"
+                android:textFontWeight="300"
+                android:textSize="15sp"
                 app:cornerRadius="10dp"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -123,14 +133,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="70dp" />
 
+
             <Button
                 android:id="@+id/reg_button"
                 android:layout_width="300dp"
                 android:layout_height="37dp"
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#EA8710"
-                android:text="@string/Register"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/register"
+                android:textAllCaps="false"
                 android:textColor="#FFFFFF"
+                android:textFontWeight="800"
+                android:textSize="15sp"
                 tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
             <Button
@@ -139,10 +154,13 @@
                 android:layout_width="175dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center"
-                android:text="@string/forget_password"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/already_reg"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="#EA8710"
+                android:textFontWeight="300"
+                android:textSize="15sp"
                 tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
