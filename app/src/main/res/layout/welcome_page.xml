@@ -4,89 +4,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome_cut"
+    tools:context=".LoginActivity">
 
-
-    <ImageView
-        android:id="@+id/welcomeBackground"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_centerInParent="true"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/welcome_cut"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
+        android:fontFamily="@font/roboto_black"
         android:letterSpacing="0.2"
-        android:text="TRAVL"
+        android:shadowColor="#151515"
+        android:shadowDy="7"
+        android:shadowRadius="6"
+        android:text="@string/travl"
         android:textColor="#EA8810"
-        android:textFontWeight="900"
         android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/welcomeText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Приложение которое поможет"
-        android:textFontWeight="300"
-        android:textSize="20sp"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appName"
-        />
-
-    <TextView
-        android:id="@+id/welcomeText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="найти лучшее путешествие"
-        android:textFontWeight="300"
-        android:textSize="20sp"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeText1" />
-
     <Button
-        android:id="@+id/signIn"
-        android:layout_width="340dp"
-        android:layout_height="54dp"
+        android:id="@+id/signInBtn"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
         android:layout_marginBottom="15dp"
-        android:backgroundTint="#EBEBEB"
         android:background="@drawable/rounded_btn_5"
-        android:text="Войти"
+        android:backgroundTint="#EBEBEB"
+        android:text="@string/signin"
+        android:textAllCaps="false"
+        android:fontFamily="@font/roboto_black"
         android:textColor="#EA8710"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/signUp"
+        app:layout_constraintBottom_toTopOf="@+id/signUpBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/signUp"
-        android:layout_width="340dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="55dp"
-        android:backgroundTint="#000000"
+        android:id="@+id/signUpBtn"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/rounded_btn_5"
-        android:text="Создать аккаунт"
-        android:textSize="15sp"
+        android:backgroundTint="#000000"
+        android:text="@string/createacc"
+        android:textAllCaps="false"
+        android:fontFamily="@font/roboto_black"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/welcomeBackground"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8"
+        tools:ignore="MissingConstraints,TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

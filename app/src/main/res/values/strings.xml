@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">Travl</string>
-    <string name="slogan1">Приложение которое поможет</string>
-    <string name="slogan2">найти лучшее путешествие</string>
+    <string name="travl">TRAVL</string>
+    <string name="signin">Войти</string>
+    <string name="createacc">Создать аккаунт</string>
     <string name="Name">Имя</string>
     <string name="Email">Почта</string>
     <string name="Password">Пароль</string>
     <string name="Register">Зарегистрироваться</string>
     <string name="forget_password">Забыли пароль?</string>
+    <string name="main">Главная</string>
+    <string name="plans">Планы</string>
+    <string name="profile">Профиль</string>
+    <string name="friends">Друзья</string>
+    <string name="delete">Удалить</string>
 </resources>
