@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/welcome_cut"
-    tools:context=".LoginActivity">
+    tools:context=".pages.WelcomePage"
+    >
 
 
     <TextView
@@ -34,7 +35,7 @@
         android:layout_marginBottom="15dp"
         android:background="@drawable/rounded_btn_5"
         android:backgroundTint="#EBEBEB"
-        android:text="@string/signin"
+        android:text="@string/sign_in"
         android:textAllCaps="false"
         android:fontFamily="@font/roboto_black"
         android:textColor="#EA8710"
@@ -52,7 +53,7 @@
         android:layout_marginBottom="50dp"
         android:background="@drawable/rounded_btn_5"
         android:backgroundTint="#000000"
-        android:text="@string/createacc"
+        android:text="@string/create_acc"
         android:textAllCaps="false"
         android:fontFamily="@font/roboto_black"
         android:textColor="#FFFFFF"

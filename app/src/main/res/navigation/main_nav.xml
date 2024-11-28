@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/welcome_page2">
+    <fragment
+        android:id="@+id/welcome_page2"
+        android:name="com.example.travl.pages.WelcomePage"
+        android:label="welcome_page"
+        tools:layout="@layout/welcome_page" >
+        <action
+            android:id="@+id/action_welcome_page2_to_place_page"
+            app:destination="@id/place_page" />
+    </fragment>
+    <fragment
+        android:id="@+id/place_page"
+        android:name="com.example.travl.pages.PlacePage"
+        android:label="place_page"
+        tools:layout="@layout/place_page" >
+        <action
+            android:id="@+id/action_place_page_to_welcome_page2"
+            app:destination="@id/welcome_page2" />
+    </fragment>
+</navigation>
