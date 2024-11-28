@@ -25,7 +25,7 @@ class WelcomePage : Fragment() {
         val signIn = view.findViewById<Button>(R.id.signInBtn)
         val signUp = view.findViewById<Button>(R.id.signUpBtn)
         val controller = findNavController()
-        signIn.setOnClickListener { controller.navigate(R.id.place_page) }
-        signUp.setOnClickListener { controller.navigate(R.id.place_page) }
+        signIn.setOnClickListener { controller.navigate(R.id.signIn) }
+        signUp.setOnClickListener { controller.navigate(R.id.signUp) }
     }
 }

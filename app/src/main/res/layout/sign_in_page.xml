@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/welcome_cut"
-    android:padding="10dp">
+    android:padding="10dp"
+    tools:context=".pages.SignIn">
 
     <include
         android:id="@+id/Title"

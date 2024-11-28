@@ -10,16 +10,40 @@
         android:label="welcome_page"
         tools:layout="@layout/welcome_page" >
         <action
-            android:id="@+id/action_welcome_page2_to_place_page"
-            app:destination="@id/place_page" />
+            android:id="@+id/action_welcome_page2_to_signIn2"
+            app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_welcome_page2_to_signUp"
+            app:destination="@id/signUp" />
     </fragment>
     <fragment
-        android:id="@+id/place_page"
-        android:name="com.example.travl.pages.PlacePage"
-        android:label="place_page"
-        tools:layout="@layout/place_page" >
+        android:id="@+id/signIn"
+        android:name="com.example.travl.pages.SignIn"
+        android:label="sign_in_page"
+        tools:layout="@layout/sign_in_page" >
         <action
-            android:id="@+id/action_place_page_to_welcome_page2"
-            app:destination="@id/welcome_page2" />
+            android:id="@+id/action_signIn2_to_signUp"
+            app:destination="@id/signUp" />
+        <action
+            android:id="@+id/action_signIn2_to_resetPage"
+            app:destination="@id/resetPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp"
+        android:name="com.example.travl.pages.SignUp"
+        android:label="sign_up_page"
+        tools:layout="@layout/sign_up_page" >
+        <action
+            android:id="@+id/action_signUp_to_signIn2"
+            app:destination="@id/signIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/resetPage"
+        android:name="com.example.travl.pages.ResetPage"
+        android:label="reset_password_page"
+        tools:layout="@layout/reset_password_page" >
+        <action
+            android:id="@+id/action_resetPage_to_signIn2"
+            app:destination="@id/signIn" />
     </fragment>
 </navigation>
