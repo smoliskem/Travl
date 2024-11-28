@@ -9,7 +9,7 @@
         android:id="@+id/deleteBtn"
         android:layout_width="113dp"
         android:layout_height="38dp"
-        android:background="@drawable/rectangle_39"
+        android:background="@drawable/delete_button_icon"
         android:text="@string/delete"
         android:textAlignment="center"
         android:textAllCaps="false"
