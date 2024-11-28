@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome_cut"
+    android:padding="10dp">
+
+    <include
+        android:id="@+id/Title"
+        layout="@layout/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:paddingBottom="45dp"
+        app:cardCornerRadius="40dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="28dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_black"
+                android:text="@string/register"
+                android:textColor="#000000"
+                android:textFontWeight="800"
+                android:textSize="25sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/name"
+                android:textColor="#000000"
+                android:textFontWeight="200"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="300dp"
+                android:layout_height="37dp"
+                android:background="@drawable/rounded_btn_5"
+                android:backgroundTint="#EBEBEB"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/name"
+                android:inputType="text"
+                android:paddingHorizontal="5dp"
+                android:textFontWeight="300"
+                android:textSize="15sp"
+                app:cornerRadius="10dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/email"
+                android:textColor="#000000"
+                android:textFontWeight="200"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="300dp"
+                android:layout_height="37dp"
+                android:background="@drawable/rounded_btn_5"
+                android:backgroundTint="#EBEBEB"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="youremail@mail.ru"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="5dp"
+                android:textFontWeight="300"
+                android:textSize="15sp"
+                app:cornerRadius="10dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/password"
+                android:textColor="#000000"
+                android:textFontWeight="200"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="300dp"
+                android:layout_height="37dp"
+                android:background="@drawable/rounded_btn_5"
+                android:backgroundTint="#EBEBEB"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:paddingHorizontal="5dp"
+                android:textFontWeight="300"
+                android:textSize="15sp"
+                app:cornerRadius="10dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="70dp" />
+
+
+            <Button
+                android:id="@+id/reg_button"
+                android:layout_width="300dp"
+                android:layout_height="37dp"
+                android:background="@drawable/rounded_btn_5"
+                android:backgroundTint="#EA8710"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/register"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textFontWeight="800"
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/forget_password"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="175dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/already_reg"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#EA8710"
+                android:textFontWeight="300"
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
