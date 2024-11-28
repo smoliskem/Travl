@@ -13,5 +13,9 @@
     <string name="profile">Профиль</string>
     <string name="friends">Друзья</string>
     <string name="delete">Удалить</string>
+    <string name="welcome_back_title">С возвращением</string>
+    <string name="log_in_account">Войдите в аккаунт</string>
+    <string name="log_in">Войти</string>
+    <string name="have_not_account">У вас еще нет аккаунта?</string>
     <string name="already_reg">Уже есть аккаунт?</string>
 </resources>
