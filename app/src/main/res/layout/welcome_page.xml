@@ -6,25 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/welcome_cut"
-    tools:context=".pages.WelcomePage"
-    >
+    tools:context=".pages.WelcomePage">
 
 
-    <TextView
-        android:id="@+id/appName"
+    <include
+        android:id="@+id/Title"
+        layout="@layout/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
-        android:fontFamily="@font/roboto_black"
-        android:letterSpacing="0.2"
-        android:shadowColor="#151515"
-        android:shadowDy="7"
-        android:shadowRadius="6"
-        android:text="@string/travl"
-        android:textColor="#EA8810"
-        android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,7 +43,7 @@
         android:layout_height="46dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/rounded_btn_5"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/black"
         android:text="@string/create_acc"
         android:textAllCaps="false"
         android:fontFamily="@font/roboto_black"
@@ -62,6 +53,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.8"
-        tools:ignore="MissingConstraints,TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
