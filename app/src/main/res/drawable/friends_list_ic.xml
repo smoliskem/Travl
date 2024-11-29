@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#CCCBCB"/>
+            <corners android:radius="17dp"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/friends_list_icon"
+        android:bottom="13dp"
+        android:start="10dp"
+        android:end="10dp"
+        android:top="13dp"/>
+</layer-list>
