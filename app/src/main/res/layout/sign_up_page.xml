@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/welcome_cut"
-    android:padding="10dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="10dp"
     tools:context=".pages.SignUp">
 
     <include
@@ -13,7 +15,7 @@
         layout="@layout/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        android:layout_marginTop="180dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,6 +26,7 @@
         android:layout_height="450dp"
         android:paddingBottom="45dp"
         app:cardCornerRadius="40dp"
+        android:backgroundTint="@color/white"
         app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +69,8 @@
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#EBEBEB"
                 android:fontFamily="@font/roboto_regular"
-                android:hint="@string/name"
+                android:hint="Ivan"
+                android:textColorHint="@color/soft_grey"
                 android:inputType="text"
                 android:paddingHorizontal="5dp"
                 android:textFontWeight="300"
@@ -94,7 +98,8 @@
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#EBEBEB"
                 android:fontFamily="@font/roboto_regular"
-                android:hint="youremail@mail.ru"
+                android:hint="email@mail.ru"
+                android:textColorHint="@color/soft_grey"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="5dp"
                 android:textFontWeight="300"
@@ -122,7 +127,8 @@
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#EBEBEB"
                 android:fontFamily="@font/roboto_regular"
-                android:hint="@string/password"
+                android:hint="password"
+                android:textColorHint="@color/soft_grey"
                 android:inputType="textPassword"
                 android:paddingHorizontal="5dp"
                 android:textFontWeight="300"
@@ -132,7 +138,7 @@
 
             <Space
                 android:layout_width="wrap_content"
-                android:layout_height="70dp" />
+                android:layout_height="40dp" />
 
 
             <Button
@@ -149,20 +155,43 @@
                 android:textSize="15sp"
                 tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
-            <Button
-                android:id="@+id/forget_password"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="175dp"
-                android:layout_height="38dp"
-                android:layout_gravity="center"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/already_reg"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="#EA8710"
-                android:textFontWeight="300"
-                android:textSize="15sp"
-                tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingEnd="-5dp"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="@string/already_reg"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
+
+                <Button
+                    android:id="@+id/have_acc"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="70dp"
+                    android:layout_height="38dp"
+                    android:paddingLeft="-5dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/log_in"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#EA8710"
+                    android:textFontWeight="300"
+                    android:textSize="15sp"
+                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+            </LinearLayout>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
