@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_signIn2_to_resetPage"
             app:destination="@id/resetPage" />
+        <action
+            android:id="@+id/action_signIn_to_mainPage"
+            app:destination="@id/mainPage" />
     </fragment>
     <fragment
         android:id="@+id/signUp"
@@ -36,6 +39,9 @@
         <action
             android:id="@+id/action_signUp_to_signIn2"
             app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_signUp_to_mainPage"
+            app:destination="@id/mainPage" />
     </fragment>
     <fragment
         android:id="@+id/resetPage"
@@ -45,5 +51,65 @@
         <action
             android:id="@+id/action_resetPage_to_signIn2"
             app:destination="@id/signIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainPage"
+        android:name="com.example.travl.pages.MainPage"
+        android:label="main_page"
+        tools:layout="@layout/main_page" >
+        <action
+            android:id="@+id/action_mainPage_to_myPlansPage2"
+            app:destination="@id/myPlansPage" />
+        <action
+            android:id="@+id/action_mainPage_to_withPlansPage"
+            app:destination="@id/withPlansPage" />
+        <action
+            android:id="@+id/action_mainPage_to_profilePage"
+            app:destination="@id/profilePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPlansPage"
+        android:name="com.example.travl.pages.MyPlansPage"
+        android:label="my_plans_page"
+        tools:layout="@layout/my_plans_page" >
+        <action
+            android:id="@+id/action_myPlansPage2_to_withPlansPage"
+            app:destination="@id/withPlansPage" />
+        <action
+            android:id="@+id/action_myPlansPage2_to_profilePage"
+            app:destination="@id/profilePage" />
+        <action
+            android:id="@+id/action_myPlansPage2_to_mainPage"
+            app:destination="@id/mainPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/withPlansPage"
+        android:name="com.example.travl.pages.WithPlansPage"
+        android:label="with_plans_page"
+        tools:layout="@layout/with_plans_page" >
+        <action
+            android:id="@+id/action_withPlansPage_to_myPlansPage2"
+            app:destination="@id/myPlansPage" />
+        <action
+            android:id="@+id/action_withPlansPage_to_profilePage"
+            app:destination="@id/profilePage" />
+        <action
+            android:id="@+id/action_withPlansPage_to_mainPage"
+            app:destination="@id/mainPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilePage"
+        android:name="com.example.travl.pages.ProfilePage"
+        android:label="profile_page"
+        tools:layout="@layout/profile_page" >
+        <action
+            android:id="@+id/action_profilePage_to_mainPage"
+            app:destination="@id/mainPage" />
+        <action
+            android:id="@+id/action_profilePage_to_myPlansPage2"
+            app:destination="@id/myPlansPage" />
+        <action
+            android:id="@+id/action_profilePage_to_withPlansPage"
+            app:destination="@id/withPlansPage" />
     </fragment>
 </navigation>
