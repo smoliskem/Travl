@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_black"
-        android:text="Место для твоих путешествий"
+        android:text="Места для ваших путешествий"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="22sp"
