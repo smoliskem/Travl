@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/welcome_cut"
     android:padding="10dp"
-    tools:context=".pages.SignIn">
+    tools:context=".pages.ProfilePage">
 
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_width="115dp"
         android:layout_height="115dp"
         android:layout_gravity="center"
-        android:layout_marginTop="67dp"
+        android:layout_marginTop="40dp"
         android:contentDescription="@string/avatar"
         android:src="@drawable/avatar"
         app:civ_border_color="@color/black"
@@ -44,11 +44,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
         android:fontFamily="@font/roboto_regular"
         android:text="@string/name"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -59,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:paddingBottom="45dp"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="40dp"
         app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -78,12 +79,15 @@
                 android:id="@+id/redactor"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
-                android:background="transparent"
+                android:background="@android:color/transparent"
                 android:drawableStart="@drawable/settings_ic"
                 android:drawableEnd="@drawable/arrow_next_icon"
                 android:drawablePadding="20dp"
                 android:text="@string/edit_profile"
                 android:textAlignment="textStart"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 android:textAllCaps="false" />
 
             <View
@@ -100,12 +104,15 @@
                 android:id="@+id/friends"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
-                android:background="transparent"
+                android:background="@android:color/transparent"
                 android:drawableStart="@drawable/friends_list_ic"
                 android:drawableEnd="@drawable/arrow_next_icon"
                 android:drawablePadding="20dp"
                 android:text="@string/friends"
                 android:textAlignment="textStart"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 android:textAllCaps="false" />
 
             <View
@@ -122,12 +129,15 @@
                 android:id="@+id/add_friend"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
-                android:background="transparent"
+                android:background="@android:color/transparent"
                 android:drawableStart="@drawable/add_friend_ic"
                 android:drawableEnd="@drawable/arrow_next_icon"
                 android:drawablePadding="20dp"
                 android:text="@string/add_friend"
                 android:textAlignment="textStart"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 android:textAllCaps="false" />
 
         </LinearLayout>
@@ -175,7 +185,7 @@
             android:src="@drawable/plans_icon" />
 
         <ImageButton
-            android:id="@+id/friendsBtn"
+            android:id="@+id/withBtn"
             android:layout_width="66dp"
             android:layout_height="66dp"
             android:layout_gravity="center"
