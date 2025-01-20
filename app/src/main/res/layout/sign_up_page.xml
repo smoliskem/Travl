@@ -69,7 +69,7 @@
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#EBEBEB"
                 android:fontFamily="@font/roboto_regular"
-                android:hint="Ivan"
+                android:hint="@string/name_hint"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/soft_grey"
                 android:inputType="text"
@@ -99,7 +99,7 @@
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#EBEBEB"
                 android:fontFamily="@font/roboto_regular"
-                android:hint="email@mail.ru"
+                android:hint="@string/email_hint"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/soft_grey"
                 android:inputType="textEmailAddress"
@@ -129,7 +129,7 @@
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#EBEBEB"
                 android:fontFamily="@font/roboto_regular"
-                android:hint="password"
+                android:hint="@string/password_hint"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/soft_grey"
                 android:inputType="textPassword"
@@ -145,7 +145,7 @@
 
 
             <Button
-                android:id="@+id/reg_button"
+                android:id="@+id/createAccountButton"
                 android:layout_width="300dp"
                 android:layout_height="37dp"
                 android:background="@drawable/rounded_btn_5"
@@ -162,7 +162,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingEnd="-5dp"
                 android:layout_gravity="center">
 
                 <TextView
@@ -179,11 +178,11 @@
                     android:textSize="15sp"/>
 
                 <Button
-                    android:id="@+id/have_acc"
+                    android:id="@+id/alreadyHaveAccountButton"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="70dp"
                     android:layout_height="38dp"
-                    android:paddingLeft="-5dp"
+                    android:paddingStart="-5dp"
                     android:layout_gravity="center"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/log_in"
@@ -192,7 +191,7 @@
                     android:textColor="#EA8710"
                     android:textFontWeight="300"
                     android:textSize="15sp"
-                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+                    tools:ignore="RtlSymmetry,TextContrastCheck,TouchTargetSizeCheck,UnusedAttribute" />
             </LinearLayout>
 
         </LinearLayout>

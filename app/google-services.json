@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "122945318579",
+    "firebase_url": "https://travl-fe364-default-rtdb.firebaseio.com",
+    "project_id": "travl-fe364",
+    "storage_bucket": "travl-fe364.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122945318579:android:7994d529f5cc3e1ff48ac6",
+        "android_client_info": {
+          "package_name": "com.example.travl"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATq2OL1RseL7YKoYqPkg6PcVLWoz8T-7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
