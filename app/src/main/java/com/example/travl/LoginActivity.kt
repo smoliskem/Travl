@@ -1,12 +1,8 @@
 package com.example.travl
 
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.travl.databinding.WelcomePageBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth

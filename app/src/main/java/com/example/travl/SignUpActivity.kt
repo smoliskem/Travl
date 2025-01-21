@@ -3,8 +3,7 @@ package com.example.travl
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.travl.databinding.SignUpPageBinding
@@ -24,8 +23,6 @@ class SignUpActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-
-
         binding.alreadyHaveAccountButton.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
@@ -41,6 +38,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+
     private fun createUserWithEmailAndPassword(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
@@ -50,40 +48,40 @@ class SignUpActivity : AppCompatActivity() {
                             if (verificationTask.isSuccessful) {
                                 val builder = AlertDialog.Builder(this)
                                 builder.setMessage("Please check your e-mail to verify account")
+
                                 builder.setPositiveButton("OK") { dialog, _ ->
                                     dialog.dismiss()
-                                    val intent = Intent(this, MainActivity::class.java)
+                                    val intent = Intent(this, SignInActivity::class.java)
                                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                                     startActivity(intent)
-                                    cacheEmail(email)
+
                                     Firebase.auth.signOut()
                                 }
+
                                 val dialog = builder.create()
                                 dialog.show()
                             } else {
-                                showDialog(
-                                    verificationTask.exception?.localizedMessage
-                                        ?: "Failed to send verification email."
-                                )
+                                Toast.makeText(
+                                    baseContext,
+                                    "Failed to send verification email.",
+                                    Toast.LENGTH_SHORT,
+                                ).show()
                             }
-                        }?.addOnFailureListener { exception ->
-                            showDialog(
-                                exception.localizedMessage ?: "Failed to send verification email."
-                            )
+                        }?.addOnFailureListener { _ ->
+                            Toast.makeText(
+                                baseContext,
+                                "Failed to send verification email.",
+                                Toast.LENGTH_SHORT,
+                            ).show()
                         }
                 } else {
-                    showDialog(task.exception?.localizedMessage ?: "Registration failed.")
+                    Toast.makeText(
+                        baseContext,
+                        "Registration failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
                 }
             }
-    }
-
-
-    private fun showDialog(message: String) {
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage(message)
-        builder.setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-        val dialog = builder.create()
-        dialog.show()
     }
 
     private fun checkFields(
@@ -98,11 +96,5 @@ class SignUpActivity : AppCompatActivity() {
         return editText == ""
     }
 
-    private fun cacheEmail(email: String) {
-        val sharedPref = getSharedPreferences("myPref", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
 
-        editor.putString("email", email)
-        editor.apply()
-    }
 }

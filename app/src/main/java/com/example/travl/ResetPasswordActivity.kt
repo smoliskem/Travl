@@ -2,14 +2,15 @@ package com.example.travl
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.travl.databinding.MyPlansPageBinding
+import com.example.travl.databinding.ResetPasswordPageBinding
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: MyPlansPageBinding
+class ResetPasswordActivity : AppCompatActivity() {
+
+    private lateinit var binding: ResetPasswordPageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = MyPlansPageBinding.inflate(layoutInflater)
+        binding = ResetPasswordPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 }
