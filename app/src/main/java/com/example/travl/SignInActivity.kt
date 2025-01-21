@@ -25,10 +25,17 @@ class SignInActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         binding.signInBtn.setOnClickListener {
-
-            val password = binding.editTextPassword.text.toString()
             val email = binding.editTextEmail.text.toString()
-            signInUser(email, password)
+            val password = binding.editTextPassword.text.toString()
+            if (checkFields(email, password)) {
+                signInUser(email, password)
+            } else {
+                Toast.makeText(
+                    baseContext,
+                    "Enter the correct data.",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            }
         }
 
         binding.forgetPassword.setOnClickListener {
@@ -62,5 +69,14 @@ class SignInActivity : AppCompatActivity() {
             }
     }
 
+    private fun checkFields(
+        email: String,
+        password: String
+    ): Boolean {
+        return !(fieldIsEmpty(email) || fieldIsEmpty(password))
+    }
 
+    private fun fieldIsEmpty(editText: String): Boolean {
+        return editText == ""
+    }
 }

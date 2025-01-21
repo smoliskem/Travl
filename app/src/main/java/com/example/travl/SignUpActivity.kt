@@ -34,6 +34,12 @@ class SignUpActivity : AppCompatActivity() {
             val etPassword = binding.editTextPassword.text.toString()
             if (checkFields(etName, etMail, etPassword)) {
                 createUserWithEmailAndPassword(etMail, etPassword)
+            } else {
+                Toast.makeText(
+                    baseContext,
+                    "Enter the correct data",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -46,20 +52,17 @@ class SignUpActivity : AppCompatActivity() {
                     auth.currentUser?.sendEmailVerification()
                         ?.addOnCompleteListener { verificationTask ->
                             if (verificationTask.isSuccessful) {
-                                val builder = AlertDialog.Builder(this)
-                                builder.setMessage("Please check your e-mail to verify account")
+                                Toast.makeText(
+                                    baseContext,
+                                    "Please check your e-mail to verify account.",
+                                    Toast.LENGTH_SHORT,
+                                ).show()
 
-                                builder.setPositiveButton("OK") { dialog, _ ->
-                                    dialog.dismiss()
-                                    val intent = Intent(this, SignInActivity::class.java)
-                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                                    startActivity(intent)
+                                val intent = Intent(this, SignInActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                startActivity(intent)
 
-                                    Firebase.auth.signOut()
-                                }
-
-                                val dialog = builder.create()
-                                dialog.show()
+                                Firebase.auth.signOut()
                             } else {
                                 Toast.makeText(
                                     baseContext,
