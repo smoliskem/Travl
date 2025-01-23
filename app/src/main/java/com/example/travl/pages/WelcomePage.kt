@@ -22,8 +22,8 @@ class WelcomePage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val signIn = view.findViewById<Button>(R.id.signInBtn)
-        val signUp = view.findViewById<Button>(R.id.signUpBtn)
+        val signIn = view.findViewById<Button>(R.id.sign_in_btn)
+        val signUp = view.findViewById<Button>(R.id.sign_up_btn)
         val controller = findNavController()
         signIn.setOnClickListener { controller.navigate(R.id.signIn) }
         signUp.setOnClickListener { controller.navigate(R.id.signUp) }

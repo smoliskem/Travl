@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/roboto_medium"
-        android:text="Совместные планы"
+        android:text="@string/joint_plans"
         android:textColor="@color/grey_heading"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

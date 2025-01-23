@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/signInBtn"
+        android:id="@+id/sign_in_btn"
         android:layout_width="0dp"
         android:layout_height="46dp"
         android:layout_marginBottom="15dp"
@@ -31,14 +31,14 @@
         android:fontFamily="@font/roboto_black"
         android:textColor="#EA8710"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/signUpBtn"
+        app:layout_constraintBottom_toTopOf="@+id/sign_up_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.8"
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/signUpBtn"
+        android:id="@+id/sign_up_btn"
         android:layout_width="0dp"
         android:layout_height="46dp"
         android:layout_marginBottom="50dp"

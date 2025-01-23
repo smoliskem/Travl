@@ -23,11 +23,9 @@ class SignIn : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val forgetBtn = view.findViewById<Button>(R.id.forget_password)
-        val regBtn = view.findViewById<Button>(R.id.sign_in)
-        val signBtn = view.findViewById<Button>(R.id.sign_button)
+        val regBtn = view.findViewById<Button>(R.id.sign_in_btn)
         val controller = findNavController()
         forgetBtn.setOnClickListener { controller.navigate(R.id.resetPage) }
         regBtn.setOnClickListener { controller.navigate(R.id.signUp) }
-       signBtn.setOnClickListener { controller.navigate(R.id.mainPage) }
     }
 }
