@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <Button
         android:id="@+id/deleteBtn"
         android:layout_width="142dp"
         android:layout_height="42dp"
         android:background="@drawable/add_btn_asset"
+        android:drawableLeft="@drawable/share_icon_white"
+        android:fontFamily="@font/montserrat_medium"
         android:paddingStart="20dp"
         android:paddingEnd="0dp"
         android:text="@string/share"
-        android:textAllCaps="false"
-        android:fontFamily="@font/montserrat_medium"
         android:textAlignment="center"
+        android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="14sp"
-        android:drawableLeft="@drawable/share_icon_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck"/>
+        tools:ignore="TouchTargetSizeCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
