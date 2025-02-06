@@ -32,4 +32,9 @@
     <string name="my_plans">Мои планы</string>
     <string name="share">Отправить</string>
     <string name="joint_plans">Совместные планы</string>
+    <string name="score_icon">Иконка звезды</string>
+    <string name="region_example">Краснодарский край</string>
+    <string name="place_example">Гуамское ущелье</string>
+    <string name="geo_icon">Иконка геолокации</string>
+    <string name="place_image">Фото места</string>
 </resources>
