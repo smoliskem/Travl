@@ -5,30 +5,31 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travl.databinding.MainPlaceCardBinding
-import com.example.travl.items.MainPageItem
+import com.example.travl.items.MainPageChildItem
 
-class MainPageItemAdapter : RecyclerView.Adapter<MainPageItemAdapter.MainPageItemViewHolder>() {
+class MainPageChildItemAdapter(private val innerData: List<MainPageChildItem>) :
+    RecyclerView.Adapter<MainPageChildItemAdapter.MainPageChildItemViewHolder>() {
 
-    var data: List<MainPageItem> = emptyList()
+    public var data: List<MainPageChildItem> = innerData
         @SuppressLint("NotifyDataSetChanged")
         set(newValue) {
             field = newValue
             notifyDataSetChanged()
         }
 
-    class MainPageItemViewHolder(val binding: MainPlaceCardBinding) :
+    class MainPageChildItemViewHolder(val binding: MainPlaceCardBinding) :
         RecyclerView.ViewHolder(binding.root) {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainPageItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainPageChildItemViewHolder {
         val binding =
             MainPlaceCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return MainPageItemViewHolder(binding)
+        return MainPageChildItemViewHolder(binding)
     }
 
     override fun getItemCount(): Int = data.size
 
-    override fun onBindViewHolder(holder: MainPageItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MainPageChildItemViewHolder, position: Int) {
         val place = data[position]
 
         with(holder.binding) {

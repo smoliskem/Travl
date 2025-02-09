@@ -1,6 +1,6 @@
 package com.example.travl.items
 
-data class MainPageItem(
+data class MainPageChildItem(
     val imageResId: Int,
     val placeName: String,
     val regionName: String,

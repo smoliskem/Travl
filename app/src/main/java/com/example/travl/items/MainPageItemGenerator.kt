@@ -6,9 +6,9 @@ object MainPageItemGenerator {
     private val imageId: Int = R.drawable.place
 
 
-    fun generateMainPageItem(count: Int): List<MainPageItem> =
+    fun generateMainPageItem(count: Int): List<MainPageChildItem> =
         (0..count).map { it ->
-            MainPageItem(
+            MainPageChildItem(
                 imageResId = imageId,
                 placeName = "Место №$it",
                 regionName = "Регион №$it",

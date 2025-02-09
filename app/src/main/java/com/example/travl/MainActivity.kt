@@ -3,29 +3,36 @@ package com.example.travl
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.travl.adapters.MainPageItemAdapter
+import com.example.travl.adapters.MainPageChildItemAdapter
+import com.example.travl.adapters.MainPageParentItemAdapter
 import com.example.travl.databinding.MainPageBinding
-import com.example.travl.databinding.MyPlansPageBinding
-import com.example.travl.items.MainPageItem
 import com.example.travl.items.MainPageItemGenerator
+import com.example.travl.items.MainPageParentItem
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainPageBinding
-    private lateinit var adapter: MainPageItemAdapter
+    private lateinit var adapter: MainPageParentItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MainPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val manager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val innerItems1 = MainPageItemGenerator.generateMainPageItem(10)
+        val innerItems2 = MainPageItemGenerator.generateMainPageItem(10)
+        val outerItem = listOf(
+            MainPageParentItem(innerItems2, "Регион 1"),
+            MainPageParentItem(innerItems1, "Регион 2")
+        )
 
-        adapter = MainPageItemAdapter() // Создание адаптера
-        adapter.data = MainPageItemGenerator.generateMainPageItem(10) // Заполнение данными поля data
+        adapter = MainPageParentItemAdapter()
+        adapter.data = outerItem
 
-        binding.mainPageItemRecycler.layoutManager =
+        val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+
+        binding.mainPageRecycler.layoutManager =
             manager // Назначение LayoutManager для RecyclerView
-        binding.mainPageItemRecycler.adapter = adapter // Назначение адаптера для RecyclerView
+        binding.mainPageRecycler.adapter = adapter // Назначение адаптера для RecyclerView
     }
 }
