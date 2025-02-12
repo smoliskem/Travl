@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingBottom="120dp"
         app:layout_constraintBottom_toTopOf="@id/navigation_bar"
         app:layout_constraintTop_toBottomOf="@+id/backgroundPic">
 
@@ -53,11 +54,12 @@
                 android:layout_marginTop="10dp">
 
                 <SearchView
+
                     android:id="@+id/searchBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/search__bar"
-                    android:gravity="end" />
+                    android:textAlignment="textStart" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -83,8 +85,7 @@
         android:padding="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
             android:id="@+id/mainPageBtn"
