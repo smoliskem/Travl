@@ -30,10 +30,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        if (auth.currentUser != null) {
-            val intent = Intent(this, MainActivity::class.java)
-            finish()
-            startActivity(intent)
-        }
+//        if (auth.currentUser != null) {
+//            val intent = Intent(this, MainActivity::class.java)
+//            finish()
+//            startActivity(intent)
+//        }
     }
 }
