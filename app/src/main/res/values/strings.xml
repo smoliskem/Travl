@@ -32,4 +32,7 @@
     <string name="my_plans">Мои планы</string>
     <string name="share">Отправить</string>
     <string name="joint_plans">Совместные планы</string>
+    <string name="place">Место</string>
+    <string name="score">Оценка</string>
+    <string name="flag">Флаг</string>
 </resources>
