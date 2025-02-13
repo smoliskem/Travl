@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.navigation.fragment.findNavController
 import com.example.travl.R
+import com.example.travl.databinding.MainPageBinding
+import com.example.travl.databinding.ProfilePageBinding
 
 
 class ProfilePage : Fragment() {
+    private lateinit var binding: ProfilePageBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,12 +25,17 @@ class ProfilePage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mainBtn = view.findViewById<ImageButton>(R.id.main_page_btn)
-        val myBtn = view.findViewById<ImageButton>(R.id.my_plans_btn)
-        val withBtn = view.findViewById<ImageButton>(R.id.joint_plans_btn)
-        val controller = findNavController()
-        mainBtn.setOnClickListener { controller.navigate(R.id.main_page) }
-        myBtn.setOnClickListener { controller.navigate(R.id.my_plans_page) }
-        withBtn.setOnClickListener { controller.navigate(R.id.joint_plans) }
+        binding = ProfilePageBinding.bind(view)
+
+        binding.mainPageBtn.setOnClickListener {
+            findNavController().navigate(ProfilePageDirections.actionProfilePageToMainPage())
+        }
+        binding.myPlansBtn.setOnClickListener {
+            findNavController().navigate(ProfilePageDirections.actionProfilePageToMyPlansPage())
+        }
+        binding.jointPlansBtn.setOnClickListener {
+            findNavController().navigate(ProfilePageDirections.actionProfilePageToJointPlansPage())
+        }
+
     }
 }
