@@ -26,8 +26,9 @@ class MyPlansPage : Fragment() {
         val withBtn = view.findViewById<ImageButton>(R.id.joint_plans_btn)
         val profileBtn = view.findViewById<ImageButton>(R.id.profile_btn)
         val controller = findNavController()
-        mainBtn.setOnClickListener { controller.navigate(R.id.main_page) }
-        withBtn.setOnClickListener { controller.navigate(R.id.joint_plans) }
-        profileBtn.setOnClickListener { controller.navigate(R.id.profile_page) }
+
+        mainBtn.setOnClickListener { controller.navigate(MyPlansPageDirections.actionMyPlansPageToMainPage()) }
+        withBtn.setOnClickListener { controller.navigate(MyPlansPageDirections.actionMyPlansPageToJointPlansPage()) }
+        profileBtn.setOnClickListener { controller.navigate(MyPlansPageDirections.actionMyPlansPageToProfilePage()) }
     }
 }
