@@ -7,8 +7,7 @@
     android:background="@drawable/welcome_cut"
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
-    android:paddingBottom="10dp"
-    tools:context=".pages.SignUp">
+    android:paddingBottom="10dp">
 
     <include
         android:id="@+id/Title"
@@ -24,9 +23,9 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="450dp"
+        android:backgroundTint="@color/white"
         android:paddingBottom="45dp"
         app:cardCornerRadius="40dp"
-        android:backgroundTint="@color/white"
         app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,10 +69,10 @@
                 android:backgroundTint="#EBEBEB"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/name_hint"
-                android:textColor="@color/dark_grey"
-                android:textColorHint="@color/soft_grey"
                 android:inputType="text"
                 android:paddingHorizontal="5dp"
+                android:textColor="@color/dark_grey"
+                android:textColorHint="@color/soft_grey"
                 android:textFontWeight="300"
                 android:textSize="15sp"
                 app:cornerRadius="10dp"
@@ -100,10 +99,10 @@
                 android:backgroundTint="#EBEBEB"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/email_hint"
-                android:textColor="@color/dark_grey"
-                android:textColorHint="@color/soft_grey"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="5dp"
+                android:textColor="@color/dark_grey"
+                android:textColorHint="@color/soft_grey"
                 android:textFontWeight="300"
                 android:textSize="15sp"
                 app:cornerRadius="10dp"
@@ -130,10 +129,10 @@
                 android:backgroundTint="#EBEBEB"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/password_hint"
-                android:textColor="@color/dark_grey"
-                android:textColorHint="@color/soft_grey"
                 android:inputType="textPassword"
                 android:paddingHorizontal="5dp"
+                android:textColor="@color/dark_grey"
+                android:textColorHint="@color/soft_grey"
                 android:textFontWeight="300"
                 android:textSize="15sp"
                 app:cornerRadius="10dp"
@@ -161,30 +160,30 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_gravity="center"
-                    android:text="@string/already_reg"
                     android:fontFamily="@font/roboto_regular"
+                    android:gravity="center"
+                    android:text="@string/already_reg"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
 
                 <Button
                     android:id="@+id/alreadyHaveAccountButton"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="70dp"
                     android:layout_height="38dp"
-                    android:paddingStart="-5dp"
                     android:layout_gravity="center"
                     android:fontFamily="@font/roboto_regular"
+                    android:paddingStart="-5dp"
                     android:text="@string/log_in"
                     android:textAlignment="center"
                     android:textAllCaps="false"

@@ -19,8 +19,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = Firebase.auth
-        
-        binding.signInBtn.setOnClickListener{
+
+        binding.signInBtn.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
@@ -30,10 +30,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        if (auth.currentUser != null) {
-            val intent = Intent(this, MainActivity::class.java)
-            finish()
-            startActivity(intent)
-        }
+//        if (auth.currentUser != null) {
+//            val intent = Intent(this, MainActivity::class.java)
+//            finish()
+//            startActivity(intent)
+//        }
     }
 }

@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.navigation.fragment.findNavController
 import com.example.travl.R
@@ -23,12 +22,12 @@ class ProfilePage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mainBtn = view.findViewById<ImageButton>(R.id.mainPageBtn)
-        val myBtn = view.findViewById<ImageButton>(R.id.plansBtn)
-        val withBtn = view.findViewById<ImageButton>(R.id.withBtn)
+        val mainBtn = view.findViewById<ImageButton>(R.id.main_page_btn)
+        val myBtn = view.findViewById<ImageButton>(R.id.my_plans_btn)
+        val withBtn = view.findViewById<ImageButton>(R.id.joint_plans_btn)
         val controller = findNavController()
-        mainBtn.setOnClickListener { controller.navigate(R.id.mainPage) }
-        myBtn.setOnClickListener { controller.navigate(R.id.myPlansPage) }
-        withBtn.setOnClickListener { controller.navigate(R.id.withPlansPage) }
+        mainBtn.setOnClickListener { controller.navigate(R.id.main_page) }
+        myBtn.setOnClickListener { controller.navigate(R.id.my_plans_page) }
+        withBtn.setOnClickListener { controller.navigate(R.id.joint_plans) }
     }
 }
