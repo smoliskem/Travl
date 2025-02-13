@@ -25,6 +25,6 @@ class PlacePage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val back = view.findViewById<ImageButton>(R.id.backBtn)
         val controller = findNavController()
-        back.setOnClickListener { controller.navigate(R.id.welcome_page2) }
+        back.setOnClickListener { controller.navigate(R.id.main_page) }
     }
 }

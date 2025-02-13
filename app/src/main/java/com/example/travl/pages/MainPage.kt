@@ -1,17 +1,22 @@
 package com.example.travl.pages
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travl.R
+import com.example.travl.adapters.MainPageParentItemAdapter
+import com.example.travl.databinding.MainPageBinding
+import com.example.travl.items.MainPageItemGenerator
+import com.example.travl.items.MainPageParentItem
 
 
 class MainPage : Fragment() {
+    private lateinit var binding: MainPageBinding
+    private lateinit var adapter: MainPageParentItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,12 +28,38 @@ class MainPage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val myBtn = view.findViewById<ImageButton>(R.id.plansBtn)
-        val withBtn = view.findViewById<ImageButton>(R.id.withBtn)
-        val profileBtn = view.findViewById<ImageButton>(R.id.profileBtn)
-        val controller = findNavController()
-        myBtn.setOnClickListener { controller.navigate(R.id.myPlansPage) }
-        withBtn.setOnClickListener { controller.navigate(R.id.withPlansPage) }
-        profileBtn.setOnClickListener { controller.navigate(R.id.profilePage) }
+        binding = MainPageBinding.bind(view)
+
+
+        val innerItems1 = MainPageItemGenerator.generateMainPageItem(5)
+        val innerItems2 = MainPageItemGenerator.generateMainPageItem(8)
+        val innerItems3 = MainPageItemGenerator.generateMainPageItem(3)
+        val outerItem = listOf(
+            MainPageParentItem(innerItems2, "Регион 1"),
+            MainPageParentItem(innerItems1, "Регион 2"),
+            MainPageParentItem(innerItems3, "Регион 3")
+        )
+
+        adapter = MainPageParentItemAdapter()
+        adapter.data = outerItem
+
+        val manager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+
+        binding.mainPageRecycler.layoutManager =
+            manager // Назначение LayoutManager для RecyclerView
+        binding.mainPageRecycler.adapter = adapter // Назначение адаптера для RecyclerView
+
+        binding.myPlansBtn.setOnClickListener {
+            findNavController().navigate(MainPageDirections.actionMainPageToMyPlansPage())
+        }
+
+        binding.jointPlansBtn.setOnClickListener {
+            findNavController().navigate(MainPageDirections.actionMainPageToJointPlansPage())
+        }
+
+        binding.profileBtn.setOnClickListener {
+            findNavController().navigate(MainPageDirections.actionMainPageToProfilePage())
+        }
     }
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="232dp"
+    android:layout_height="245dp"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="12dp">
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:background="@drawable/place">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#802A2A2A"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="8dp">
+
+            <TextView
+                android:id="@+id/place_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                app:layout_constraintBottom_toTopOf="@id/geo_ic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/place_example" />
+
+            <ImageView
+                android:id="@+id/geo_ic"
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/geo_icon"
+                android:src="@drawable/location_white_icon"
+                app:layout_constraintEnd_toStartOf="@id/region_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/place_name" />
+
+            <TextView
+                android:id="@+id/region_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/geo_ic"
+                app:layout_constraintTop_toBottomOf="@id/place_name"
+                tools:text="@string/region_example" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    tools:text="4.6" />
+
+                <ImageView
+                    android:id="@+id/score_ic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="17dp"
+                    android:contentDescription="@string/score_icon"
+                    android:src="@drawable/score" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+</androidx.cardview.widget.CardView>

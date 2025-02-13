@@ -7,8 +7,7 @@
     android:background="@drawable/welcome_cut"
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
-    android:paddingBottom="10dp"
-    tools:context=".pages.SignIn">
+    android:paddingBottom="10dp">
 
     <include
         android:id="@+id/Title"
