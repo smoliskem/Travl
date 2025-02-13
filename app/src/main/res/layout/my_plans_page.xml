@@ -10,9 +10,9 @@
     <TextView
         android:id="@+id/profile"
         android:layout_width="wrap_content"
-        android:layout_marginTop="51dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/my_plans"
         android:textColor="@color/grey_heading"
@@ -50,16 +50,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="37dp"
         android:background="@drawable/rounded_bar_background"
         android:orientation="horizontal"
-        android:layout_marginBottom="37dp"
         android:padding="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
-            android:id="@+id/mainPageBtn"
+            android:id="@+id/main_page_btn"
             android:layout_width="66dp"
             android:layout_height="66dp"
             android:layout_gravity="center"
@@ -72,7 +72,7 @@
             android:src="@drawable/main_page_icon" />
 
         <ImageButton
-            android:id="@+id/plansBtn"
+            android:id="@+id/my_plans_btn"
             android:layout_width="66dp"
             android:layout_height="66dp"
             android:layout_gravity="center"
@@ -85,7 +85,7 @@
             android:src="@drawable/plans_icon_white" />
 
         <ImageButton
-            android:id="@+id/withBtn"
+            android:id="@+id/joint_plans_btn"
             android:layout_width="66dp"
             android:layout_height="66dp"
             android:layout_gravity="center"
@@ -98,7 +98,7 @@
             android:src="@drawable/friends_icon" />
 
         <ImageButton
-            android:id="@+id/profileBtn"
+            android:id="@+id/profile_btn"
             android:layout_width="66dp"
             android:layout_height="66dp"
             android:layout_gravity="center"
