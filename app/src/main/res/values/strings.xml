@@ -37,4 +37,7 @@
     <string name="place_example">Гуамское ущелье</string>
     <string name="geo_icon">Иконка геолокации</string>
     <string name="place_image">Фото места</string>
+    <string name="place">Место</string>
+    <string name="score">Оценка</string>
+    <string name="flag">Флаг</string>
 </resources>
