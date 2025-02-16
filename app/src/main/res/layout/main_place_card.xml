@@ -8,10 +8,16 @@
     app:cardCornerRadius="12dp">
 
     <FrameLayout
-        android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:background="@drawable/place">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/place_image"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/place" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

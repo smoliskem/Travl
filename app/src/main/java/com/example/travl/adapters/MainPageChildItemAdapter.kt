@@ -1,16 +1,21 @@
 package com.example.travl.adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.travl.databinding.MainPlaceCardBinding
-import com.example.travl.items.MainPageChildItem
+import com.example.travl.items.PlaceCard
 
-class MainPageChildItemAdapter(private val innerData: List<MainPageChildItem>) :
+class MainPageChildItemAdapter(
+    private val innerData: List<PlaceCard>,
+    private val context: Context
+) :
     RecyclerView.Adapter<MainPageChildItemAdapter.MainPageChildItemViewHolder>() {
 
-    public var data: List<MainPageChildItem> = innerData
+    public var data: List<PlaceCard> = innerData
         @SuppressLint("NotifyDataSetChanged")
         set(newValue) {
             field = newValue
@@ -35,8 +40,10 @@ class MainPageChildItemAdapter(private val innerData: List<MainPageChildItem>) :
         with(holder.binding) {
             placeName.text = place.placeName
             regionName.text = place.regionName
-            score.text = place.score
-            frame.setBackgroundResource(place.imageResId)
+            score.text = "4.5"
+            Glide.with(context)
+                .load(place.imageResURL)
+                .into(holder.binding.frame)
         }
     }
 }
