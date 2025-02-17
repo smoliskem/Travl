@@ -1,6 +1,8 @@
 package com.example.travl.pages
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travl.R
 import com.example.travl.adapters.MainPageParentItemAdapter
 import com.example.travl.databinding.MainPageBinding
-import com.example.travl.items.MainPageItemGenerator
 import com.example.travl.items.MainPageParentItem
-
+import com.example.travl.items.PlaceCard
+import com.example.travl.items.PlaceCardGenerator
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.toObject
+import com.google.firebase.ktx.Firebase
 
 class MainPage : Fragment() {
     private lateinit var binding: MainPageBinding
@@ -30,25 +35,19 @@ class MainPage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = MainPageBinding.bind(view)
 
+        adapter = MainPageParentItemAdapter(requireContext())
 
-        val innerItems1 = MainPageItemGenerator.generateMainPageItem(5)
-        val innerItems2 = MainPageItemGenerator.generateMainPageItem(8)
-        val innerItems3 = MainPageItemGenerator.generateMainPageItem(3)
-        val outerItem = listOf(
-            MainPageParentItem(innerItems2, "Регион 1"),
-            MainPageParentItem(innerItems1, "Регион 2"),
-            MainPageParentItem(innerItems3, "Регион 3")
-        )
-
-        adapter = MainPageParentItemAdapter()
-        adapter.data = outerItem
+        PlaceCardGenerator.setDocuments(adapter)
 
         val manager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-
         binding.mainPageRecycler.layoutManager =
-            manager // Назначение LayoutManager для RecyclerView
-        binding.mainPageRecycler.adapter = adapter // Назначение адаптера для RecyclerView
+            manager
+
+        binding.mainPageRecycler.adapter = adapter
+
+
+
 
         binding.myPlansBtn.setOnClickListener {
             findNavController().navigate(MainPageDirections.actionMainPageToMyPlansPage())
@@ -63,3 +62,4 @@ class MainPage : Fragment() {
         }
     }
 }
+
