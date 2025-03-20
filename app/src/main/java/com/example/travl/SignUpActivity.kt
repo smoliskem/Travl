@@ -34,6 +34,7 @@ class SignUpActivity : AppCompatActivity() {
             val etPassword = binding.editTextPassword.text.toString()
             if (checkFields(etName, etMail, etPassword)) {
                 createUserWithEmailAndPassword(etMail, etPassword)
+                saveUserName(etName)
             } else {
                 Toast.makeText(
                     baseContext,
@@ -100,4 +101,13 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
+    private fun saveUserName(userName: String) {
+        // Получаем SharedPreferences
+        val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Сохраняем имя пользователя
+        editor.putString("user_name", userName)
+        editor.apply() // или editor.commit() для синхронного сохранения
+    }
 }
