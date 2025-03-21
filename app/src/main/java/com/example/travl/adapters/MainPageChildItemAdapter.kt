@@ -10,12 +10,12 @@ import com.example.travl.databinding.MainPlaceCardBinding
 import com.example.travl.items.PlaceCard
 
 class MainPageChildItemAdapter(
-    private val innerData: List<PlaceCard>,
+    innerData: List<PlaceCard>,
     private val context: Context
 ) :
     RecyclerView.Adapter<MainPageChildItemAdapter.MainPageChildItemViewHolder>() {
 
-    public var data: List<PlaceCard> = innerData
+    var data: List<PlaceCard> = innerData
         @SuppressLint("NotifyDataSetChanged")
         set(newValue) {
             field = newValue
