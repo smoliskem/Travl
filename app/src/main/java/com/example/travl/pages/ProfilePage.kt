@@ -1,22 +1,24 @@
 package com.example.travl.pages
 
-import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.example.travl.R
-import com.example.travl.databinding.MainPageBinding
 import com.example.travl.databinding.ProfilePageBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class ProfilePage : Fragment() {
     private lateinit var binding: ProfilePageBinding
     private lateinit var textViewUserName: TextView
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,12 +26,13 @@ class ProfilePage : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.profile_page, container, false)
 
+        auth = Firebase.auth
         textViewUserName = view.findViewById(R.id.username)
 
-        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", MODE_PRIVATE)
-        val userName = sharedPreferences.getString("user_name", "Default Name")
+        val user = FirebaseAuth.getInstance().currentUser
+        val displayName = user?.displayName
 
-        textViewUserName.text = userName
+        textViewUserName.text = displayName
         // Inflate the layout for this fragment
         return view
     }
