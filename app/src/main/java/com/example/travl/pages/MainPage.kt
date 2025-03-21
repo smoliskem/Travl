@@ -43,9 +43,9 @@ class MainPage : Fragment() {
 
         binding.mainPageRecycler.adapter = adapter
 
-        viewModel.dataList.observe(viewLifecycleOwner, Observer { data ->
-            adapter.data = data // Обновляем данные в адаптере
-        })
+        viewModel.dataList.observe(viewLifecycleOwner) { data ->
+            adapter.data = data
+        }
 
         viewModel.loadData()
 
