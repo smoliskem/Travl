@@ -7,12 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.example.travl.LoginActivity
 import com.example.travl.R
-import com.example.travl.databinding.MainPageBinding
 import com.example.travl.databinding.ProfilePageBinding
 import com.google.firebase.auth.FirebaseAuth
 
