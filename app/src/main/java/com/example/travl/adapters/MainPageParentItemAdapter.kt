@@ -6,11 +6,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.travl.interfaces.OnChildItemClickListener
 import com.example.travl.databinding.MainPageItemRecyclerBinding
 import com.example.travl.items.MainPageParentItem
+import com.example.travl.items.PlaceCard
 
 
-class MainPageParentItemAdapter(private val context: Context) :
+class MainPageParentItemAdapter(
+    private val context: Context,
+    private val listener: OnChildItemClickListener // Добавляем слушатель
+) :
     RecyclerView.Adapter<MainPageParentItemAdapter.MainPageParentItemViewHolder>() {
 
     var data: List<MainPageParentItem> = emptyList()
@@ -20,8 +25,12 @@ class MainPageParentItemAdapter(private val context: Context) :
             notifyDataSetChanged()
         }
 
+    fun getChildItem(position: Int): PlaceCard {
+        return data[0].childItemList[position]
+    }
+
     class MainPageParentItemViewHolder(val binding: MainPageItemRecyclerBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -43,6 +52,6 @@ class MainPageParentItemAdapter(private val context: Context) :
             LinearLayoutManager(holder.binding.root.context, LinearLayoutManager.HORIZONTAL, false)
 
         holder.binding.mainPageItemRecycler.adapter =
-            MainPageChildItemAdapter(item.childItemList, context)
+            MainPageChildItemAdapter(item.childItemList, context, listener)
     }
 }
