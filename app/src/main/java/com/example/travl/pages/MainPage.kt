@@ -63,8 +63,7 @@ class MainPage : Fragment(), OnChildItemClickListener {
     }
 
     override fun onChildItemClick(position: Int) {
-        // Обработка клика на элемент вложенного RecyclerView
-        val childItem = adapter.getChildItem(position)
+        //val childItem = adapter.getChildItem(position)
 
         // Открываем новый фрагмент
 //            findNavController().navigate(
