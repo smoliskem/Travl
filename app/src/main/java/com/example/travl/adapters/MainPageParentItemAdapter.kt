@@ -14,7 +14,7 @@ import com.example.travl.items.PlaceCard
 
 class MainPageParentItemAdapter(
     private val context: Context,
-    private val listener: OnChildItemClickListener // Добавляем слушатель
+    private val listener: OnChildItemClickListener
 ) :
     RecyclerView.Adapter<MainPageParentItemAdapter.MainPageParentItemViewHolder>() {
 
@@ -25,8 +25,8 @@ class MainPageParentItemAdapter(
             notifyDataSetChanged()
         }
 
-    fun getChildItem(position: Int): PlaceCard {
-        return data[0].childItemList[position]
+    fun getChildItem(parentPosition: Int, childPosition: Int): PlaceCard {
+        return data[parentPosition].childItemList[childPosition]
     }
 
     class MainPageParentItemViewHolder(val binding: MainPageItemRecyclerBinding) :
@@ -45,13 +45,18 @@ class MainPageParentItemAdapter(
 
     override fun onBindViewHolder(holder: MainPageParentItemViewHolder, position: Int) {
         val item = data[position]
+        with(holder.binding) {
+            regionName.text = item.regionName
 
-        holder.binding.regionName.text = item.regionName
+            mainPageItemRecycler.layoutManager =
+                LinearLayoutManager(
+                    holder.binding.root.context,
+                    LinearLayoutManager.HORIZONTAL,
+                    false
+                )
 
-        holder.binding.mainPageItemRecycler.layoutManager =
-            LinearLayoutManager(holder.binding.root.context, LinearLayoutManager.HORIZONTAL, false)
-
-        holder.binding.mainPageItemRecycler.adapter =
-            MainPageChildItemAdapter(item.childItemList, context, listener)
+            mainPageItemRecycler.adapter =
+                MainPageChildItemAdapter(item.childItemList, context, listener, position)
+        }
     }
 }

@@ -13,7 +13,8 @@ import com.example.travl.items.PlaceCard
 class MainPageChildItemAdapter(
     innerData: List<PlaceCard>,
     private val context: Context,
-    private val listener: OnChildItemClickListener // Добавляем слушатель
+    private val listener: OnChildItemClickListener,
+    private val parentPosition: Int
 ) :
     RecyclerView.Adapter<MainPageChildItemAdapter.MainPageChildItemViewHolder>() {
 
@@ -48,7 +49,7 @@ class MainPageChildItemAdapter(
                 .into(holder.binding.frame)
 
             root.setOnClickListener {
-                listener.onChildItemClick(position) // Передаем позицию элемента
+                listener.onChildItemClick(parentPosition, position)
             }
         }
     }

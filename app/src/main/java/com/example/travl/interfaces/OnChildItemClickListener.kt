@@ -1,5 +1,5 @@
 package com.example.travl.interfaces
 
 interface OnChildItemClickListener {
-    fun onChildItemClick(position: Int)
+    fun onChildItemClick(parentPosition: Int, childPosition: Int)
 }

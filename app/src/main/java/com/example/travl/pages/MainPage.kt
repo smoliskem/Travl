@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -62,19 +61,17 @@ class MainPage : Fragment(), OnChildItemClickListener {
         }
     }
 
-    override fun onChildItemClick(position: Int) {
-        //val childItem = adapter.getChildItem(position)
+    override fun onChildItemClick(parentPosition: Int, childPosition: Int) {
+        val childItem = adapter.getChildItem(parentPosition, childPosition)
 
-        // Открываем новый фрагмент
-//            findNavController().navigate(
-//                MainPageDirections.actionMainPageToDetailFragment(childItem.id)
-//            )
+        val action = MainPageDirections.actionMainPageToPlacePage(
+            childItem.imageResURL,
+            childItem.placeName,
+            childItem.regionName,
+            childItem.description
+        )
 
-        Toast.makeText(
-            requireContext(),
-            "Nice click",
-            Toast.LENGTH_SHORT
-        ).show()
+
+        findNavController().navigate(action)
     }
 }
-
