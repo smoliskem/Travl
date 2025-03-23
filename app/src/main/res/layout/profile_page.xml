@@ -83,6 +83,7 @@
                 android:drawableStart="@drawable/settings_ic"
                 android:drawableEnd="@drawable/arrow_next_icon"
                 android:drawablePadding="20dp"
+                android:padding="5dp"
                 android:text="@string/edit_profile"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
@@ -106,6 +107,7 @@
                 android:drawableStart="@drawable/friends_list_ic"
                 android:drawableEnd="@drawable/arrow_next_icon"
                 android:drawablePadding="20dp"
+                android:padding="5dp"
                 android:text="@string/friends"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
@@ -129,7 +131,32 @@
                 android:drawableStart="@drawable/add_friend_ic"
                 android:drawableEnd="@drawable/arrow_next_icon"
                 android:drawablePadding="20dp"
+                android:padding="5dp"
                 android:text="@string/add_friend"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="#464646" />
+
+            <View
+                android:id="@+id/divider_3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="5dp"
+                android:background="#CCCCCC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_box" />
+
+            <Button
+                android:id="@+id/log_out"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:background="#00000000"
+                android:drawableStart="@drawable/exit_ic"
+                android:drawableEnd="@drawable/arrow_next_icon"
+                android:drawablePadding="20dp"
+                android:padding="5dp"
+                android:text="@string/exit"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textColor="#464646" />
