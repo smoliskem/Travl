@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.travl.interfaces.OnChildItemClickListener
 import com.example.travl.databinding.MainPlaceCardBinding
 import com.example.travl.items.PlaceCard
 
 class MainPageChildItemAdapter(
     innerData: List<PlaceCard>,
-    private val context: Context
+    private val context: Context,
+    private val listener: OnChildItemClickListener // Добавляем слушатель
 ) :
     RecyclerView.Adapter<MainPageChildItemAdapter.MainPageChildItemViewHolder>() {
 
@@ -23,7 +25,7 @@ class MainPageChildItemAdapter(
         }
 
     class MainPageChildItemViewHolder(val binding: MainPlaceCardBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainPageChildItemViewHolder {
         val binding =
@@ -44,6 +46,10 @@ class MainPageChildItemAdapter(
             Glide.with(context)
                 .load(place.imageResURL)
                 .into(holder.binding.frame)
+
+            root.setOnClickListener {
+                listener.onChildItemClick(position) // Передаем позицию элемента
+            }
         }
     }
 }
