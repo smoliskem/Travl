@@ -7,10 +7,11 @@
     tools:context=".pages.PlacePage">
 
     <ImageView
-        android:id="@+id/baikal"
+        android:id="@+id/place_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/frame"
+        android:contentDescription="@string/place_image"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,14 +35,14 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/place_name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fontFamily="@font/montserrat_black"
         android:gravity="bottom"
         android:paddingStart="30dp"
         android:paddingEnd="0dp"
-        android:text="Гуамское ущелье"
+        tools:text="Гуамское ущелье"
         android:textColor="@color/white"
         android:textSize="27sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,8 +59,8 @@
         android:orientation="horizontal"
         android:paddingStart="30dp"
         android:paddingEnd="0dp"
-        app:layout_constraintStart_toStartOf="@+id/baikal"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintStart_toStartOf="@+id/place_img"
+        app:layout_constraintTop_toBottomOf="@+id/place_name">
 
 
         <ImageView
@@ -67,25 +68,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/location_white_icon" />
+            android:background="@drawable/location_white_icon"
+            android:contentDescription="@string/geo_icon" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/region_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="Краснодарский край"
+            tools:text="Краснодарский край"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
             android:layout_weight="1"
             android:fontFamily="@font/montserrat_regular"
-            android:text="4.6"
+            tools:text="4.6"
             android:textColor="@color/white"
             android:textSize="17sp" />
 
@@ -94,14 +96,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/star_icon" />
+            android:background="@drawable/star_icon"
+            android:contentDescription="@string/score" />
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        app:layout_constraintEnd_toEndOf="@+id/baikal"
+        app:layout_constraintEnd_toEndOf="@+id/place_img"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
@@ -112,11 +115,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/place_description"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Гуамское ущелье — узкое глубокое ущелье, в верховьях реки Курджипс. Ущелье расположено между хребтами Гуама и Лаго-Наки, резко обрываясь четырёхсотметровыми скалами к долине реки Курджипс. Находится на территории Апшеронского района Краснодарского края."
+                tools:text="Гуамское ущелье — узкое глубокое ущелье, в верховьях реки Курджипс. Ущелье расположено между хребтами Гуама и Лаго-Наки, резко обрываясь четырёхсотметровыми скалами к долине реки Курджипс. Находится на территории Апшеронского района Краснодарского края."
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
