@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <style name="CustomSearchView" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColor">@android:color/black</item> <!-- Цвет текста -->
+        <item name="android:textColorHint">@android:color/darker_gray</item> <!-- Цвет подсказки -->
+        <item name="android:queryBackground">@android:color/transparent</item> <!-- Фон ввода -->
+    </style>
+</resources>

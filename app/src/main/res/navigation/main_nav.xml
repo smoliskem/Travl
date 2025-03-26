@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainPage_to_profilePage"
             app:destination="@id/profile_page" />
+        <action
+            android:id="@+id/action_mainPage_to_placePage"
+            app:destination="@id/place_page" />
     </fragment>
     <fragment
         android:id="@+id/my_plans_page"
@@ -64,5 +67,27 @@
         <action
             android:id="@+id/action_profilePage_to_jointPlansPage"
             app:destination="@id/joint_plans" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/place_page"
+        android:name="com.example.travl.pages.PlacePage"
+        android:label="place_page"
+        tools:layout="@layout/profile_page" >
+        <action
+            android:id="@+id/action_placePage_to_mainPage"
+            app:destination="@id/main_page" />
+        <argument
+            android:name="imageResURL"
+            app:argType="string" />
+        <argument
+            android:name="placeName"
+            app:argType="string" />
+        <argument
+            android:name="regionName"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
     </fragment>
 </navigation>

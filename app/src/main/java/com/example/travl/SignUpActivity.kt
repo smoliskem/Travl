@@ -1,14 +1,14 @@
 package com.example.travl
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.travl.databinding.SignUpPageBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.auth
 
 class SignUpActivity : AppCompatActivity() {
@@ -33,7 +33,7 @@ class SignUpActivity : AppCompatActivity() {
             val etMail = binding.editTextEmail.text.toString()
             val etPassword = binding.editTextPassword.text.toString()
             if (checkFields(etName, etMail, etPassword)) {
-                createUserWithEmailAndPassword(etMail, etPassword)
+                createUserWithEmailAndPassword(etMail, etPassword, etName)
             } else {
                 Toast.makeText(
                     baseContext,
@@ -45,7 +45,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-    private fun createUserWithEmailAndPassword(email: String, password: String) {
+    private fun createUserWithEmailAndPassword(email: String, password: String, userName: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -77,6 +77,8 @@ class SignUpActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT,
                             ).show()
                         }
+
+                    updateUserProfile(auth.currentUser, userName)
                 } else {
                     Toast.makeText(
                         baseContext,
@@ -99,5 +101,26 @@ class SignUpActivity : AppCompatActivity() {
         return editText == ""
     }
 
+    private fun updateUserProfile(user: FirebaseUser?, userName: String) {
+        val profileUpdates = UserProfileChangeRequest.Builder()
+            .setDisplayName(userName)
+            .build()
 
+        user?.updateProfile(profileUpdates)
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(
+                        baseContext,
+                        "Username saved.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        baseContext,
+                        "Setting username failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            }
+    }
 }
