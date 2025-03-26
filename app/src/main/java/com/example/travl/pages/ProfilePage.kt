@@ -59,6 +59,14 @@ class ProfilePage : Fragment() {
             signOut()
         }
 
+        binding.redactor.setOnClickListener{
+            findNavController().navigate(ProfilePageDirections.actionProfilePageToEditPage())
+        }
+
+        binding.addFriend.setOnClickListener{
+            findNavController().navigate(ProfilePageDirections.actionProfilePageToAddFriendPage())
+        }
+
     }
 
     private fun signOut() {

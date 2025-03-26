@@ -67,6 +67,12 @@
         <action
             android:id="@+id/action_profilePage_to_jointPlansPage"
             app:destination="@id/joint_plans" />
+        <action
+            android:id="@+id/action_profile_page_to_editPage"
+            app:destination="@id/editPage" />
+        <action
+            android:id="@+id/action_profile_page_to_addFriendPage"
+            app:destination="@id/addFriendPage" />
     </fragment>
 
     <fragment
@@ -89,5 +95,23 @@
         <argument
             android:name="description"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPage"
+        android:name="com.example.travl.pages.EditProfilePage"
+        android:label="edit_profile_page"
+        tools:layout="@layout/edit_profile_page" >
+        <action
+            android:id="@+id/action_editPage_to_profile_page"
+            app:destination="@id/profile_page" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFriendPage"
+        android:name="com.example.travl.pages.AddFriendPage"
+        android:label="add_friend_page"
+        tools:layout="@layout/add_friend_page" >
+        <action
+            android:id="@+id/action_addFriendPage_to_profile_page"
+            app:destination="@id/profile_page" />
     </fragment>
 </navigation>
