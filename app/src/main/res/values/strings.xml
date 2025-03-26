@@ -41,4 +41,5 @@
     <string name="score">Оценка</string>
     <string name="flag">Флаг</string>
     <string name="exit">Выйти из аккаунта</string>
+    <string name="friend">add friends</string>
 </resources>
