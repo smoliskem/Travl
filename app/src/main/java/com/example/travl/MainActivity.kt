@@ -10,10 +10,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.add_friend_page2)
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.navController
+    //val navHostFragment =
+    //  supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+    //navController = navHostFragment.navController
     }
 }
