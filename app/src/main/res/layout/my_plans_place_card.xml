@@ -16,7 +16,7 @@
         android:layout_gravity="center">
 
         <ImageView
-            android:id="@+id/frame"
+            android:id="@+id/place_img"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:background="@drawable/place"

@@ -6,22 +6,39 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.travl.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.travl.adapters.MyPlansPageItemAdapter
 import com.example.travl.databinding.MyPlansPageBinding
+
 
 
 class MyPlansPage : Fragment() {
     private lateinit var binding: MyPlansPageBinding
+    private lateinit var adapter: MyPlansPageItemAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.my_plans_page, container, false)
+        binding = MyPlansPageBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = MyPlansPageBinding.bind(view)
+
+        adapter = MyPlansPageItemAdapter(requireContext())
+
+
+        val manager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+        binding.myPlansRecycler.layoutManager =
+            manager
+
+
+        binding.myPlansRecycler.adapter = adapter
+
+
         val controller = findNavController()
 
         binding.mainPageBtn.setOnClickListener {

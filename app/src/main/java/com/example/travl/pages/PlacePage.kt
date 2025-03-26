@@ -5,12 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.travl.R
-import com.example.travl.databinding.MainPageBinding
 import com.example.travl.databinding.PlacePageBinding
 
 
@@ -21,7 +18,7 @@ class PlacePage : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = PlacePageBinding.inflate(inflater, container, false)
         return binding.root
@@ -44,6 +41,10 @@ class PlacePage : Fragment() {
         binding.regionName.text = regionName
         binding.placeDescription.text = description
 
+
+        binding.addBtn.setOnClickListener {
+
+        }
 
         binding.backBtn.setOnClickListener {
             findNavController().navigate(PlacePageDirections.actionPlacePageToMainPage())
