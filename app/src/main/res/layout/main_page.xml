@@ -7,70 +7,54 @@
     android:background="@color/white"
     tools:context=".pages.MainPage">
 
-    <ImageView
-        android:id="@+id/backgroundPic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/main_background"
-        android:contentDescription="@string/main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <LinearLayout
         android:id="@+id/main_page_linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingBottom="120dp"
-        app:layout_constraintBottom_toTopOf="@id/navigation_bar"
-        app:layout_constraintTop_toBottomOf="@+id/backgroundPic">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/title"
+        <include
+            android:id="@+id/Title"
+            layout="@layout/heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            android:fontFamily="@font/montserrat_black"
-            android:text="@string/list_header"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="22sp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/top_card"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:backgroundTint="@color/white"
-            app:cardCornerRadius="30dp"
-            app:cardElevation="0dp">
 
             <LinearLayout
+                android:id="@+id/searchBarLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="10dp">
+                >
+
 
                 <SearchView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:iconifiedByDefault="false"
+                    android:searchIcon="@drawable/search_vector"
+                    android:background="@drawable/search_main"
+                    />
 
-                    android:id="@+id/searchBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/search__bar"
-                    android:textAlignment="textStart" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/main_page_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/searchBarLayout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/top_card" />
+            android:paddingTop="10dp"
+            android:paddingBottom="70dp"
+            android:clipToPadding="false"/>
+
+
     </LinearLayout>
 
 
@@ -79,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="37dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/rounded_bar_background"
         android:orientation="horizontal"
         android:padding="9dp"
@@ -89,8 +73,8 @@
 
         <ImageButton
             android:id="@+id/mainPageBtn"
-            android:layout_width="66dp"
-            android:layout_height="66dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="5dp"
@@ -102,8 +86,8 @@
 
         <ImageButton
             android:id="@+id/myPlansBtn"
-            android:layout_width="66dp"
-            android:layout_height="66dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
@@ -115,8 +99,8 @@
 
         <ImageButton
             android:id="@+id/jointPlansBtn"
-            android:layout_width="66dp"
-            android:layout_height="66dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
@@ -128,8 +112,8 @@
 
         <ImageButton
             android:id="@+id/profileBtn"
-            android:layout_width="66dp"
-            android:layout_height="66dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="1dp"

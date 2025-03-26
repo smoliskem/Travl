@@ -43,7 +43,6 @@ class MainPageChildItemAdapter(
         with(holder.binding) {
             placeName.text = place.placeName
             regionName.text = place.regionName
-            score.text = "4.5"
             Glide.with(context)
                 .load(place.imageResURL)
                 .into(holder.binding.frame)

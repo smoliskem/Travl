@@ -37,6 +37,7 @@ class PlacePage : Fragment() {
 
         Glide.with(requireContext())
             .load(imageResURL)
+            .centerCrop()
             .into(binding.placeImg)
 
         binding.placeName.text = placeName

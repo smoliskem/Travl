@@ -27,10 +27,10 @@
     <string name="email_hint">email@mail.ru</string>
     <string name="password_hint">password</string>
     <string name="name_hint">Ivan</string>
-    <string name="to_the_list">В список</string>
+    <string name="to_the_list">В мои планы</string>
     <string name="list_header">Место для твоих путешествий</string>
     <string name="my_plans">Мои планы</string>
-    <string name="share">Отправить</string>
+    <string name="share">Друзьям</string>
     <string name="joint_plans">Совместные планы</string>
     <string name="score_icon">Иконка звезды</string>
     <string name="region_example">Краснодарский край</string>

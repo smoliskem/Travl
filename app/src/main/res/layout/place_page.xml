@@ -8,13 +8,11 @@
 
     <ImageView
         android:id="@+id/place_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:background="@drawable/frame"
         android:contentDescription="@string/place_image"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -80,44 +78,27 @@
             android:textColor="@color/white"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/montserrat_regular"
-            tools:text="4.6"
-            android:textColor="@color/white"
-            android:textSize="17sp" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/star_icon"
-            android:contentDescription="@string/score" />
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/scroll_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginTop="6dp"
-        app:layout_constraintEnd_toEndOf="@+id/place_img"
+        android:paddingLeft="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/place_description"
                 android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/montserrat_medium"
                 tools:text="Гуамское ущелье — узкое глубокое ущелье, в верховьях реки Курджипс. Ущелье расположено между хребтами Гуама и Лаго-Наки, резко обрываясь четырёхсотметровыми скалами к долине реки Курджипс. Находится на территории Апшеронского района Краснодарского края."
                 android:textColor="@color/white"
@@ -130,6 +111,31 @@
         </LinearLayout>
     </ScrollView>
 
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="30dp"
+        android:paddingTop="10dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <include
+            android:id="@+id/addBtn"
+            layout="@layout/add_location_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <include
+            android:id="@+id/shareBtn"
+            layout="@layout/share_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
