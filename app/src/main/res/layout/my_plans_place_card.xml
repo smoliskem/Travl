@@ -82,7 +82,7 @@
 
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/success_btn"
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="47dp"
                     android:layout_height="32dp"
@@ -92,7 +92,7 @@
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/delete_btn"
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="46dp"
                     android:layout_height="32dp"

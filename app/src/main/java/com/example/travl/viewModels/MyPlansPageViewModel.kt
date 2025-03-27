@@ -17,7 +17,10 @@ class MyPlansPageViewModel : ViewModel() {
     private val db = FirebaseFirestore.getInstance()
     private val uid = Firebase.auth.currentUser?.uid
 
-    fun loadData() {
+    fun removeItem(itemId: String) {
+        _dataList.value = _dataList.value?.filter { it.key != itemId }
+
+    }fun loadData() {
         val favorites = mutableListOf<MyPlansItem>()
 
 

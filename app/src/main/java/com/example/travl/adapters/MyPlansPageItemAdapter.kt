@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.travl.databinding.MyPlansPlaceCardBinding
+import com.example.travl.interfaces.OnMyPlansDeleteBtnClickListener
 import com.example.travl.items.MyPlansItem
+import com.example.travl.items.PlaceCard
 
 
 class MyPlansPageItemAdapter(
-    private val context: Context
+    private val context: Context,
+    private val listener: OnMyPlansDeleteBtnClickListener
 ) :
     RecyclerView.Adapter<MyPlansPageItemAdapter.MyPlansPageViewHolder>() {
 
@@ -21,6 +24,10 @@ class MyPlansPageItemAdapter(
             field = newValue
             notifyDataSetChanged()
         }
+
+    fun getItem(position: Int): MyPlansItem {
+        return data[position]
+    }
 
     class MyPlansPageViewHolder(val binding: MyPlansPlaceCardBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -46,6 +53,10 @@ class MyPlansPageItemAdapter(
             Glide.with(context)
                 .load(item.imageResURI)
                 .into(holder.binding.placeImg)
+
+            deleteBtn.setOnClickListener {
+                listener.onChildItemClick(position)
+            }
         }
     }
 }

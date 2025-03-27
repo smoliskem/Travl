@@ -78,7 +78,6 @@ class MainPage : Fragment(), OnChildItemClickListener {
             childItem.key
         )
 
-
         findNavController().navigate(action)
     }
 }
