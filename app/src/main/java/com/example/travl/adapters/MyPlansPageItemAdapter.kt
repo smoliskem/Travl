@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.travl.databinding.MyPlansPlaceCardBinding
+import com.example.travl.items.MyPlansItem
 import com.example.travl.items.PlaceCard
 
 class MyPlansPageItemAdapter(
@@ -14,7 +15,7 @@ class MyPlansPageItemAdapter(
 ) :
     RecyclerView.Adapter<MyPlansPageItemAdapter.MyPlansPageViewHolder>() {
 
-    var data: List<PlaceCard> = emptyList()
+    var data: List<MyPlansItem> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
         set(newValue) {
             field = newValue
@@ -43,7 +44,7 @@ class MyPlansPageItemAdapter(
             regionName.text = item.regionName
 
             Glide.with(context)
-                .load(item.imageResURL)
+                .load(item.imageResURI)
                 .into(holder.binding.placeImg)
         }
     }

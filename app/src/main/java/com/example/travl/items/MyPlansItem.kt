@@ -1,8 +1,17 @@
 package com.example.travl.items
 
 data class MyPlansItem(
+    val imageResURI: String = "",
     val placeName: String = "",
     val regionName: String = "",
-    val placeImage: String = "",
-    val isFav: Boolean = false
+    val key: String = ""
 )
+
+fun MyPlansItem.toMap(): Map<String, Any> {
+    return mapOf(
+        "imageResURI" to imageResURI,
+        "placeName" to placeName,
+        "regionName" to regionName,
+        "key" to key
+    )
+}

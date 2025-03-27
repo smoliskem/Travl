@@ -44,7 +44,7 @@ class MainPageChildItemAdapter(
             placeName.text = place.placeName
             regionName.text = place.regionName
             Glide.with(context)
-                .load(place.imageResURL)
+                .load(place.imageResURI)
                 .into(holder.binding.frame)
 
             root.setOnClickListener {

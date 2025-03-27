@@ -1,4 +1,4 @@
-package com.example.travl.ViewModels
+package com.example.travl.viewModels
 
 
 import android.util.Log
@@ -21,9 +21,9 @@ class MainPageViewModel : ViewModel() {
         val altai = mutableListOf<PlaceCard>()
         val ural = mutableListOf<PlaceCard>()
 
-        val caucasusTask = loadCollection("Caucasus", caucasus)
-        val altaiTask = loadCollection("Altai", altai)
-        val uralTask = loadCollection("Ural", ural)
+        val caucasusTask = loadCollection(db, "Caucasus", caucasus)
+        val altaiTask = loadCollection(db, "Altai", altai)
+        val uralTask = loadCollection(db, "Ural", ural)
 
         Tasks.whenAllComplete(caucasusTask, altaiTask, uralTask)
             .addOnSuccessListener {
@@ -38,7 +38,11 @@ class MainPageViewModel : ViewModel() {
             }
     }
 
-    private fun loadCollection(collectionName: String, list: MutableList<PlaceCard>) =
+    private fun loadCollection(
+        db: FirebaseFirestore,
+        collectionName: String,
+        list: MutableList<PlaceCard>
+    ) =
         db.collection(collectionName)
             .get()
             .addOnSuccessListener { snapshot ->

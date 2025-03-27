@@ -59,7 +59,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/location_black_icon"
-                    android:contentDescription="@string/geo_icon" />
+                    android:contentDescription="@string/geo_icon"
+                    tools:ignore="InefficientWeight" />
 
                 <TextView
                     android:id="@+id/region_name"
@@ -73,6 +74,7 @@
             </LinearLayout>
 
             <LinearLayout
+                style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -81,19 +83,21 @@
 
                 <Button
                     android:id="@+id/button"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="47dp"
                     android:layout_height="32dp"
                     android:background="@drawable/plans_ok"
-                    android:text="ds"
+                    tools:text="ds"
                     android:textColor="#0000"
-                    tools:ignore="TouchTargetSizeCheck"/>
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <Button
                     android:id="@+id/button2"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="46dp"
                     android:layout_height="32dp"
                     android:background="@drawable/plans_x"
-                    android:text="ds"
+                    tools:text="ds"
                     android:textColor="#0000"
                     tools:ignore="TouchTargetSizeCheck"/>
             </LinearLayout>

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travl.interfaces.OnChildItemClickListener
 import com.example.travl.adapters.MainPageParentItemAdapter
 import com.example.travl.databinding.MainPageBinding
-import com.example.travl.ViewModels.MainPageViewModel
+import com.example.travl.viewModels.MainPageViewModel
 
 
 class MainPage : Fragment(), OnChildItemClickListener {
@@ -31,22 +31,28 @@ class MainPage : Fragment(), OnChildItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Инициализация адаптера
         adapter = MainPageParentItemAdapter(requireContext(), this)
 
 
+        //Менеджер RecyclerView
         val manager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
+        //Присваивание менеджера
         binding.mainPageRecycler.layoutManager =
             manager
 
-
-        binding.mainPageRecycler.adapter = adapter
-
+        //Наблюдатель
         viewModel.dataList.observe(viewLifecycleOwner) { data ->
             adapter.data = data
         }
 
+        //Асинхронное обновление данных
         viewModel.loadData()
+
+        //Присваивание адаптера
+        binding.mainPageRecycler.adapter = adapter
+
 
         binding.myPlansBtn.setOnClickListener {
             findNavController().navigate(MainPageDirections.actionMainPageToMyPlansPage())
@@ -65,10 +71,11 @@ class MainPage : Fragment(), OnChildItemClickListener {
         val childItem = adapter.getChildItem(parentPosition, childPosition)
 
         val action = MainPageDirections.actionMainPageToPlacePage(
-            childItem.imageResURL,
+            childItem.imageResURI,
             childItem.placeName,
             childItem.regionName,
-            childItem.description
+            childItem.description,
+            childItem.key
         )
 
 
