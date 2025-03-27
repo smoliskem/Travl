@@ -41,4 +41,16 @@
     <string name="score">Оценка</string>
     <string name="flag">Флаг</string>
     <string name="exit">Выйти из аккаунта</string>
+    <string name="friend">add friends</string>
+    <string name="edit">Редактировать</string>
+    <string name="profileLower">профиль</string>
+    <string name="MyPlans">Мои планы</string>
+    <string name="add">Добавить</string>
+    <string name="frienda">друга</string>
+    <string name="friendAddText">Введите имя пользователя, которого вы хотите добавить в друзья</string>
+    <string name="send">Отправить</string>
+    <string name="changePhoto">Сменить фото</string>
+    <string name="Name">Имя</string>
+    <string name="passwordClose">********</string>
+    <string name="accept">Применить</string>
 </resources>
