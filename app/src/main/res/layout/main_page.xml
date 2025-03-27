@@ -48,11 +48,9 @@
             android:id="@+id/main_page_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/searchBarLayout"
-            app:layout_constraintEnd_toEndOf="parent"
             android:paddingTop="10dp"
-            android:paddingBottom="70dp"
-            android:clipToPadding="false"/>
+            android:clipToPadding="false"
+            android:paddingBottom="70dp"/>
 
 
     </LinearLayout>

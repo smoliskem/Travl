@@ -10,13 +10,13 @@
         android:id="@+id/place_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:background="@drawable/frame"
         android:contentDescription="@string/place_image"
-
         app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:background="@drawable/frame" />
 
     <ImageButton
         android:id="@+id/backBtn"
@@ -40,14 +40,14 @@
         android:gravity="bottom"
         android:paddingStart="30dp"
         android:paddingEnd="0dp"
-        tools:text="Гуамское ущелье"
         android:textColor="@color/white"
         android:textSize="27sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.6"
-
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Гуамское ущелье" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -63,7 +63,7 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/location_white_icon"
@@ -74,9 +74,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semibold"
-            tools:text="Краснодарский край"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="Краснодарский край" />
 
     </LinearLayout>
 
@@ -85,14 +85,15 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="6dp"
-        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="0dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -100,40 +101,68 @@
                 android:layout_width="350dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/montserrat_medium"
-                tools:text="Гуамское ущелье — узкое глубокое ущелье, в верховьях реки Курджипс. Ущелье расположено между хребтами Гуама и Лаго-Наки, резко обрываясь четырёхсотметровыми скалами к долине реки Курджипс. Находится на территории Апшеронского района Краснодарского края."
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                app:layout_constraintWidth_percent="0.85" />
+                app:layout_constraintWidth_percent="0.85"
+                tools:text="Гуамское ущелье — узкое глубокое ущелье, в верховьях реки Курджипс. Ущелье расположено между хребтами Гуама и Лаго-Наки, резко обрываясь четырёхсотметровыми скалами к долине реки Курджипс. Находится на территории Апшеронского района Краснодарского края." />
 
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
         android:id="@+id/linearLayout3"
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="30dp"
-        android:paddingTop="10dp"
         android:layout_marginBottom="15dp"
+        android:orientation="horizontal"
+        android:paddingStart="30dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="0dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <include
-            android:id="@+id/addBtn"
-            layout="@layout/add_location_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
+        <Button
+            android:id="@+id/add_btn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="142dp"
+            android:layout_height="42dp"
+            android:background="@drawable/add_btn_asset"
+            android:drawableStart="@drawable/add_icon_white"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:text="@string/to_the_list"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck"
+            android:layout_marginEnd="45dp"/>
 
-        <include
-            android:id="@+id/shareBtn"
-            layout="@layout/share_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp" />
+        <Button
+            android:id="@+id/share_btn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="142dp"
+            android:layout_height="42dp"
+            android:background="@drawable/add_btn_asset"
+            android:drawableStart="@drawable/share_icon_white"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:text="@string/share"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
 

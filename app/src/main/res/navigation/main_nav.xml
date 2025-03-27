@@ -95,6 +95,9 @@
         <argument
             android:name="description"
             app:argType="string" />
+        <argument
+            android:name="key"
+            app:argType="string"/>
     </fragment>
     <fragment
         android:id="@+id/editPage"
