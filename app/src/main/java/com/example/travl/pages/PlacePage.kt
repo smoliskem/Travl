@@ -1,6 +1,7 @@
 package com.example.travl.pages
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -58,7 +59,7 @@ class PlacePage : Fragment() {
                     MyPlansItem(imageResURI, placeName, regionName, key),
                     uid
                 )
-            };
+            }
         }
 
         binding.backBtn.setOnClickListener {
@@ -71,16 +72,47 @@ class PlacePage : Fragment() {
         favorite: MyPlansItem,
         uid: String
     ) {
-        db.collection("users")
+        val favoritesRef = db.collection("users")
             .document(uid)
             .collection("favorites")
             .document(favorite.key)
-            .set(favorite.toMap())
-            .addOnSuccessListener {
+
+        // Проверяем существование документа
+        favoritesRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    // Документ уже существует
+                    Toast.makeText(
+                        requireContext(),
+                        "Это место уже в избранном",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    // Документа нет - добавляем
+                    favoritesRef.set(favorite.toMap())
+                        .addOnSuccessListener {
+                            Toast.makeText(
+                                requireContext(),
+                                "Место добавлено в избранное",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e("Firestore", "Ошибка добавления в избранное", e)
+                            Toast.makeText(
+                                requireContext(),
+                                "Ошибка добавления",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "Ошибка проверки избранного", e)
                 Toast.makeText(
                     requireContext(),
-                    "Place added",
-                    Toast.LENGTH_SHORT,
+                    "Ошибка проверки избранного",
+                    Toast.LENGTH_SHORT
                 ).show()
             }
     }

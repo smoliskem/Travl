@@ -6,5 +6,5 @@ data class PlaceCard(
     val placeName: String = "",
     val regionName: String = "",
     val description: String = "description",
-    val key: String = System.currentTimeMillis().toString()
+    val key: String = ""
 )

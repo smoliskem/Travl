@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.travl.databinding.MyPlansPlaceCardBinding
 import com.example.travl.items.MyPlansItem
-import com.example.travl.items.PlaceCard
+
 
 class MyPlansPageItemAdapter(
     private val context: Context
