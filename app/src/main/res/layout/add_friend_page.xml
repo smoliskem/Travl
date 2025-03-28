@@ -121,7 +121,7 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/accept_btn"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="50dp"

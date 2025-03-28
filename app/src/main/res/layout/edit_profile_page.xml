@@ -125,7 +125,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editName"
+                android:id="@+id/edit_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
@@ -133,7 +133,7 @@
                 android:backgroundTint="#D9D9D9"
                 android:fontFamily="@font/montserratalternates_bold"
                 android:autofillHints=""
-                android:hint="Name"
+                android:hint="@string/name_hint"
                 android:drawableEnd="@drawable/edit_pensil"
                 android:paddingStart="15dp"
                 android:paddingEnd="10dp"
@@ -175,14 +175,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editEmail"
+                android:id="@+id/edit_email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#D9D9D9"
                 android:fontFamily="@font/montserratalternates_bold"
-                android:hint="art@mail.ru"
+                android:hint="@string/email_hint"
                 android:autofillHints="emailAddress"
                 android:drawableEnd="@drawable/edit_pensil"
                 android:paddingStart="15dp"
@@ -225,7 +225,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editPassword"
+                android:id="@+id/edit_password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
@@ -251,7 +251,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/accept_btn"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="50dp"
