@@ -4,63 +4,176 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/welcome_cut"
-    android:padding="10dp"
+    android:background="@drawable/welcome_dark2"
     tools:context=".pages.ProfilePage">
 
 
-    <TextView
-        android:id="@+id/profile_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="51dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/profile"
-        android:textColor="#FFFFFF"
-        android:textFontWeight="500"
-        android:textSize="18sp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:background="@drawable/profile_rect"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="115dp"
-        android:layout_height="115dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="67dp"
-        android:contentDescription="@string/avatar"
-        android:src="@drawable/avatar"
-        app:civ_border_color="@color/black"
-        app:civ_border_width="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_title" />
+        <ImageButton
+            android:id="@+id/log_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/white"
+            android:contentDescription="@string/main"
+            android:src="@drawable/exit"
+            tools:ignore="TouchTargetSizeCheck" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/icon"
+            android:layout_width="175dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:background="@drawable/icon_circles"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="@string/name"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="103dp"
+                android:layout_height="103dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/avatar"
+                android:paddingEnd="4dp"
+                android:src="@drawable/avatar"
+                app:civ_border_color="@color/black"
+                app:civ_border_width="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserratalternates_medium"
+            android:text="Artem"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserratalternates_medium"
+                    android:text="Выполнено"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:background="@drawable/statistics_box"
+                    android:fontFamily="@font/montserratalternates_light"
+                    android:text="30"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserratalternates_medium"
+                    android:text="Друзей"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:background="@drawable/statistics_box"
+                    android:fontFamily="@font/montserratalternates_light"
+                    android:text="30"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserratalternates_medium"
+                    android:text="Всего планов"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:background="@drawable/statistics_box"
+                    android:fontFamily="@font/montserratalternates_light"
+                    android:text="30"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="325dp"
         android:backgroundTint="@color/white"
         android:paddingBottom="45dp"
         app:cardCornerRadius="40dp"
+        android:layout_margin="10dp"
         app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,20 +202,11 @@
                 android:textAllCaps="false"
                 android:textColor="#464646" />
 
-            <View
-                android:id="@+id/divider_1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginVertical="5dp"
-                android:background="#CCCCCC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/user_box" />
-
             <Button
                 android:id="@+id/friends"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
+                android:layout_marginTop="10dp"
                 android:background="#00000000"
                 android:drawableStart="@drawable/friends_list_ic"
                 android:drawableEnd="@drawable/arrow_next_icon"
@@ -113,20 +217,12 @@
                 android:textAllCaps="false"
                 android:textColor="#464646" />
 
-            <View
-                android:id="@+id/divider_2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginVertical="5dp"
-                android:background="#CCCCCC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/user_box" />
 
             <Button
                 android:id="@+id/add_friend"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
+                android:layout_marginTop="10dp"
                 android:background="#00000000"
                 android:drawableStart="@drawable/add_friend_ic"
                 android:drawableEnd="@drawable/arrow_next_icon"
@@ -137,29 +233,6 @@
                 android:textAllCaps="false"
                 android:textColor="#464646" />
 
-            <View
-                android:id="@+id/divider_3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginVertical="5dp"
-                android:background="#CCCCCC"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/user_box" />
-
-            <Button
-                android:id="@+id/log_out"
-                android:layout_width="300dp"
-                android:layout_height="60dp"
-                android:background="#00000000"
-                android:drawableStart="@drawable/exit_ic"
-                android:drawableEnd="@drawable/arrow_next_icon"
-                android:drawablePadding="20dp"
-                android:padding="5dp"
-                android:text="@string/exit"
-                android:textAlignment="textStart"
-                android:textAllCaps="false"
-                android:textColor="#464646" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -170,8 +243,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/rounded_bar_background"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/bar_new"
         android:orientation="horizontal"
         android:padding="9dp"
         android:translationZ="2dp"
@@ -187,7 +260,7 @@
             android:layout_marginStart="1dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_olive"
             android:contentDescription="@string/main"
             android:padding="10dp"
             android:src="@drawable/main_page_icon" />
@@ -200,7 +273,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_olive"
             android:contentDescription="@string/plans"
             android:padding="10dp"
             android:src="@drawable/plans_icon" />
@@ -213,10 +286,10 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_olive"
             android:contentDescription="@string/friends"
             android:padding="10dp"
-            android:src="@drawable/friends_icon" />
+            android:src="@drawable/joint_icon" />
 
         <ImageButton
             android:id="@+id/profile_btn"
@@ -229,7 +302,7 @@
             android:background="@drawable/rounded_button_black"
             android:contentDescription="@string/profile"
             android:padding="10dp"
-            android:src="@drawable/profile_icon_white" />
+            android:src="@drawable/profile_icon_orange" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/newbackground"
     tools:context=".pages.MainPage">
 
 
@@ -57,20 +57,21 @@
 
 
     <LinearLayout
-        android:id="@+id/navigation_bar"
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/rounded_bar_background"
+        android:background="@drawable/bar_new"
         android:orientation="horizontal"
         android:padding="9dp"
+        android:translationZ="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
-            android:id="@+id/mainPageBtn"
+            android:id="@+id/main_page_btn"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -80,43 +81,43 @@
             android:background="@drawable/rounded_button_black"
             android:contentDescription="@string/main"
             android:padding="10dp"
-            android:src="@drawable/main_page_icon_white" />
+            android:src="@drawable/main_page_icon_orange" />
 
         <ImageButton
-            android:id="@+id/myPlansBtn"
+            android:id="@+id/my_plans_btn"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_olive"
             android:contentDescription="@string/plans"
             android:padding="10dp"
             android:src="@drawable/plans_icon" />
 
         <ImageButton
-            android:id="@+id/jointPlansBtn"
+            android:id="@+id/joint_plans_btn"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_olive"
             android:contentDescription="@string/friends"
             android:padding="10dp"
-            android:src="@drawable/friends_icon" />
+            android:src="@drawable/joint_icon" />
 
         <ImageButton
-            android:id="@+id/profileBtn"
+            android:id="@+id/profile_btn"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="1dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_olive"
             android:contentDescription="@string/profile"
             android:padding="10dp"
             android:src="@drawable/profile_icon" />
