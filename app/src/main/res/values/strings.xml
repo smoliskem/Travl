@@ -26,7 +26,7 @@
     <string name="add_friend">Добавить \nдруга</string>
     <string name="email_hint">email@mail.ru</string>
     <string name="password_hint">password</string>
-    <string name="name_hint">Ivan</string>
+    <string name="name_hint">Name</string>
     <string name="to_the_list">В мои планы</string>
     <string name="list_header">Место для твоих путешествий</string>
     <string name="my_plans">Мои планы</string>
@@ -53,4 +53,5 @@
     <string name="Name">Имя</string>
     <string name="passwordClose">********</string>
     <string name="accept">Применить</string>
+    <string name="cur_password">Текущий пароль</string>
 </resources>
