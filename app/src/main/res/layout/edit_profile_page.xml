@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/newbackground"
+    android:background="@color/white"
     tools:context=".pages.EditProfilePage">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,12 +32,12 @@
         android:id="@+id/linearLayout4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.75"
-        android:paddingTop="51dp"
         android:orientation="vertical"
+        android:paddingTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.75">
 
         <TextView
             android:id="@+id/profile1"
@@ -55,11 +55,11 @@
         <View
             android:id="@+id/divider"
             android:layout_width="0dp"
-            android:layout_height="4dp"
+            android:layout_height="3dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/palka"
-            app:layout_constraintTop_toBottomOf="@id/profile1"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -72,51 +72,40 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
         app:layout_constraintWidth_percent="0.70">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/icon"
-            android:layout_width="175dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/icon_circles"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:contentDescription="@string/avatar"
+            android:src="@drawable/avatar"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="103dp"
-                android:layout_height="103dp"
-                android:paddingEnd="4dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/avatar"
-                android:src="@drawable/avatar"
-                app:civ_border_color="@color/black"
-                app:civ_border_width="1dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.52"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/changeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/white_button"
+            android:fontFamily="@font/montserratalternates_medium"
             android:text="@string/changePhoto"
             android:textAllCaps="false"
-            android:textSize="15sp"
             android:textColor="@color/black"
-            android:fontFamily="@font/montserratalternates_medium"
-            android:background="@drawable/white_button"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/icon" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <LinearLayout
-            android:id="@+id/nameLayout"
+            android:id="@+id/username_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -126,154 +115,134 @@
                 android:id="@+id/profile3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/montserratalternates_bold"
                 android:includeFontPadding="false"
                 android:text="@string/Name"
-                android:layout_marginStart="10dp"
                 android:textColor="#000000"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="15sp" />
 
             <EditText
-                android:id="@+id/editName"
+                android:id="@+id/edit_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/rounded_btn_5"
-                android:backgroundTint="#D9D9D9"
-                android:fontFamily="@font/montserratalternates_bold"
                 android:autofillHints=""
-                android:hint="Name"
-                android:drawableEnd="@drawable/edit_pensil"
-                android:paddingStart="15dp"
-                android:paddingEnd="10dp"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="5dp"
-                android:textColor="@color/dark_grey"
-                android:textColorHint="@color/grey_heading"
-                android:textSize="15sp"
-                app:cornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profile3"
-                tools:ignore="TouchTargetSizeCheck" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/emailLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nameLayout">
-
-            <TextView
-                android:id="@+id/profile4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserratalternates_bold"
-                android:includeFontPadding="false"
-                android:text="@string/email"
-                android:layout_marginStart="10dp"
-                android:textColor="#000000"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/editEmail"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#D9D9D9"
-                android:fontFamily="@font/montserratalternates_bold"
-                android:hint="art@mail.ru"
-                android:autofillHints="emailAddress"
                 android:drawableEnd="@drawable/edit_pensil"
+                android:fontFamily="@font/montserratalternates_bold"
+                android:hint="@string/name_hint"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="5dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="10dp"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="5dp"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/grey_heading"
                 android:textSize="15sp"
                 app:cornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profile3"
                 tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:id="@+id/passwordLayout"
+            android:id="@+id/cur_password_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/emailLayout">
+            app:layout_constraintTop_toBottomOf="@id/username_layout">
 
             <TextView
                 android:id="@+id/profile5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/montserratalternates_bold"
                 android:includeFontPadding="false"
-                android:text="@string/password"
-                android:layout_marginStart="10dp"
+                android:text="@string/cur_password"
                 android:textColor="#000000"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="15sp" />
 
             <EditText
-                android:id="@+id/editPassword"
+                android:id="@+id/edit_cur_password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
+                android:autofillHints="password"
                 android:background="@drawable/rounded_btn_5"
                 android:backgroundTint="#D9D9D9"
-                android:fontFamily="@font/montserratalternates_bold"
-                android:autofillHints="password"
-                android:hint="@string/passwordClose"
                 android:drawableEnd="@drawable/edit_pensil"
+                android:fontFamily="@font/montserratalternates_bold"
+                android:hint="@string/passwordClose"
+                android:inputType="textPassword"
+                android:paddingHorizontal="5dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="10dp"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="5dp"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/grey_heading"
                 android:textSize="15sp"
                 app:cornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profile3"
                 tools:ignore="TextFields,TouchTargetSizeCheck" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/new_password_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cur_password_layout">
+
+            <TextView
+                android:id="@+id/profile6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/montserratalternates_bold"
+                android:includeFontPadding="false"
+                android:text="@string/new_password"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/edit_new_password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints="password"
+                android:background="@drawable/rounded_btn_5"
+                android:backgroundTint="#D9D9D9"
+                android:drawableEnd="@drawable/edit_pensil"
+                android:fontFamily="@font/montserratalternates_bold"
+                android:hint="@string/passwordClose"
+                android:inputType="textPassword"
+                android:paddingHorizontal="5dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/dark_grey"
+                android:textColorHint="@color/grey_heading"
+                android:textSize="15sp"
+                app:cornerRadius="10dp"
+                tools:ignore="TextFields,TouchTargetSizeCheck" />
         </LinearLayout>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/accept_btn"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="50dp"
-            android:text="@string/accept"
-            android:fontFamily="@font/montserrat_bold"
             android:background="@drawable/send_btn_asset"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/accept"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
-
+            app:layout_constraintTop_toBottomOf="@+id/new_password_layout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
