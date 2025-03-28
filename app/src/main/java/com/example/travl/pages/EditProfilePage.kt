@@ -64,7 +64,18 @@ class EditProfilePage : Fragment() {
                     var passwordUpdated = false
 
                     if (name.isNotEmpty()) {
-                        nameUpdated = updateUsername(user, name)
+                        val curName = user.displayName.toString()
+                        if (checkUsernames(curName, name)) {
+                            nameUpdated = updateUsername(user, name)
+                        } else {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Новое имя пользователя должно отличаться от старого",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
                     }
 
                     if (newPassword.isNotEmpty()) {
@@ -137,7 +148,11 @@ class EditProfilePage : Fragment() {
         }
     }
 
-    private suspend fun changePassword(user: FirebaseUser, currentPassword: String, newPassword: String): Boolean {
+    private suspend fun changePassword(
+        user: FirebaseUser,
+        currentPassword: String,
+        newPassword: String
+    ): Boolean {
         return try {
             // 1. Реаутентификация
             val credential = EmailAuthProvider.getCredential(user.email!!, currentPassword)
@@ -168,6 +183,10 @@ class EditProfilePage : Fragment() {
 
     private fun checkPasswords(currentPassword: String, newPassword: String): Boolean {
         return currentPassword != newPassword
+    }
+
+    private fun checkUsernames(currentUsername: String, newUsername: String): Boolean {
+        return currentUsername != newUsername
     }
 
 }
