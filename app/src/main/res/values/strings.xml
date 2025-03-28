@@ -54,4 +54,7 @@
     <string name="passwordClose">********</string>
     <string name="accept">Применить</string>
     <string name="cur_password">Текущий пароль</string>
+    <string name="joint">Совместные</string>
+    <string name="plansWith">планы с :</string>
+    <string name="yourFriends">Ваши\nдрузья</string>
 </resources>
