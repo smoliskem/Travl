@@ -4,97 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:padding="10dp">
+    android:background="@drawable/newbackground"
+    tools:context=".pages.FriendsRequestsPage">
 
-    <LinearLayout
-        android:layout_width="305dp"
-        android:layout_height="175dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/rounded_button"
+            android:contentDescription="@string/main"
+            android:src="@drawable/arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.7"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.011"
-        tools:layout_editor_absoluteX="16dp"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/heading"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="50dp"
-            android:paddingStart="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="51dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
             <TextView
+                android:id="@+id/profile1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/montserratalternates_bold"
-                android:text="Заявки в\nдрузья"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:includeFontPadding="false"
+                android:text="@string/friendRequests"
+                android:textColor="#000000"
+                android:textSize="35sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
             android:id="@+id/divider"
-            android:layout_width="wrap_content"
-            android:layout_height="3dp"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/palka"
-            app:layout_constraintTop_toBottomOf="@+id/profile" />
+            app:layout_constraintTop_toBottomOf="@id/heading"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="300dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="215dp">
-
-        <ImageView
-            android:id="@+id/user_image_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="left"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/ic_user_placeholder"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:fontFamily="@font/montserratalternates_medium"
-            android:paddingLeft="10dp"
-            android:text="Artem"
-            android:textColor="@color/black"
-            android:textSize="25sp" />
-
-        <ImageButton
-            android:id="@+id/accept_reject_button_1"
-            android:layout_width="105dp"
-            android:layout_height="40dp"
-            android:layout_gravity="left"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/selector_button"
-            android:contentDescription="accept/reject"
-            android:text="✔|✖"
-            app:layout_constraintEnd_toEndOf="@+id/user_image_1"
-            app:layout_constraintStart_toStartOf="@id/user_image_1"
-            app:layout_constraintTop_toTopOf="@id/user_image_1" />
-
-
-    </LinearLayout>
-
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
