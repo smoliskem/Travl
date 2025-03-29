@@ -117,10 +117,3 @@ class PlacePage : Fragment() {
             }
     }
 }
-
-//Delete
-//db.collection("users")
-//.document(uid)
-//.collection("favorites")
-//.document(favorite.key)
-//.delete(favorite)
