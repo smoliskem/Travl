@@ -120,12 +120,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun saveUsername(username: String, callback: (Boolean) -> Unit) {
         db.collection("usernames")
             .document(username.lowercase(Locale.getDefault()))
-            .set(
-                mapOf(
-                    "userId" to auth.currentUser?.uid,
-                    "createdAt" to System.currentTimeMillis()
-                )
-            )
+            .set("userId" to auth.currentUser?.uid)
             .addOnSuccessListener { callback(true) }
             .addOnFailureListener { callback(false) }
     }
