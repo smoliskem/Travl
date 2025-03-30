@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_profile_page_to_addFriendPage"
             app:destination="@id/addFriendPage" />
+        <action
+            android:id="@+id/action_profile_page_to_friendsPage"
+            app:destination="@id/friendsPage" />
     </fragment>
 
     <fragment
@@ -116,5 +119,26 @@
         <action
             android:id="@+id/action_addFriendPage_to_profile_page"
             app:destination="@id/profile_page" />
+    </fragment>
+    <fragment
+        android:id="@+id/friendsPage"
+        android:name="com.example.travl.pages.FriendsPage"
+        android:label="friends_page"
+        tools:layout="@layout/friends_page" >
+        <action
+            android:id="@+id/action_friendsPage_to_profile_page"
+            app:destination="@id/profile_page" />
+        <action
+            android:id="@+id/action_friendsPage_to_friendsRequestsPage"
+            app:destination="@id/friendsRequestsPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/friendsRequestsPage"
+        android:name="com.example.travl.pages.FriendsRequestsPage"
+        android:label="friends_request_page"
+        tools:layout="@layout/friends_request_page" >
+        <action
+            android:id="@+id/action_friendsRequestsPage_to_friendsPage"
+            app:destination="@id/friendsPage" />
     </fragment>
 </navigation>

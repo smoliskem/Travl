@@ -11,7 +11,7 @@
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:fontFamily="@font/montserratalternates_bold"
+        android:fontFamily="@font/montserratalternates_extrabold"
         android:gravity="bottom"
         android:letterSpacing="0.2"
         android:shadowColor="#151515"

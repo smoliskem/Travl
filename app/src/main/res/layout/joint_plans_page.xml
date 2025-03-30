@@ -4,57 +4,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/newbackground"
+    android:padding="10dp"
     tools:context=".pages.JointPlansPage">
 
-    <TextView
-        android:id="@+id/my_plans"
+    <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/joint_plans"
-        android:textColor="@color/grey_heading"
-        android:textSize="18sp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:background="#CCCCCC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_plans" />
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="180dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/travl"
+            android:textAllCaps="true"
+            android:textColor="#EA8810"
+            android:textSize="28sp"
+            android:letterSpacing="0.3"
+            android:fontFamily="@font/montserratalternates_extrabold"
+            android:background="@drawable/send_btn_asset" />
+
+        <TextView
+            android:id="@+id/profile1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/montserratalternates_bold"
+            android:text="Совместные"
+            android:textColor="#000000"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/profile2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/montserratalternates_bold"
+            android:text="планы"
+            android:textColor="#000000"
+            android:textSize="35sp" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/profile3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/montserratalternates_bold"
+            android:text="Выберите друга"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+    </LinearLayout>
 
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="90dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        tools:ignore="MissingConstraints">
-
-
-    </ListView>
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/rounded_bar_background"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/bar_new"
         android:orientation="horizontal"
         android:padding="9dp"
+        android:translationZ="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -67,7 +99,7 @@
             android:layout_marginStart="1dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_olive"
             android:contentDescription="@string/main"
             android:padding="10dp"
             android:src="@drawable/main_page_icon" />
@@ -80,7 +112,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_olive"
             android:contentDescription="@string/plans"
             android:padding="10dp"
             android:src="@drawable/plans_icon" />
@@ -96,7 +128,7 @@
             android:background="@drawable/rounded_button_black"
             android:contentDescription="@string/friends"
             android:padding="10dp"
-            android:src="@drawable/friends_icon_white" />
+            android:src="@drawable/friends_icon_orange" />
 
         <ImageButton
             android:id="@+id/profile_btn"
@@ -106,7 +138,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="1dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_olive"
             android:contentDescription="@string/profile"
             android:padding="10dp"
             android:src="@drawable/profile_icon" />

@@ -64,7 +64,7 @@ class EditProfilePage : Fragment() {
                 try {
                     var nameUpdated = false
                     var passwordUpdated = false
-
+                  
                     if (newName.isNotEmpty()) {
                         if (curName != newName) {
                             if (isUsernameAvailable(newName)) {
@@ -141,6 +141,7 @@ class EditProfilePage : Fragment() {
         }
     }
 
+
     private suspend fun handlePasswordChange(
         currentPassword: String,
         newPassword: String
@@ -157,7 +158,7 @@ class EditProfilePage : Fragment() {
             else -> changePassword(user, currentPassword, newPassword)
         }
     }
-
+    
     private suspend fun changePassword(
         user: FirebaseUser,
         currentPassword: String,
@@ -179,6 +180,7 @@ class EditProfilePage : Fragment() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
+
     private fun showError(exception: Exception) {
         showError("Ошибка", exception)
     }
@@ -191,4 +193,5 @@ class EditProfilePage : Fragment() {
     private fun navigateToProfile() {
         findNavController().navigate(EditProfilePageDirections.actionEditPageToProfilePage())
     }
+
 }

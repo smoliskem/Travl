@@ -67,6 +67,10 @@ class ProfilePage : Fragment() {
             findNavController().navigate(ProfilePageDirections.actionProfilePageToAddFriendPage())
         }
 
+        binding.friends.setOnClickListener {
+            findNavController().navigate(ProfilePageDirections.actionProfilePageToFriendsPage())
+        }
+
     }
 
     private fun signOut() {
