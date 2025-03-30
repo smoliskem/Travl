@@ -55,8 +55,8 @@ class SignInActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithEmail:success")
-                    val user = auth.currentUser
                     intent = Intent(this, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
