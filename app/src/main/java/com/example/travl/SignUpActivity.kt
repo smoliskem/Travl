@@ -118,11 +118,23 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun saveUsername(username: String, callback: (Boolean) -> Unit) {
-        db.collection("usernames")
-            .document(username.lowercase(Locale.getDefault()))
-            .set("userId" to auth.currentUser?.uid)
-            .addOnSuccessListener { callback(true) }
-            .addOnFailureListener { callback(false) }
+        val usernameLower = username.lowercase(Locale.getDefault())
+        val userId = auth.currentUser?.uid
+
+        if (userId != null) {
+            val data = mapOf(
+                "userId" to userId,
+                "username" to usernameLower
+            )
+
+            db.collection("usernames")
+                .document(usernameLower)
+                .set(data)
+                .addOnSuccessListener { callback(true) }
+                .addOnFailureListener { callback(false) }
+        } else {
+            callback(false)
+        }
     }
 
     private fun navigateToSignIn() {
