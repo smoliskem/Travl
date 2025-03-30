@@ -5,122 +5,144 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.travl.databinding.SignUpPageBinding
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import java.util.Locale
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: SignUpPageBinding
-    private lateinit var auth: FirebaseAuth
+    private val auth: FirebaseAuth by lazy { Firebase.auth }
+    private val db: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = SignUpPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = Firebase.auth
+        setupClickListeners()
+    }
 
+    //Установка слушателей
+    private fun setupClickListeners() {
         binding.alreadyHaveAccountButton.setOnClickListener {
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, SignInActivity::class.java))
         }
 
         binding.createAccountButton.setOnClickListener {
-            val etName = binding.editTextName.text.toString()
-            val etMail = binding.editTextEmail.text.toString()
-            val etPassword = binding.editTextPassword.text.toString()
-            if (checkFields(etName, etMail, etPassword)) {
-                createUserWithEmailAndPassword(etMail, etPassword, etName)
-            } else {
-                Toast.makeText(
-                    baseContext,
-                    "Enter the correct data",
-                    Toast.LENGTH_SHORT
-                ).show()
+            val username = binding.editTextName.text.toString().trim()
+            val email = binding.editTextEmail.text.toString().trim()
+            val password = binding.editTextPassword.text.toString().trim()
+
+            when {
+                !areFieldsValid(
+                    username,
+                    email,
+                    password
+                ) -> showToast("Please fill all fields correctly")
+
+                !isValidUsername(username) -> showToast("Username must be 3-10 alphanumeric characters")
+                else -> checkAndRegister(username, email, password)
             }
         }
     }
 
+    //Проверка имени пользователя на уникальность и регистрация
+    private fun checkAndRegister(username: String, email: String, password: String) {
+        checkUsernameUniqueness(username) { isUnique ->
+            if (isUnique) {
+                registerUser(username, email, password)
+            } else {
+                showToast("Username is already taken")
+            }
+        }
+    }
 
-    private fun createUserWithEmailAndPassword(email: String, password: String, userName: String) {
+    //Регистрация пользователя в Firebase по почте и паролю
+    private fun registerUser(username: String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    auth.currentUser?.sendEmailVerification()
-                        ?.addOnCompleteListener { verificationTask ->
-                            if (verificationTask.isSuccessful) {
-                                Toast.makeText(
-                                    baseContext,
-                                    "Please check your e-mail to verify account.",
-                                    Toast.LENGTH_SHORT,
-                                ).show()
-
-                                val intent = Intent(this, SignInActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                                startActivity(intent)
-
-                                Firebase.auth.signOut()
-                            } else {
-                                Toast.makeText(
-                                    baseContext,
-                                    "Failed to send verification email.",
-                                    Toast.LENGTH_SHORT,
-                                ).show()
-                            }
-                        }?.addOnFailureListener { _ ->
-                            Toast.makeText(
-                                baseContext,
-                                "Failed to send verification email.",
-                                Toast.LENGTH_SHORT,
-                            ).show()
-                        }
-
-                    updateUserProfile(auth.currentUser, userName)
+                    saveUsernameAndCompleteRegistration(username)
                 } else {
-                    Toast.makeText(
-                        baseContext,
-                        "Registration failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
+                    showToast("Registration failed: ${task.exception?.message}")
                 }
             }
     }
 
-    private fun checkFields(
-        name: String,
-        email: String,
-        password: String
-    ): Boolean {
-        return !(fieldIsEmpty(name) || fieldIsEmpty(email) || fieldIsEmpty(password))
-    }
-
-    private fun fieldIsEmpty(editText: String): Boolean {
-        return editText == ""
-    }
-
-    private fun updateUserProfile(user: FirebaseUser?, userName: String) {
-        val profileUpdates = UserProfileChangeRequest.Builder()
-            .setDisplayName(userName)
-            .build()
-
-        user?.updateProfile(profileUpdates)
-            ?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(
-                        baseContext,
-                        "Username saved.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
-                } else {
-                    Toast.makeText(
-                        baseContext,
-                        "Setting username failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
-                }
+    //Сохранение имени пользователя в Firestore и завершение регистрации
+    private fun saveUsernameAndCompleteRegistration(username: String) {
+        saveUsername(username) { success ->
+            if (success) {
+                completeRegistration(auth.currentUser, username)
+            } else {
+                auth.currentUser?.delete()
+                showToast("Failed to reserve username")
             }
+        }
+    }
+
+    //Отправка верификационного письма и переход на некст страницу
+    private fun completeRegistration(user: FirebaseUser?, username: String) {
+        user?.apply {
+            updateProfile(UserProfileChangeRequest.Builder().setDisplayName(username).build())
+            sendVerificationEmail()
+            navigateToSignIn()
+        }
+    }
+
+    private fun FirebaseUser.sendVerificationEmail() {
+        sendEmailVerification().addOnCompleteListener { task ->
+            val message = if (task.isSuccessful) {
+                "Verification email sent. Please check your email."
+            } else {
+                "Failed to send verification email."
+            }
+            showToast(message)
+        }
+    }
+
+    private fun checkUsernameUniqueness(username: String, callback: (Boolean) -> Unit) {
+        db.collection("usernames")
+            .document(username.lowercase(Locale.getDefault()))
+            .get()
+            .addOnSuccessListener { callback(!it.exists()) }
+            .addOnFailureListener {
+                showToast("Error checking username availability")
+                callback(false)
+            }
+    }
+
+    private fun saveUsername(username: String, callback: (Boolean) -> Unit) {
+        db.collection("usernames")
+            .document(username.lowercase(Locale.getDefault()))
+            .set("userId" to auth.currentUser?.uid)
+            .addOnSuccessListener { callback(true) }
+            .addOnFailureListener { callback(false) }
+    }
+
+    private fun navigateToSignIn() {
+        startActivity(Intent(this, SignInActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        })
+        finish()
+    }
+
+    private fun areFieldsValid(username: String, email: String, password: String) =
+        username.isNotEmpty() &&
+                email.isNotEmpty() &&
+                password.isNotEmpty() &&
+                android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() &&
+                password.length >= 6
+
+    private fun isValidUsername(username: String) =
+        username.length in 3..10 && username.matches("^[a-zA-Z0-9_]*$".toRegex())
+
+    private fun showToast(message: String) {
+        Toast.makeText(baseContext, message, Toast.LENGTH_SHORT).show()
     }
 }
