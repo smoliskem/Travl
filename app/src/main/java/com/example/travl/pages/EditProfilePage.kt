@@ -14,12 +14,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
+import java.util.Locale
 
 class EditProfilePage : Fragment() {
     private lateinit var binding: EditProfilePageBinding
@@ -27,6 +28,7 @@ class EditProfilePage : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var user: FirebaseUser
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
+    private val db: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +40,8 @@ class EditProfilePage : Fragment() {
 
         auth = Firebase.auth
 
+        user = auth.currentUser!!
+
         // Inflate the layout for this fragment
         return view
     }
@@ -46,147 +50,148 @@ class EditProfilePage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = EditProfilePageBinding.bind(view)
 
-
         binding.backBtn.setOnClickListener {
             findNavController().navigate(EditProfilePageDirections.actionEditPageToProfilePage())
         }
 
         binding.acceptBtn.setOnClickListener {
-            val name = binding.editName.text.toString()
+            val newName = binding.editName.text.toString().trim()
             val currentPassword = binding.editCurPassword.text.toString()
             val newPassword = binding.editNewPassword.text.toString()
-
-            user = auth.currentUser!!
+            val curName = user.displayName ?: ""
 
             coroutineScope.launch {
                 try {
                     var nameUpdated = false
                     var passwordUpdated = false
-
-                    if (name.isNotEmpty()) {
-                        val curName = user.displayName.toString()
-                        if (checkUsernames(curName, name)) {
-                            nameUpdated = updateUsername(user, name)
-                        } else {
-                            withContext(Dispatchers.Main) {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Новое имя пользователя должно отличаться от старого",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                  
+                    if (newName.isNotEmpty()) {
+                        if (curName != newName) {
+                            if (isUsernameAvailable(newName)) {
+                                nameUpdated = updateUsername(user, newName, curName)
+                            } else {
+                                showToast("Это имя пользователя уже занято")
                             }
+                        } else {
+                            showToast("Новое имя должно отличаться от старого")
                         }
                     }
 
                     if (newPassword.isNotEmpty()) {
-                        if (currentPassword.isNotEmpty()) {
-                            if (checkPasswords(currentPassword, newPassword)) {
-                                passwordUpdated = changePassword(user, currentPassword, newPassword)
-                            } else {
-                                withContext(Dispatchers.Main) {
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Новый пароль должен отличаться от старого",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            }
-                        } else {
-                            withContext(Dispatchers.Main) {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Введите текущий пароль",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
+                        passwordUpdated = handlePasswordChange(currentPassword, newPassword)
                     }
 
                     if (nameUpdated || passwordUpdated) {
-                        withContext(Dispatchers.Main) {
-                            findNavController().navigate(EditProfilePageDirections.actionEditPageToProfilePage())
-                        }
+                        navigateToProfile()
                     }
                 } catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            requireContext(),
-                            "Ошибка: ${e.message}",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    showError(e)
                 }
             }
         }
     }
 
-    private suspend fun updateUsername(user: FirebaseUser?, userName: String): Boolean {
+    private suspend fun isUsernameAvailable(username: String): Boolean {
         return try {
-            val profileUpdates = UserProfileChangeRequest.Builder()
-                .setDisplayName(userName)
-                .build()
-
-            user?.updateProfile(profileUpdates)?.await()
-
-            withContext(Dispatchers.Main) {
-                Toast.makeText(
-                    requireContext(),
-                    "Имя изменено",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            true
+            val snapshot = db.collection("usernames")
+                .document(username.lowercase(Locale.getDefault()))
+                .get()
+                .await()
+            !snapshot.exists()
         } catch (e: Exception) {
-            withContext(Dispatchers.Main) {
-                Toast.makeText(
-                    requireContext(),
-                    "Ошибка изменения имени: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            showError("Ошибка проверки имени пользователя")
             false
         }
     }
 
+    private suspend fun updateUsername(
+        user: FirebaseUser?,
+        newName: String,
+        oldName: String
+    ): Boolean {
+        return try {
+            // 1. Удаляем старое имя из Firestore
+            if (oldName.isNotEmpty()) {
+                db.collection("usernames")
+                    .document(oldName.lowercase(Locale.getDefault()))
+                    .delete()
+                    .await()
+            }
+
+            // 2. Обновляем отображаемое имя в Firebase Auth
+            val profileUpdates = UserProfileChangeRequest.Builder()
+                .setDisplayName(newName)
+                .build()
+            user?.updateProfile(profileUpdates)?.await()
+
+            // 3. Добавляем новое имя в Firestore
+            db.collection("usernames")
+                .document(newName.lowercase(Locale.getDefault()))
+                .set(mapOf(
+                    "userId" to user?.uid,
+                    "createdAt" to System.currentTimeMillis()
+                ))
+                .await()
+
+            showToast("Имя успешно изменено")
+            true
+        } catch (e: Exception) {
+            showError("Ошибка при обновлении имени", e)
+            false
+        }
+    }
+
+
+    private suspend fun handlePasswordChange(
+        currentPassword: String,
+        newPassword: String
+    ): Boolean {
+        return when {
+            currentPassword.isEmpty() -> {
+                showToast("Введите текущий пароль")
+                false
+            }
+            currentPassword == newPassword -> {
+                showToast("Новый пароль должен отличаться от старого")
+                false
+            }
+            else -> changePassword(user, currentPassword, newPassword)
+        }
+    }
+    
     private suspend fun changePassword(
         user: FirebaseUser,
         currentPassword: String,
         newPassword: String
     ): Boolean {
         return try {
-            // 1. Реаутентификация
             val credential = EmailAuthProvider.getCredential(user.email!!, currentPassword)
             user.reauthenticate(credential).await()
-
-            // 2. Обновление пароля
             user.updatePassword(newPassword).await()
-
-            withContext(Dispatchers.Main) {
-                Toast.makeText(
-                    requireContext(),
-                    "Пароль успешно изменен",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            showToast("Пароль успешно изменён")
             true
         } catch (e: Exception) {
-            withContext(Dispatchers.Main) {
-                Toast.makeText(
-                    requireContext(),
-                    "Ошибка изменения пароля: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            showError("Ошибка изменения пароля", e)
             false
         }
     }
 
-    private fun checkPasswords(currentPassword: String, newPassword: String): Boolean {
-        return currentPassword != newPassword
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun checkUsernames(currentUsername: String, newUsername: String): Boolean {
-        return currentUsername != newUsername
+
+    private fun showError(exception: Exception) {
+        showError("Ошибка", exception)
+    }
+
+    private fun showError(message: String, exception: Exception? = null) {
+        val errorMsg = exception?.message?.let { "$message: $it" } ?: message
+        Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun navigateToProfile() {
+        findNavController().navigate(EditProfilePageDirections.actionEditPageToProfilePage())
     }
 
 }
