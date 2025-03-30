@@ -4,16 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.travl.R
 import com.example.travl.databinding.AddFriendPageBinding
+import com.example.travl.items.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import java.util.Locale
 
 class AddFriendPage : Fragment() {
     private lateinit var binding: AddFriendPageBinding
+
     //private lateinit var textViewUserName: TextView
     private lateinit var auth: FirebaseAuth
 
@@ -44,6 +49,40 @@ class AddFriendPage : Fragment() {
             findNavController().navigate(AddFriendPageDirections.actionAddFriendPageToProfilePage())
         }
 
+        binding.acceptBtn.setOnClickListener {
+            val name = binding.friendName.text.toString().trim() // Удаляем пробелы
 
+            if (name.isEmpty()) {
+                showToast("Введите имя пользователя")
+            } else {
+                searchUserByName(name)
+            }
+        }
+
+    }
+
+    private fun searchUserByName(name: String) {
+        if (name == auth.currentUser?.displayName.toString()) {
+            showToast("Вы не можете добавить в друзья себя")
+        } else {
+            val db = FirebaseFirestore.getInstance()
+            db.collection("usernames")
+                .document(name.lowercase(Locale.getDefault()))
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val user = document.toObject(User::class.java)
+                        if (user != null) {
+                            showToast("Пользователь $name найден: ${user.userId}")
+                        }
+                    } else {
+                        showToast("Пользователь $name не найден")
+                    }
+                }
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }
