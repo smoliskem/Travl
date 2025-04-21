@@ -20,17 +20,27 @@ class MainPageViewModel : ViewModel() {
         val caucasus = mutableListOf<PlaceCard>()
         val altai = mutableListOf<PlaceCard>()
         val ural = mutableListOf<PlaceCard>()
+        val karelia = mutableListOf<PlaceCard>()
+        val yakutia = mutableListOf<PlaceCard>()
+        val theFarEast = mutableListOf<PlaceCard>()
+
 
         val caucasusTask = loadCollection(db, "Caucasus", caucasus)
         val altaiTask = loadCollection(db, "Altai", altai)
         val uralTask = loadCollection(db, "Ural", ural)
+        val kareliaTask = loadCollection(db, "Karelia", karelia)
+        val yakutiaTask = loadCollection(db, "Yakutia", yakutia)
+        val theFarEastTask = loadCollection(db, "The Far East", theFarEast)
 
-        Tasks.whenAllComplete(caucasusTask, altaiTask, uralTask)
+        Tasks.whenAllComplete(caucasusTask, altaiTask, uralTask, kareliaTask, yakutiaTask, theFarEastTask)
             .addOnSuccessListener {
                 _dataList.value = listOf(
                     MainPageParentItem(caucasus, "Кавказ"),
                     MainPageParentItem(ural, "Урал"),
-                    MainPageParentItem(altai, "Алтай")
+                    MainPageParentItem(altai, "Алтай"),
+                    MainPageParentItem(karelia, "Карелия"),
+                    MainPageParentItem(yakutia, "Якутия"),
+                    MainPageParentItem(theFarEast, "Дальний Восток")
                 )
             }
             .addOnFailureListener { exception ->
