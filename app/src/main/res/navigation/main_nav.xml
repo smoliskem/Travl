@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_myPlansPage_to_mainPage"
             app:destination="@id/main_page" />
+        <action
+            android:id="@+id/action_myPlansPage_to_placePage"
+            app:destination="@id/place_page" />
     </fragment>
     <fragment
         android:id="@+id/joint_plans"

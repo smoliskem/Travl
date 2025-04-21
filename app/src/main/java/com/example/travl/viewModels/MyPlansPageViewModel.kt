@@ -42,7 +42,7 @@ class MyPlansPageViewModel : ViewModel() {
         uid: String,
         list: MutableList<MyPlansItem>
     ) =
-        db.collection("users")
+        db.collection("usersFavorites")
             .document(uid)
             .collection("favorites")
             .get()

@@ -25,7 +25,7 @@ class MainPageParentItemAdapter(
             notifyDataSetChanged()
         }
 
-    fun getChildItem(parentPosition: Int, childPosition: Int): PlaceCard {
+    fun getItem(parentPosition: Int, childPosition: Int): PlaceCard {
         return data[parentPosition].childItemList[childPosition]
     }
 

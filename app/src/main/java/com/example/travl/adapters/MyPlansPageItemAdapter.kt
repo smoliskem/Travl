@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.travl.databinding.MyPlansPlaceCardBinding
-import com.example.travl.interfaces.OnMyPlansDeleteBtnClickListener
+import com.example.travl.interfaces.OnMyPlansClickListener
 import com.example.travl.items.MyPlansItem
 
 
 class MyPlansPageItemAdapter(
     private val context: Context,
-    private val listener: OnMyPlansDeleteBtnClickListener
+    private val listener: OnMyPlansClickListener,
 ) :
     RecyclerView.Adapter<MyPlansPageItemAdapter.MyPlansPageViewHolder>() {
 
@@ -55,6 +55,10 @@ class MyPlansPageItemAdapter(
 
             deleteBtn.setOnClickListener {
                 listener.onChildItemClick(position)
+            }
+
+            placeImg.setOnClickListener {
+                listener.onImageClick(position)
             }
         }
     }
