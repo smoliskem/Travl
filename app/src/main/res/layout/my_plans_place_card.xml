@@ -6,6 +6,7 @@
     android:layout_height="105dp"
     android:layout_margin="10dp"
     android:backgroundTint="@color/white"
+    android:descendantFocusability="blocksDescendants"
     app:cardCornerRadius="10dp"
     >
 

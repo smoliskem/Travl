@@ -68,7 +68,7 @@ class MainPage : Fragment(), OnChildItemClickListener {
     }
 
     override fun onChildItemClick(parentPosition: Int, childPosition: Int) {
-        val childItem = adapter.getChildItem(parentPosition, childPosition)
+        val childItem = adapter.getItem(parentPosition, childPosition)
 
         val action = MainPageDirections.actionMainPageToPlacePage(
             childItem.imageResURI,

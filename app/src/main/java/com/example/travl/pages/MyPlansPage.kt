@@ -11,14 +11,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travl.adapters.MyPlansPageItemAdapter
 import com.example.travl.databinding.MyPlansPageBinding
-import com.example.travl.interfaces.OnMyPlansDeleteBtnClickListener
+import com.example.travl.interfaces.OnMyPlansClickListener
 import com.example.travl.viewModels.MyPlansPageViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class MyPlansPage : Fragment(), OnMyPlansDeleteBtnClickListener {
+class MyPlansPage : Fragment(), OnMyPlansClickListener {
     private lateinit var binding: MyPlansPageBinding
     private lateinit var adapter: MyPlansPageItemAdapter
     private val viewModel: MyPlansPageViewModel by viewModels()
@@ -77,7 +77,7 @@ class MyPlansPage : Fragment(), OnMyPlansDeleteBtnClickListener {
         val item = adapter.getItem(position)
 
         if (uid != null) {
-            val docRef = db.collection("users")
+            val docRef = db.collection("usersFavorites")
                 .document(uid)
                 .collection("favorites")
                 .document(item.key)
@@ -120,6 +120,20 @@ class MyPlansPage : Fragment(), OnMyPlansDeleteBtnClickListener {
                     ).show()
                 }
         }
+    }
+
+    override fun onImageClick(position: Int) {
+        val childItem = adapter.getItem(position)
+
+        val action = MyPlansPageDirections.actionMyPlansPageToPlacePage(
+            childItem.imageResURI,
+            childItem.placeName,
+            childItem.regionName,
+            childItem.description,//добавить description в класс карточки планов
+            childItem.key
+        )
+
+        findNavController().navigate(action)
     }
 }
 

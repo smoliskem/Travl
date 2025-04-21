@@ -1,5 +1,7 @@
 package com.example.travl.interfaces
 
-interface OnMyPlansDeleteBtnClickListener {
+interface OnMyPlansClickListener {
     fun onChildItemClick(position: Int)
+
+    fun onImageClick(position: Int)
 }

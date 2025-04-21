@@ -56,7 +56,7 @@ class PlacePage : Fragment() {
             if (uid != null) {
                 onFavorites(
                     db,
-                    MyPlansItem(imageResURI, placeName, regionName, key),
+                    MyPlansItem(imageResURI, placeName, regionName, description, key),
                     uid
                 )
             }
@@ -72,7 +72,7 @@ class PlacePage : Fragment() {
         favorite: MyPlansItem,
         uid: String
     ) {
-        val favoritesRef = db.collection("users")
+        val favoritesRef = db.collection("usersFavorites")
             .document(uid)
             .collection("favorites")
             .document(favorite.key)
