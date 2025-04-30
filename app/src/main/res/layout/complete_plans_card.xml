@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="105dp"
+    android:layout_margin="10dp"
+    android:backgroundTint="@color/white"
+    android:descendantFocusability="blocksDescendants"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/place_img"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/place"
+            android:contentDescription="@string/place_image"
+            android:scaleType="fitXY" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:id="@+id/place_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:fontFamily="@font/montserrat_bold"
+                app:layout_constraintBottom_toTopOf="@id/geo_ic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/place_example" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/place_img"
+                app:layout_constraintTop_toBottomOf="@+id/place_name">
+
+                <TextView
+                    android:id="@+id/region_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:text="Краснодарский край" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="?android:attr/buttonBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!-- Удалена кнопка success_btn -->
+                <!-- Оставлена только кнопка delete_btn -->
+                <Button
+                    android:id="@+id/delete_btn"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="46dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/plans_x"
+                    tools:text="ds"
+                    android:textColor="#0000"
+                    tools:ignore="TouchTargetSizeCheck"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@drawable/dashed_border"/>
+</androidx.cardview.widget.CardView>
