@@ -72,7 +72,7 @@ class PlacePage : Fragment() {
         favorite: MyPlansItem,
         uid: String
     ) {
-        val favoritesRef = db.collection("usersFavorites")
+        val favoritesRef = db.collection("users")
             .document(uid)
             .collection("favorites")
             .document(favorite.key)

@@ -77,7 +77,7 @@ class MyPlansPage : Fragment(), OnMyPlansClickListener {
         val item = adapter.getItem(position)
 
         if (uid != null) {
-            val docRef = db.collection("usersFavorites")
+            val docRef = db.collection("users")
                 .document(uid)
                 .collection("favorites")
                 .document(item.key)
