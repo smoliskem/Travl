@@ -72,15 +72,16 @@
 
                 <!-- Удалена кнопка success_btn -->
                 <!-- Оставлена только кнопка delete_btn -->
-                <Button
+                <ImageButton
                     android:id="@+id/delete_btn"
-                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="46dp"
                     android:layout_height="32dp"
-                    android:background="@drawable/plans_x"
-                    tools:text="ds"
-                    android:textColor="#0000"
-                    tools:ignore="TouchTargetSizeCheck"/>
+                    android:background="@drawable/rounded_button"
+                    android:src="@drawable/plans_x_rounded_btn"
+                    android:scaleType="center"
+                    android:padding="8dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    tools:ignore="ContentDescription,TouchTargetSizeCheck"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
