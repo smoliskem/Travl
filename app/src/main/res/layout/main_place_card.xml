@@ -29,7 +29,7 @@
             android:paddingVertical="8dp">
 
             <TextView
-                android:id="@+id/place_name"
+                android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -48,7 +48,7 @@
                 android:src="@drawable/location_white_icon"
                 app:layout_constraintEnd_toStartOf="@id/region_name"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/place_name" />
+                app:layout_constraintTop_toBottomOf="@id/user_name" />
 
             <TextView
                 android:id="@+id/region_name"
@@ -57,7 +57,7 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@id/geo_ic"
-                app:layout_constraintTop_toBottomOf="@id/place_name"
+                app:layout_constraintTop_toBottomOf="@id/user_name"
                 tools:text="@string/region_example" />
 
             <LinearLayout

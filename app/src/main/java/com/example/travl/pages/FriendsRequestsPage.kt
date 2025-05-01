@@ -7,34 +7,25 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.travl.R
-import com.example.travl.databinding.FriendsPageBinding
 import com.example.travl.databinding.FriendsRequestPageBinding
+import com.example.travl.databinding.PlacePageBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class FriendsRequestsPage : Fragment() {
     private lateinit var binding: FriendsRequestPageBinding
-    //private lateinit var textViewUserName: TextView
-    private lateinit var auth: FirebaseAuth
+    private val uid = Firebase.auth.currentUser?.uid
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        auth = FirebaseAuth.getInstance()
-
-        val view = inflater.inflate(R.layout.friends_request_page, container, false)
-
-        auth = Firebase.auth
-        //textViewUserName = view.findViewById(R.id.username)
-
-        //val user = FirebaseAuth.getInstance().currentUser
-        //val displayName = user?.displayName
-
-        //textViewUserName.text = displayName
-        // Inflate the layout for this fragment
-        return view
+    ): View {
+        binding = FriendsRequestPageBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,7 +35,5 @@ class FriendsRequestsPage : Fragment() {
         binding.backBtn.setOnClickListener {
             findNavController().navigate(FriendsRequestsPageDirections.actionFriendsRequestsPageToFriendsPage())
         }
-
-
     }
 }

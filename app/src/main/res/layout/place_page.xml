@@ -33,7 +33,7 @@
 
 
     <TextView
-        android:id="@+id/place_name"
+        android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fontFamily="@font/montserrat_black"
@@ -58,7 +58,7 @@
         android:paddingStart="30dp"
         android:paddingEnd="0dp"
         app:layout_constraintStart_toStartOf="@+id/place_img"
-        app:layout_constraintTop_toBottomOf="@+id/place_name">
+        app:layout_constraintTop_toBottomOf="@+id/user_name">
 
 
         <ImageView

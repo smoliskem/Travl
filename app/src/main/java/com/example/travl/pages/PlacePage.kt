@@ -22,7 +22,7 @@ class PlacePage : Fragment() {
     private val args: PlacePageArgs by navArgs()
     private lateinit var binding: PlacePageBinding
     private val db = FirebaseFirestore.getInstance()
-    private val uid = Firebase.auth. currentUser?.uid
+    private val uid = Firebase.auth.currentUser?.uid
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
