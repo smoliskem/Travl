@@ -41,7 +41,7 @@ class FriendsRequestPageItem(
         val friendRequest = data[position]
 
         with(holder.binding) {
-            userName.text = friendRequest.username
+            friendName.text = friendRequest.username
         }
     }
 }
