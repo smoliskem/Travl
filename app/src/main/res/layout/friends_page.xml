@@ -5,38 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/newbackground"
+    android:paddingHorizontal="20dp"
     tools:context=".pages.FriendsPage">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+
+    <ImageButton
+        android:id="@+id/back_btn"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/rounded_button"
+        android:contentDescription="@string/main"
+        android:src="@drawable/arrow_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
-        <ImageButton
-            android:id="@+id/backBtn"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="70dp"
-            android:background="@drawable/rounded_button"
-            android:contentDescription="@string/main"
-            android:src="@drawable/arrow_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout4"
+        android:id="@+id/top_box"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.7"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.7">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/heading"
@@ -81,10 +75,17 @@
             android:layout_height="4dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/palka"
-            app:layout_constraintTop_toBottomOf="@id/heading"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heading" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/friends_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_box" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
