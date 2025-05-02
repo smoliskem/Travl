@@ -39,7 +39,7 @@ class FriendsPageItemAdapter(
         val friend = data[position]
 
         with(holder.binding) {
-            friendName.text = friend.username
+            friendName.text = friend.friendUsername
         }
     }
 }

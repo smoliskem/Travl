@@ -87,10 +87,8 @@ class MyPlansPage : Fragment(), OnMyPlansClickListener {
                     if (document.exists()) {
                         docRef.delete()
                             .addOnSuccessListener {
-                                // 1. Удаляем из ViewModel
                                 viewModel.removeItem(item.key)
 
-                                // 2. Показываем уведомление
                                 Toast.makeText(
                                     context,
                                     "Удалено из избранного",
@@ -129,7 +127,7 @@ class MyPlansPage : Fragment(), OnMyPlansClickListener {
             childItem.imageResURI,
             childItem.placeName,
             childItem.regionName,
-            childItem.description,//добавить description в класс карточки планов
+            childItem.description,
             childItem.key
         )
 

@@ -80,34 +80,47 @@ class AddFriendPage : Fragment() {
     private fun sendFriendRequest(friendUserId: String) {
         // Проверяем, не отправили ли мы уже заявку этому пользователю
         if (uid != null) {
-            db.collection("users").document(friendUserId)
-                .collection("friendRequests")
+
+            db.collection("users")
+                .document(friendUserId)
+                .collection("friends")
                 .document(uid)
                 .get()
-                .addOnSuccessListener { document ->
-                    if (document.exists()) {
-                        showToast("Вы уже отправили заявку этому пользователю")
+                .addOnSuccessListener { doc ->
+                    if (doc.exists()) {
+                        showToast("Этот пользователь уже в вашем списке друзей")
                     } else {
-                        val requestData = hashMapOf(
-                            "fromUsername" to auth.currentUser!!.displayName,
-                            "fromUserID" to uid,
-                            "status" to "pending"
-                        )
-
-                        db.collection("users").document(friendUserId)
+                        db.collection("users")
+                            .document(friendUserId)
                             .collection("friendRequests")
                             .document(uid)
-                            .set(requestData)
-                            .addOnSuccessListener {
-                                showToast("Заявка в друзья отправлена")
+                            .get()
+                            .addOnSuccessListener { document ->
+                                if (document.exists()) {
+                                    showToast("Вы уже отправили заявку этому пользователю")
+                                } else {
+                                    val requestData = hashMapOf(
+                                        "fromUsername" to auth.currentUser!!.displayName,
+                                        "fromUserID" to uid,
+                                        "status" to "pending"
+                                    )
+
+                                    db.collection("users").document(friendUserId)
+                                        .collection("friendRequests")
+                                        .document(uid)
+                                        .set(requestData)
+                                        .addOnSuccessListener {
+                                            showToast("Заявка в друзья отправлена")
+                                        }
+                                        .addOnFailureListener {
+                                            showToast("Не удалось отправить заявку")
+                                        }
+                                }
                             }
                             .addOnFailureListener {
-                                showToast("Не удалось отправить заявку")
+                                showToast("Ошибка при проверке заявки")
                             }
                     }
-                }
-                .addOnFailureListener {
-                    showToast("Ошибка при проверке заявки")
                 }
         }
     }

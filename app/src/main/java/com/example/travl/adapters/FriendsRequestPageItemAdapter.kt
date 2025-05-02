@@ -7,18 +7,26 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.travl.interfaces.OnFriendRequestClickListener
+import com.example.travl.items.MyPlansItem
 
 class FriendsRequestPageItemAdapter(
     private val context: Context,
+    private val listener: OnFriendRequestClickListener
 ) :
     RecyclerView.Adapter<FriendsRequestPageItemAdapter.FriendsRequestPageItemViewHolder>() {
 
-    var data: List<FriendRequest> =  emptyList()
+    var data: List<FriendRequest> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
         set(newValue) {
             field = newValue
             notifyDataSetChanged()
         }
+
+
+    fun getItem(position: Int): FriendRequest {
+        return data[position]
+    }
 
     class FriendsRequestPageItemViewHolder(val binding: RequestCardBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -40,6 +48,14 @@ class FriendsRequestPageItemAdapter(
 
         with(holder.binding) {
             friendName.text = friendRequest.fromUsername
+
+            acceptBtn.setOnClickListener {
+                listener.onAcceptClick(position)
+            }
+
+            rejectBtn.setOnClickListener {
+                listener.onRejectClick(position)
+            }
         }
     }
 }
