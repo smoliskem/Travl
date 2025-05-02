@@ -8,14 +8,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class FriendsRequestPageItem(
-    innerData: List<FriendRequest>,
+class FriendsRequestPageItemAdapter(
     private val context: Context,
-    private val parentPosition: Int
 ) :
-    RecyclerView.Adapter<FriendsRequestPageItem.FriendsRequestPageItemViewHolder>() {
+    RecyclerView.Adapter<FriendsRequestPageItemAdapter.FriendsRequestPageItemViewHolder>() {
 
-    var data: List<FriendRequest> = innerData
+    var data: List<FriendRequest> =  emptyList()
         @SuppressLint("NotifyDataSetChanged")
         set(newValue) {
             field = newValue
@@ -41,7 +39,7 @@ class FriendsRequestPageItem(
         val friendRequest = data[position]
 
         with(holder.binding) {
-            friendName.text = friendRequest.username
+            friendName.text = friendRequest.fromUsername
         }
     }
 }
