@@ -11,7 +11,6 @@ import com.example.travl.databinding.AddFriendPageBinding
 import com.example.travl.items.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.util.Locale
@@ -79,38 +78,38 @@ class AddFriendPage : Fragment() {
 
 
     private fun sendFriendRequest(friendUserId: String) {
-        val currentUserId = auth.currentUser?.uid ?: return
-
         // Проверяем, не отправили ли мы уже заявку этому пользователю
-        db.collection("users").document(friendUserId)
-            .collection("friendRequests")
-            .document(currentUserId)
-            .get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    showToast("Вы уже отправили заявку этому пользователю")
-                } else {
-                    val requestData = hashMapOf(
-                        "fromUsername" to auth.currentUser!!.displayName,
-                        "fromUserID" to currentUserId,
-                        "status" to "pending"
-                    )
+        if (uid != null) {
+            db.collection("users").document(friendUserId)
+                .collection("friendRequests")
+                .document(uid)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        showToast("Вы уже отправили заявку этому пользователю")
+                    } else {
+                        val requestData = hashMapOf(
+                            "fromUsername" to auth.currentUser!!.displayName,
+                            "fromUserID" to uid,
+                            "status" to "pending"
+                        )
 
-                    db.collection("users").document(friendUserId)
-                        .collection("friendRequests")
-                        .document(currentUserId)
-                        .set(requestData)
-                        .addOnSuccessListener {
-                            showToast("Заявка в друзья отправлена")
-                        }
-                        .addOnFailureListener {
-                            showToast("Не удалось отправить заявку")
-                        }
+                        db.collection("users").document(friendUserId)
+                            .collection("friendRequests")
+                            .document(uid)
+                            .set(requestData)
+                            .addOnSuccessListener {
+                                showToast("Заявка в друзья отправлена")
+                            }
+                            .addOnFailureListener {
+                                showToast("Не удалось отправить заявку")
+                            }
+                    }
                 }
-            }
-            .addOnFailureListener {
-                showToast("Ошибка при проверке заявки")
-            }
+                .addOnFailureListener {
+                    showToast("Ошибка при проверке заявки")
+                }
+        }
     }
 
     private fun showToast(message: String) {

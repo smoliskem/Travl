@@ -11,15 +11,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travl.adapters.FriendsRequestPageItemAdapter
 import com.example.travl.databinding.FriendsRequestPageBinding
-import com.example.travl.viewModels.MyPlansPageViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class FriendsRequestsPage : Fragment() {
     private lateinit var binding: FriendsRequestPageBinding
-    private val uid = Firebase.auth.currentUser?.uid
-    private val db = FirebaseFirestore.getInstance()
     private val viewModel: FriendsRequestsViewModel by viewModels()
     private lateinit var adapter: FriendsRequestPageItemAdapter
 
@@ -45,10 +42,8 @@ class FriendsRequestsPage : Fragment() {
             adapter.data = data
         }
 
-        //Асинхронное обновление данных
         viewModel.loadData()
 
-        //Присваивание адаптера
         binding.friendsRequestsRecycler.adapter = adapter
 
         binding.backBtn.setOnClickListener {
