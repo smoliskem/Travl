@@ -100,7 +100,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/changeName"
+            android:id="@+id/changePhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/changePhoto"
@@ -121,7 +121,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/changeName">
+            app:layout_constraintTop_toBottomOf="@id/changePhoto">
 
             <TextView
                 android:id="@+id/profile3"

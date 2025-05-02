@@ -22,13 +22,68 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.util.Locale
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
+import android.widget.Button
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+
+import java.util.*
+
 class EditProfilePage : Fragment() {
     private lateinit var binding: EditProfilePageBinding
+
 
     private lateinit var auth: FirebaseAuth
     private lateinit var user: FirebaseUser
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
     private val db: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+
+    private val pickImageLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val imageUri: Uri? = result.data?.data
+            if (imageUri != null) {
+                uploadPhotoToFirestore(imageUri)
+            } else {
+                showToast("No image selected")
+            }
+        } else {
+            showToast("Image pick cancelled")
+        }
+    }
+
+    private fun openGalleryToPickPhoto() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        pickImageLauncher.launch(intent)
+    }
+
+
+    private fun uploadPhotoToFirestore(imageUri: Uri) {
+        val user = auth.currentUser
+        if (user == null) {
+            showToast("User not logged in")
+            return
+        }
+
+
+        db.collection("usernames")
+            .document("ase")
+            .update("photoUrl", imageUri.toString())
+            .addOnSuccessListener {
+                showToast("Photo updated successfully")
+            }
+            .addOnFailureListener { e ->
+                showToast("Failed to update Firestore: ${e.message}")
+            }
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +104,12 @@ class EditProfilePage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = EditProfilePageBinding.bind(view)
+
+        val newPhoto = binding.changePhoto
+
+        newPhoto.setOnClickListener {
+            openGalleryToPickPhoto()
+        }
 
         binding.backBtn.setOnClickListener {
             findNavController().navigate(EditProfilePageDirections.actionEditPageToProfilePage())
@@ -89,6 +150,40 @@ class EditProfilePage : Fragment() {
                 }
             }
         }
+
+        // Загрузите изображение из Firestore
+
+        loadImageFromFirestore()
+    }
+
+    private fun loadImageFromFirestore() {
+        val user = auth.currentUser
+        if (user == null) {
+            showToast("User  not logged in")
+            return
+        }
+        // Получите URL изображения из Firestore
+        db.collection("usernames")
+            .document("ase") // Замените на актуальный идентификатор документа
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.contains("photoUrl")) {
+                    val photoUrl = document.getString("photoUrl")
+                    if (photoUrl != null) {
+                        // Используйте Glide для загрузки изображения в ImageView
+                        Glide.with(this)
+                            .load(photoUrl)
+                            .into(binding.imageView) // Замените на ваш ImageView
+                    } else {
+                        showToast("Photo URL is null")
+                    }
+                } else {
+                    showToast("Document does not exist")
+                }
+            }
+            .addOnFailureListener { e ->
+                showToast("Failed to load image: ${e.message}")
+            }
     }
 
     private suspend fun isUsernameAvailable(username: String): Boolean {
