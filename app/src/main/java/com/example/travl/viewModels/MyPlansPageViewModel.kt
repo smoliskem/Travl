@@ -14,6 +14,9 @@ class MyPlansPageViewModel : ViewModel() {
     private val _dataList = MutableLiveData<List<MyPlansItem>>()
     val dataList: LiveData<List<MyPlansItem>> get() = _dataList
 
+    private val _plansCount = MutableLiveData<Int>()
+    val plansCount: LiveData<Int> get() = _plansCount
+
     private val db = FirebaseFirestore.getInstance()
     private val uid = Firebase.auth.currentUser?.uid
 
@@ -31,10 +34,14 @@ class MyPlansPageViewModel : ViewModel() {
             Tasks.whenAllComplete(favoriteTask)
                 .addOnSuccessListener {
                     _dataList.value = favorites
+                    _plansCount.value = favorites.size
                 }
                 .addOnFailureListener { exception ->
                     Log.e("FirestoreError", "Error loading collections: ", exception)
+                    _plansCount.value = 0
                 }
+        } else {
+            _plansCount.value = 0
         }
     }
 
