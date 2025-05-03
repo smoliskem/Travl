@@ -58,16 +58,15 @@ class JointPlansPage : Fragment(), OnJointPlansClickListener {
         }
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-    }
 
     override fun onClick(position: Int) {
         val friendUsername = adapter.getItem(position).friendUsername
+        val friendUserID = adapter.getItem(position).friendUserID
 
         findNavController().navigate(
             JointPlansPageDirections.actionJointPlansPageToJointFriendPlans(
-                friendUsername
+                friendUsername,
+                friendUserID
             )
         )
 

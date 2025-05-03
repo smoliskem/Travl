@@ -119,6 +119,9 @@
         <argument
             android:name="friendUsername"
             app:argType="string" />
+        <argument
+            android:name="friendUserID"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/editPage"
