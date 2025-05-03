@@ -8,44 +8,52 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.travl.adapters.MyPlansPageItemAdapter
-import com.example.travl.databinding.MyPlansPageBinding
+import com.example.travl.adapters.JointFriendPageItemAdapter
+import com.example.travl.databinding.JointFriendPageBinding
 import com.example.travl.interfaces.OnMyPlansClickListener
-import com.example.travl.viewModels.MyPlansPageViewModel
+import com.example.travl.viewModels.JointFriendViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 
-
-class MyPlansPage : Fragment(), OnMyPlansClickListener {
-    private lateinit var binding: MyPlansPageBinding
-    private lateinit var adapter: MyPlansPageItemAdapter
-    private val viewModel: MyPlansPageViewModel by viewModels()
+class JointFriendPage : Fragment(), OnMyPlansClickListener {
+    private lateinit var binding: JointFriendPageBinding
+    private lateinit var adapter: JointFriendPageItemAdapter
+    private val viewModel: JointFriendViewModel by viewModels()
+    private val args: JointFriendPageArgs by navArgs()
     private val db = FirebaseFirestore.getInstance()
     private val uid = Firebase.auth.currentUser?.uid
-
+    private lateinit var friendUsername: String
+    private lateinit var friendUserID: String
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        binding = MyPlansPageBinding.inflate(inflater, container, false)
+        binding = JointFriendPageBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Инициализация адаптера
-        adapter = MyPlansPageItemAdapter(requireContext(), this)
+        friendUsername = args.friendUsername
+        friendUserID = args.friendUserID
+
+        viewModel.setSelectedFriendId(friendUserID)
+
+        binding.friendUsername.text = friendUsername
+
+        adapter = JointFriendPageItemAdapter(requireContext(), this)
 
 
         //Менеджер RecyclerView
         val manager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         //Присваивание менеджера
-        binding.myPlansRecycler.layoutManager =
+        binding.jointFriendRecycler.layoutManager =
             manager
 
 
@@ -58,18 +66,13 @@ class MyPlansPage : Fragment(), OnMyPlansClickListener {
         viewModel.loadData()
 
         //Присваивание адаптера
-        binding.myPlansRecycler.adapter = adapter
+        binding.jointFriendRecycler.adapter = adapter
 
 
-        //Навигация
-        binding.mainPageBtn.setOnClickListener {
-            findNavController().navigate(MyPlansPageDirections.actionMyPlansPageToMainPage())
-        }
-        binding.jointPlansBtn.setOnClickListener {
-            findNavController().navigate(MyPlansPageDirections.actionMyPlansPageToJointPlansPage())
-        }
-        binding.profileBtn.setOnClickListener {
-            findNavController().navigate(MyPlansPageDirections.actionMyPlansPageToProfilePage())
+
+
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
@@ -79,7 +82,16 @@ class MyPlansPage : Fragment(), OnMyPlansClickListener {
         if (uid != null) {
             val docRef = db.collection("users")
                 .document(uid)
-                .collection("favorites")
+                .collection("friends")
+                .document(friendUserID)
+                .collection("jointPlans")
+                .document(item.key)
+
+            val friendDocRef = db.collection("users")
+                .document(friendUserID)
+                .collection("friends")
+                .document(uid)
+                .collection("jointPlans")
                 .document(item.key)
 
             docRef.get()
@@ -87,15 +99,22 @@ class MyPlansPage : Fragment(), OnMyPlansClickListener {
                     if (document.exists()) {
                         docRef.delete()
                             .addOnSuccessListener {
-                                viewModel.removeItem(item.key)
+                                friendDocRef.get()
+                                    .addOnSuccessListener { friendDocument ->
+                                        if (friendDocument.exists()) {
+                                            friendDocRef.delete()
 
-                                showToast("Удалено из избранного")
+                                            viewModel.removeItem(item.key)
+
+                                            showToast("Удалено из Совместных планов с ${friendUsername}")
+                                        }
+                                    }
                             }
                             .addOnFailureListener { e ->
                                 showToast("Ошибка удаления: ${e.message}")
                             }
                     } else {
-                        showToast("Элемент не найден в избранном")
+                        showToast("Элемент не найден в избранном, обновите страницу")
                     }
                 }
                 .addOnFailureListener { e ->
@@ -107,7 +126,7 @@ class MyPlansPage : Fragment(), OnMyPlansClickListener {
     override fun onImageClick(position: Int) {
         val childItem = adapter.getItem(position)
 
-        val action = MyPlansPageDirections.actionMyPlansPageToPlacePage(
+        val action = JointFriendPageDirections.actionJointFriendPageToPlacePage(
             childItem.imageResURI,
             childItem.placeName,
             childItem.regionName,
@@ -122,4 +141,3 @@ class MyPlansPage : Fragment(), OnMyPlansClickListener {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }
-

@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travl.databinding.FriendCardBinding
+import com.example.travl.interfaces.OnJointPlansClickListener
 import com.example.travl.items.Friend
 
-class FriendsPageItemAdapter(
+class JointPlansPageItemAdapter(
     private val context: Context,
+    private val listener: OnJointPlansClickListener
 ) :
-    RecyclerView.Adapter<FriendsPageItemAdapter.FriendsPageItemViewHolder>() {
+    RecyclerView.Adapter<JointPlansPageItemAdapter.JointPlansPageItemViewHolder>() {
 
     var data: List<Friend> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
@@ -20,30 +22,35 @@ class FriendsPageItemAdapter(
             notifyDataSetChanged()
         }
 
+
     fun getItem(position: Int): Friend {
         return data[position]
     }
 
-    class FriendsPageItemViewHolder(val binding: FriendCardBinding) :
+    class JointPlansPageItemViewHolder(val binding: FriendCardBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FriendsPageItemViewHolder {
+    ): JointPlansPageItemViewHolder {
         val binding =
             FriendCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return FriendsPageItemViewHolder(binding)
+        return JointPlansPageItemViewHolder(binding)
     }
 
     override fun getItemCount(): Int = data.size
 
-    override fun onBindViewHolder(holder: FriendsPageItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: JointPlansPageItemViewHolder, position: Int) {
         val friend = data[position]
 
         with(holder.binding) {
             friendName.text = friend.friendUsername
+
+            friendCard.setOnClickListener {
+                listener.onClick(position)
+            }
         }
     }
 }

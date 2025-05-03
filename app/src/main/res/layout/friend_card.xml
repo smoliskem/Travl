@@ -2,7 +2,8 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
+    android:id="@+id/friend_card"
+    android:layout_width="match_parent"
     android:layout_height="70dp"
     android:layout_margin="10dp"
     android:backgroundTint="@color/white"
@@ -19,8 +20,8 @@
             android:id="@+id/imageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="15dp"
             android:layout_gravity="center"
+            android:layout_marginStart="15dp"
             android:contentDescription="@string/avatar"
             android:src="@drawable/avatar"
             app:civ_border_color="@color/black"
@@ -30,21 +31,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/friend_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:fontFamily="@font/montserrat_bold"
-                app:layout_constraintBottom_toTopOf="@id/geo_ic"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Friend#1"
-                android:singleLine="true"/>
+        <TextView
+            android:id="@+id/friend_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/geo_ic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Friend#1" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

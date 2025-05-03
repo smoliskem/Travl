@@ -12,27 +12,30 @@ class FriendsViewModel : ViewModel() {
     private val _dataList = MutableLiveData<List<Friend>>()
     val dataList: LiveData<List<Friend>> get() = _dataList
 
+    private val _friendsCount = MutableLiveData<Int>()
+    val friendsCount: LiveData<Int> get() = _friendsCount
+
     private val db = FirebaseFirestore.getInstance()
     private val uid = Firebase.auth.currentUser?.uid
 
-    fun removeItem(itemId: String) {
-        _dataList.value = _dataList.value?.filter { it.friendUserID != itemId }
-    }
-
     fun loadData() {
-        val requests = mutableListOf<Friend>()
+        val friends = mutableListOf<Friend>()
 
 
         if (uid != null) {
-            val requestTask = getRequests(db, uid, requests)
+            val friendsTask = getRequests(db, uid, friends)
 
-            Tasks.whenAllComplete(requestTask)
+            Tasks.whenAllComplete(friendsTask)
                 .addOnSuccessListener {
-                    _dataList.value = requests
+                    _dataList.value = friends
+                    _friendsCount.value = friends.size
                 }
                 .addOnFailureListener { exception ->
                     Log.e("FirestoreError", "Error loading collections: ", exception)
+                    _friendsCount.value = 0
                 }
+        } else {
+            _friendsCount.value = 0
         }
     }
 

@@ -11,11 +11,11 @@ import com.example.travl.interfaces.OnMyPlansClickListener
 import com.example.travl.items.MyPlansItem
 
 
-class MyPlansPageItemAdapter(
+class JointFriendPageItemAdapter(
     private val context: Context,
     private val listener: OnMyPlansClickListener,
 ) :
-    RecyclerView.Adapter<MyPlansPageItemAdapter.MyPlansPageViewHolder>() {
+    RecyclerView.Adapter<JointFriendPageItemAdapter.JointFriendPageViewHolder>() {
 
     var data: List<MyPlansItem> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
@@ -28,21 +28,21 @@ class MyPlansPageItemAdapter(
         return data[position]
     }
 
-    class MyPlansPageViewHolder(val binding: MyPlansPlaceCardBinding) :
+    class JointFriendPageViewHolder(val binding: MyPlansPlaceCardBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyPlansPageViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JointFriendPageViewHolder {
         val binding =
             MyPlansPlaceCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return MyPlansPageViewHolder(binding)
+        return JointFriendPageViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
 
-    override fun onBindViewHolder(holder: MyPlansPageViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: JointFriendPageViewHolder, position: Int) {
         val item = data[position]
 
         with(holder.binding) {

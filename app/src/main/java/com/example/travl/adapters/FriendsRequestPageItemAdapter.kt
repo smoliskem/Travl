@@ -1,14 +1,13 @@
 package com.example.travl.adapters
 
 import com.example.travl.databinding.RequestCardBinding
-import com.example.travl.items.FriendRequest
+import com.example.travl.items.FriendRequestItem
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travl.interfaces.OnFriendRequestClickListener
-import com.example.travl.items.MyPlansItem
 
 class FriendsRequestPageItemAdapter(
     private val context: Context,
@@ -16,7 +15,7 @@ class FriendsRequestPageItemAdapter(
 ) :
     RecyclerView.Adapter<FriendsRequestPageItemAdapter.FriendsRequestPageItemViewHolder>() {
 
-    var data: List<FriendRequest> = emptyList()
+    var data: List<FriendRequestItem> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
         set(newValue) {
             field = newValue
@@ -24,7 +23,7 @@ class FriendsRequestPageItemAdapter(
         }
 
 
-    fun getItem(position: Int): FriendRequest {
+    fun getItem(position: Int): FriendRequestItem {
         return data[position]
     }
 

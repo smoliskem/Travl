@@ -42,7 +42,7 @@ class AddFriendPage : Fragment() {
         }
 
         binding.acceptBtn.setOnClickListener {
-            val name = binding.friendName.text.toString().trim() // Удаляем пробелы
+            val name = binding.friendUsername.text.toString().trim() // Удаляем пробелы
 
             if (name.isEmpty()) {
                 showToast("Введите имя пользователя")

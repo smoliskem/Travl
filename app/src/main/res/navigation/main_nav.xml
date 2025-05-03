@@ -9,7 +9,7 @@
         android:id="@+id/main_page"
         android:name="com.example.travl.pages.MainPage"
         android:label="main_page"
-        tools:layout="@layout/main_page" >
+        tools:layout="@layout/main_page">
         <action
             android:id="@+id/action_mainPage_to_myPlansPage"
             app:destination="@id/my_plans_page" />
@@ -27,7 +27,7 @@
         android:id="@+id/my_plans_page"
         android:name="com.example.travl.pages.MyPlansPage"
         android:label="my_plans_page"
-        tools:layout="@layout/my_plans_page" >
+        tools:layout="@layout/my_plans_page">
         <action
             android:id="@+id/action_myPlansPage_to_jointPlansPage"
             app:destination="@id/joint_plans" />
@@ -45,7 +45,10 @@
         android:id="@+id/joint_plans"
         android:name="com.example.travl.pages.JointPlansPage"
         android:label="with_plans_page"
-        tools:layout="@layout/joint_plans_page" >
+        tools:layout="@layout/joint_plans_page">
+        <action
+            android:id="@+id/action_jointPlansPage_to_jointFriendPlans"
+            app:destination="@id/jointFriendPage" />
         <action
             android:id="@+id/action_jointPlansPage_to_myPlansPage"
             app:destination="@id/my_plans_page" />
@@ -60,7 +63,7 @@
         android:id="@+id/profile_page"
         android:name="com.example.travl.pages.ProfilePage"
         android:label="profile_page"
-        tools:layout="@layout/profile_page" >
+        tools:layout="@layout/profile_page">
         <action
             android:id="@+id/action_profilePage_to_mainPage"
             app:destination="@id/main_page" />
@@ -85,7 +88,7 @@
         android:id="@+id/place_page"
         android:name="com.example.travl.pages.PlacePage"
         android:label="place_page"
-        tools:layout="@layout/profile_page" >
+        tools:layout="@layout/profile_page">
         <action
             android:id="@+id/action_placePage_to_mainPage"
             app:destination="@id/main_page" />
@@ -103,13 +106,31 @@
             app:argType="string" />
         <argument
             android:name="key"
-            app:argType="string"/>
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/jointFriendPage"
+        android:name="com.example.travl.pages.JointFriendPage"
+        android:label="joint_friends_page"
+        tools:layout="@layout/joint_friend_page">
+        <action
+            android:id="@+id/action_jointFriendPage_to_placePage"
+            app:destination="@id/place_page" />
+        <action
+            android:id="@+id/action_jointFriendPage_to_jointPlansPage"
+            app:destination="@id/joint_plans" />
+        <argument
+            android:name="friendUsername"
+            app:argType="string" />
+        <argument
+            android:name="friendUserID"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/editPage"
         android:name="com.example.travl.pages.EditProfilePage"
         android:label="edit_profile_page"
-        tools:layout="@layout/edit_profile_page" >
+        tools:layout="@layout/edit_profile_page">
         <action
             android:id="@+id/action_editPage_to_profile_page"
             app:destination="@id/profile_page" />
@@ -118,7 +139,7 @@
         android:id="@+id/addFriendPage"
         android:name="com.example.travl.pages.AddFriendPage"
         android:label="add_friend_page"
-        tools:layout="@layout/add_friend_page" >
+        tools:layout="@layout/add_friend_page">
         <action
             android:id="@+id/action_addFriendPage_to_profile_page"
             app:destination="@id/profile_page" />
@@ -127,7 +148,7 @@
         android:id="@+id/friendsPage"
         android:name="com.example.travl.pages.FriendsPage"
         android:label="friends_page"
-        tools:layout="@layout/friends_page" >
+        tools:layout="@layout/friends_page">
         <action
             android:id="@+id/action_friendsPage_to_profile_page"
             app:destination="@id/profile_page" />
@@ -139,7 +160,7 @@
         android:id="@+id/friendsRequestsPage"
         android:name="com.example.travl.pages.FriendsRequestsPage"
         android:label="friends_request_page"
-        tools:layout="@layout/friends_request_page" >
+        tools:layout="@layout/friends_request_page">
         <action
             android:id="@+id/action_friendsRequestsPage_to_friendsPage"
             app:destination="@id/friendsPage" />

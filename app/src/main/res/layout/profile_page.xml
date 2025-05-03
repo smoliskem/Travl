@@ -41,28 +41,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="90dp"
-                android:backgroundTint="#4E4A25"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="103dp"
+                android:layout_height="103dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/avatar"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:src="@drawable/avatar"
+                app:civ_border_color="@color/black"
+                app:civ_border_width="1dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="103dp"
-                    android:layout_height="103dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/avatar"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/avatar"
-                    app:civ_border_color="@color/black"
-                    app:civ_border_width="1dp" />
-            </androidx.cardview.widget.CardView>
-
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -71,9 +65,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/montserratalternates_medium"
-            android:text="Artem"
             android:textColor="#000000"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            tools:text="Artem" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,6 +79,7 @@
             android:paddingEnd="10dp">
 
             <LinearLayout
+                android:id="@+id/complete_stat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -93,26 +88,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratalternates_medium"
-                    android:text="Выполнено"
+                    android:text="@string/complete"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/complete_count"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
                     android:background="@drawable/statistics_box"
                     android:fontFamily="@font/montserratalternates_light"
-                    android:text="30"
+                    android:gravity="center"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="30" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/friends_stat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -123,26 +120,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratalternates_medium"
-                    android:text="Друзей"
+                    android:text="@string/friends_count"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/friends_count"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
                     android:background="@drawable/statistics_box"
                     android:fontFamily="@font/montserratalternates_light"
-                    android:text="30"
+                    android:gravity="center"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="30" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/plans_stat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -151,22 +150,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratalternates_medium"
-                    android:text="Всего планов"
+                    android:text="@string/plans_count"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/plans_count"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
                     android:background="@drawable/statistics_box"
                     android:fontFamily="@font/montserratalternates_light"
-                    android:text="30"
+                    android:gravity="center"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="30" />
 
             </LinearLayout>
         </LinearLayout>
@@ -177,10 +177,10 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="325dp"
+        android:layout_margin="10dp"
         android:backgroundTint="@color/white"
         android:paddingBottom="45dp"
         app:cardCornerRadius="40dp"
-        android:layout_margin="10dp"
         app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

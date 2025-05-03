@@ -9,13 +9,19 @@ import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
-class MyPlansPageViewModel : ViewModel() {
+class JointFriendViewModel : ViewModel() {
     private val _dataList = MutableLiveData<List<MyPlansItem>>()
     val dataList: LiveData<List<MyPlansItem>> get() = _dataList
+    private val _selectedFriendId = MutableStateFlow<String?>(null)
+    val selectedFriendId: StateFlow<String?> = _selectedFriendId.asStateFlow()
 
-    private val _plansCount = MutableLiveData<Int>()
-    val plansCount: LiveData<Int> get() = _plansCount
+    fun setSelectedFriendId(friendId: String) {
+        _selectedFriendId.value = friendId
+    }
 
     private val db = FirebaseFirestore.getInstance()
     private val uid = Firebase.auth.currentUser?.uid
@@ -29,30 +35,29 @@ class MyPlansPageViewModel : ViewModel() {
 
 
         if (uid != null) {
-            val favoriteTask = getFavorites(db, uid, favorites)
+            val favoriteTask = getFavorites(db, uid, favorites, _selectedFriendId.value.toString())
 
             Tasks.whenAllComplete(favoriteTask)
                 .addOnSuccessListener {
                     _dataList.value = favorites
-                    _plansCount.value = favorites.size
                 }
                 .addOnFailureListener { exception ->
                     Log.e("FirestoreError", "Error loading collections: ", exception)
-                    _plansCount.value = 0
                 }
-        } else {
-            _plansCount.value = 0
         }
     }
 
     private fun getFavorites(
         db: FirebaseFirestore,
         uid: String,
-        list: MutableList<MyPlansItem>
+        list: MutableList<MyPlansItem>,
+        friendUserID: String
     ) =
         db.collection("users")
             .document(uid)
-            .collection("favorites")
+            .collection("friends")
+            .document(friendUserID)
+            .collection("jointPlans")
             .get()
             .addOnSuccessListener { snapshot ->
                 for (document in snapshot.documents) {
