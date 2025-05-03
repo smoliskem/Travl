@@ -126,7 +126,7 @@ class JointFriendPage : Fragment(), OnMyPlansClickListener {
     override fun onImageClick(position: Int) {
         val childItem = adapter.getItem(position)
 
-        val action = MyPlansPageDirections.actionMyPlansPageToPlacePage(
+        val action = JointFriendPageDirections.actionJointFriendPageToPlacePage(
             childItem.imageResURI,
             childItem.placeName,
             childItem.regionName,

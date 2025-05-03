@@ -114,6 +114,9 @@
         android:label="joint_friends_page"
         tools:layout="@layout/joint_friend_page">
         <action
+            android:id="@+id/action_jointFriendPage_to_placePage"
+            app:destination="@id/place_page" />
+        <action
             android:id="@+id/action_jointFriendPage_to_jointPlansPage"
             app:destination="@id/joint_plans" />
         <argument
