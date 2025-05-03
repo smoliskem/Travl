@@ -60,4 +60,7 @@
     <string name="friendRequests">Заявки\nв друзья</string>
     <string name="choose_friend">Выберете друга</string>
     <string name="close">Закрыть</string>
+    <string name="complete">Выполнено</string>
+    <string name="friends_count">Друзей</string>
+    <string name="plans_count">Всего планов</string>
 </resources>
