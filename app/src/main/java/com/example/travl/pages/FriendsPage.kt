@@ -50,7 +50,5 @@ class FriendsPage : Fragment() {
         binding.friendRequests.setOnClickListener {
             findNavController().navigate(FriendsPageDirections.actionFriendsPageToFriendsRequestsPage())
         }
-
-
     }
 }

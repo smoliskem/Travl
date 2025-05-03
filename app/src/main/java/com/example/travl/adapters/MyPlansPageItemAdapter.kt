@@ -54,7 +54,7 @@ class MyPlansPageItemAdapter(
                 .into(holder.binding.placeImg)
 
             deleteBtn.setOnClickListener {
-                listener.onChildItemClick(position)
+                listener.onDeleteItemClick(position)
             }
 
             placeImg.setOnClickListener {

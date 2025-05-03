@@ -73,7 +73,7 @@ class MyPlansPage : Fragment(), OnMyPlansClickListener {
         }
     }
 
-    override fun onChildItemClick(position: Int) {
+    override fun onDeleteItemClick(position: Int) {
         val item = adapter.getItem(position)
 
         if (uid != null) {
@@ -89,33 +89,17 @@ class MyPlansPage : Fragment(), OnMyPlansClickListener {
                             .addOnSuccessListener {
                                 viewModel.removeItem(item.key)
 
-                                Toast.makeText(
-                                    context,
-                                    "Удалено из избранного",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                showToast("Удалено из избранного")
                             }
                             .addOnFailureListener { e ->
-                                Toast.makeText(
-                                    context,
-                                    "Ошибка удаления: ${e.message}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                showToast("Ошибка удаления: ${e.message}")
                             }
                     } else {
-                        Toast.makeText(
-                            context,
-                            "Элемент не найден в избранном",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        showToast("Элемент не найден в избранном")
                     }
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(
-                        context,
-                        "Ошибка проверки: ${e.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showToast("Ошибка проверки: ${e.message}")
                 }
         }
     }
@@ -132,6 +116,10 @@ class MyPlansPage : Fragment(), OnMyPlansClickListener {
         )
 
         findNavController().navigate(action)
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }
 

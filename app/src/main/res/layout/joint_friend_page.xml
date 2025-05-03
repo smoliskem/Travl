@@ -5,31 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".pages.AddFriendPage">
+    tools:context=".pages.JointFriendPage">
 
-        <ImageButton
-            android:id="@+id/backBtn"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="70dp"
-            android:background="@drawable/rounded_button"
-            android:contentDescription="@string/main"
-            android:src="@drawable/arrow_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/rounded_button"
+        android:contentDescription="@string/main"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.7"
-        android:paddingTop="51dp"
         android:orientation="vertical"
+        android:paddingTop="51dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.7">
 
         <TextView
             android:id="@+id/profile1"
@@ -57,18 +57,18 @@
             app:layout_constraintTop_toBottomOf="@id/profile1" />
 
         <TextView
-            android:id="@+id/friendName"
+            android:id="@+id/friendUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserratalternates_bold"
             android:includeFontPadding="false"
-            android:text="Friend#1"
             android:maxLines="1"
             android:textColor="#000000"
             android:textSize="35sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile2" />
+            app:layout_constraintTop_toBottomOf="@id/profile2"
+            tools:text="Friend#1" />
 
 
         <View
@@ -77,8 +77,8 @@
             android:layout_height="3dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/palka"
-            app:layout_constraintTop_toBottomOf="@id/friendName"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/friendUsername" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

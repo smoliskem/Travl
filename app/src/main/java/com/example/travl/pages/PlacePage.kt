@@ -1,16 +1,22 @@
 package com.example.travl.pages
 
+import FriendsViewModel
+import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.travl.adapters.DialogItemAdapter
+import com.example.travl.databinding.JointFriendsDialogBinding
 import com.example.travl.databinding.PlacePageBinding
+import com.example.travl.interfaces.OnDialogClickListener
 import com.example.travl.items.MyPlansItem
 import com.example.travl.items.toMap
 import com.google.firebase.Firebase
@@ -18,11 +24,14 @@ import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class PlacePage : Fragment() {
+class PlacePage : Fragment(), OnDialogClickListener {
     private val args: PlacePageArgs by navArgs()
     private lateinit var binding: PlacePageBinding
     private val db = FirebaseFirestore.getInstance()
+    private val viewModel: FriendsViewModel by viewModels()
+    private lateinit var adapter: DialogItemAdapter
     private val uid = Firebase.auth.currentUser?.uid
+    private lateinit var favorite: MyPlansItem
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,36 +44,87 @@ class PlacePage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val imageResURI = args.imageResURL
-        val placeName = args.placeName
-        val regionName = args.regionName
-        val description = args.description
+        val imageResURIArg = args.imageResURL
+        val placeNameArg = args.placeName
+        val regionNameArg = args.regionName
+        val descriptionArg = args.description
         val key = args.key
+        favorite = MyPlansItem(
+            imageResURIArg,
+            placeNameArg,
+            regionNameArg,
+            descriptionArg,
+            key
+        )
 
         Glide.with(requireContext())
-            .load(imageResURI)
+            .load(imageResURIArg)
             .centerCrop()
             .into(binding.placeImg)
 
-        binding.placeName.text = placeName
-        binding.regionName.text = regionName
-        binding.placeDescription.text = description
 
+        with(binding) {
+            placeName.text = placeNameArg
+            regionName.text = regionNameArg
+            placeDescription.text = descriptionArg
 
-        binding.addBtn.setOnClickListener {
-            if (uid != null) {
-                onFavorites(
-                    db,
-                    MyPlansItem(imageResURI, placeName, regionName, description, key),
-                    uid
-                )
+            addBtn.setOnClickListener {
+                if (uid != null) {
+                    onFavorites(
+                        db,
+                        favorite,
+                        uid
+                    )
+                }
+            }
+
+            backBtn.setOnClickListener {
+                findNavController().navigate(PlacePageDirections.actionPlacePageToMainPage())
+            }
+
+            shareBtn.setOnClickListener {
+                showRecyclerDialog()
             }
         }
 
-        binding.backBtn.setOnClickListener {
-            findNavController().navigate(PlacePageDirections.actionPlacePageToMainPage())
+    }
+
+
+    private fun showRecyclerDialog() {
+        val dialog = Dialog(requireContext()).apply {
+            setCancelable(true)
         }
+
+        val dialogBinding = JointFriendsDialogBinding.inflate(layoutInflater)
+        dialog.setContentView(dialogBinding.root)
+
+        dialog.window?.apply {
+            setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }
+
+        adapter = DialogItemAdapter(requireContext(), this)
+
+        val manager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+        dialogBinding.dialogRecyclerView.layoutManager =
+            manager
+
+        viewModel.dataList.observe(viewLifecycleOwner) { data ->
+            adapter.data = data
+        }
+
+        viewModel.loadData()
+
+        dialogBinding.dialogRecyclerView.adapter = adapter
+
+        dialogBinding.closeButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     private fun onFavorites(
@@ -82,38 +142,59 @@ class PlacePage : Fragment() {
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {
                     // Документ уже существует
-                    Toast.makeText(
-                        requireContext(),
-                        "Это место уже в избранном",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showToast("Это место уже в избранном")
                 } else {
                     // Документа нет - добавляем
                     favoritesRef.set(favorite.toMap())
                         .addOnSuccessListener {
-                            Toast.makeText(
-                                requireContext(),
-                                "Место добавлено в избранное",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            showToast("Место добавлено в избранное")
                         }
                         .addOnFailureListener { e ->
-                            Log.e("Firestore", "Ошибка добавления в избранное", e)
-                            Toast.makeText(
-                                requireContext(),
-                                "Ошибка добавления",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            showToast("Ошибка добавления")
                         }
                 }
             }
             .addOnFailureListener { e ->
-                Log.e("Firestore", "Ошибка проверки избранного", e)
-                Toast.makeText(
-                    requireContext(),
-                    "Ошибка проверки избранного",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast("Ошибка проверки избранного")
             }
+    }
+
+    override fun onFriendClicked(position: Int) {
+        val friend = adapter.getItem(position)
+        if (uid == null) return
+
+        val currentUserPlanRef = db.collection("users")
+            .document(uid)
+            .collection("friends")
+            .document(friend.friendUserID)
+            .collection("jointPlans")
+            .document(favorite.key)
+
+        currentUserPlanRef.get().addOnSuccessListener { document ->
+            if (document.exists()) {
+                showToast("Этот план уже добавлен")
+            }
+            else {
+                val planData = favorite.toMap()
+
+                currentUserPlanRef.set(planData)
+                db.collection("users")
+                    .document(friend.friendUserID)
+                    .collection("friends")
+                    .document(uid)
+                    .collection("jointPlans")
+                    .document(favorite.key)
+                    .set(planData)
+                    .addOnCompleteListener {
+                        showToast("Совместный план добавлен с ${friend.friendUsername}")
+                    }
+            }
+        }.addOnFailureListener {
+            showToast("Ошибка при проверке плана")
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }

@@ -58,4 +58,6 @@
     <string name="plansWith">планы с :</string>
     <string name="yourFriends">Ваши\nдрузья</string>
     <string name="friendRequests">Заявки\nв друзья</string>
+    <string name="choose_friend">Выберете друга</string>
+    <string name="close">Закрыть</string>
 </resources>

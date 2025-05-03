@@ -1,6 +1,6 @@
 package com.example.travl.items
 
-data class FriendRequest(
+data class FriendRequestItem(
     val fromUsername: String = "",
     val fromUserID: String = "",
     val status: String = ""
