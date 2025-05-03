@@ -63,7 +63,7 @@ class PlacePage : Fragment() {
         }
 
         binding.backBtn.setOnClickListener {
-            findNavController().navigate(PlacePageDirections.actionPlacePageToMainPage())
+            findNavController().popBackStack()
         }
     }
 

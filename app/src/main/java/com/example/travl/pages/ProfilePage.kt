@@ -9,11 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.travl.LoginActivity
 import com.example.travl.R
 import com.example.travl.databinding.ProfilePageBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 
@@ -21,6 +25,8 @@ class ProfilePage : Fragment() {
     private lateinit var binding: ProfilePageBinding
     private lateinit var textViewUserName: TextView
     private lateinit var auth: FirebaseAuth
+    private val db: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+    private val uid = com.google.firebase.Firebase.auth.currentUser?.uid
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,6 +75,24 @@ class ProfilePage : Fragment() {
 
         binding.friends.setOnClickListener {
             findNavController().navigate(ProfilePageDirections.actionProfilePageToFriendsPage())
+        }
+
+        if (uid != null) {
+            db.collection("usernames")
+                .document(uid) // Замените на актуальный идентификатор документа
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.contains("photoUrl")) {
+                        val photoUrl = document.getString("photoUrl")
+                        if (photoUrl != null) {
+                            // Используйте Glide для загрузки изображения в ImageView
+                            Glide.with(this)
+                                .load(photoUrl)
+                                .apply(RequestOptions().fitCenter())
+                                .into(binding.imageView) // Замените на ваш ImageView
+                        }
+                    }
+                }
         }
 
     }

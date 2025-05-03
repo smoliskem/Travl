@@ -31,6 +31,8 @@ import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.google.firebase.auth.auth
 
 import java.util.*
 
@@ -42,6 +44,7 @@ class EditProfilePage : Fragment() {
     private lateinit var user: FirebaseUser
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
     private val db: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+    private val uid = com.google.firebase.Firebase.auth.currentUser?.uid
 
     private val pickImageLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -72,15 +75,17 @@ class EditProfilePage : Fragment() {
         }
 
 
-        db.collection("usernames")
-            .document("ase")
-            .update("photoUrl", imageUri.toString())
-            .addOnSuccessListener {
-                showToast("Photo updated successfully")
-            }
-            .addOnFailureListener { e ->
-                showToast("Failed to update Firestore: ${e.message}")
-            }
+        if (uid != null) {
+            db.collection("usernames")
+                .document(uid)
+                .update("photoUrl", imageUri.toString())
+                .addOnSuccessListener {
+                    showToast("Photo updated successfully")
+                }
+                .addOnFailureListener { e ->
+                    showToast("Failed to update Firestore: ${e.message}")
+                }
+        }
     }
 
 
@@ -112,7 +117,7 @@ class EditProfilePage : Fragment() {
         }
 
         binding.backBtn.setOnClickListener {
-            findNavController().navigate(EditProfilePageDirections.actionEditPageToProfilePage())
+            findNavController().popBackStack()
         }
 
         binding.acceptBtn.setOnClickListener {
@@ -173,6 +178,7 @@ class EditProfilePage : Fragment() {
                         // Используйте Glide для загрузки изображения в ImageView
                         Glide.with(this)
                             .load(photoUrl)
+                            .apply(RequestOptions().fitCenter())
                             .into(binding.imageView) // Замените на ваш ImageView
                     } else {
                         showToast("Photo URL is null")
