@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class ProfilePage : Fragment() {
     private lateinit var binding: ProfilePageBinding
-    private lateinit var auth: FirebaseAuth
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val friendsViewModel: FriendsViewModel by viewModels()
     private val plansViewModel: MyPlansPageViewModel by viewModels()
     private val completePlansViewModel: CompletePlansViewModel by viewModels()
@@ -104,8 +104,10 @@ class ProfilePage : Fragment() {
     }
 
     private fun signOut() {
-        auth.signOut() // Выход из аккаунта
+        auth.signOut()
         val intent = Intent(activity, LoginActivity::class.java)
+
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         activity?.finish()
     }
