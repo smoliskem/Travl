@@ -14,14 +14,20 @@ import com.example.travl.LoginActivity
 import com.example.travl.databinding.ProfilePageBinding
 import com.example.travl.viewModels.MyPlansPageViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 
 class ProfilePage : Fragment() {
     private lateinit var binding: ProfilePageBinding
-    private lateinit var auth: FirebaseAuth
     private val friendsViewModel: FriendsViewModel by viewModels()
     private val plansViewModel: MyPlansPageViewModel by viewModels()
     private val completeCount = "0"
+    private val auth = Firebase.auth
+    private val db: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+    private val uid = com.google.firebase.Firebase.auth.currentUser?.uid
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

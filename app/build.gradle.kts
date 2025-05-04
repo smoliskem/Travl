@@ -54,7 +54,9 @@ android {
 }
 
 dependencies {
-
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1") // проверьте последнюю версию
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1") // если используете LiveData
+    implementation ("com.google.firebase:firebase-auth-ktx:22.3.0")
 
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("com.google.firebase:firebase-analytics")
@@ -81,7 +83,6 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.activity:activity:1.9.3")
     implementation("com.google.firebase:firebase-firestore-ktx:25.1.2")
-    implementation("com.google.android.gms:play-services-fido:20.0.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
