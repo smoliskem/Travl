@@ -196,7 +196,7 @@
             android:paddingVertical="28dp">
 
             <Button
-                android:id="@+id/redactor"
+                android:id="@+id/editor"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
                 android:background="#00000000"

@@ -71,7 +71,11 @@ class ProfilePage : Fragment() {
                 signOut()
             }
 
-            redactor.setOnClickListener {
+            completeStat.setOnClickListener {
+                findNavController().navigate(ProfilePageDirections.actionProfilePageToCompletePlansPage())
+            }
+
+            editor.setOnClickListener {
                 findNavController().navigate(ProfilePageDirections.actionProfilePageToEditPage())
             }
 

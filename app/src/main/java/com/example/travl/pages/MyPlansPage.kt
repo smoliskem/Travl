@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travl.adapters.MyPlansPageItemAdapter
 import com.example.travl.databinding.MyPlansPageBinding
 import com.example.travl.interfaces.OnMyPlansClickListener
+import com.example.travl.items.toMap
 import com.example.travl.viewModels.MyPlansPageViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -116,6 +117,42 @@ class MyPlansPage : Fragment(), OnMyPlansClickListener {
         )
 
         findNavController().navigate(action)
+    }
+
+    override fun onAcceptClick(position: Int) {
+        val place = adapter.getItem(position)
+        if (uid == null) return
+
+
+        val completeRef = db.collection("users")
+            .document(uid)
+            .collection("complete")
+            .document(place.key)
+
+        val placeRef = db.collection("users")
+            .document(uid)
+            .collection("favorites")
+            .document(place.key)
+
+        completeRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    showToast("Это место уже добавлено в выполненные")
+                } else {
+                    completeRef.set(place.toMap())
+                        .addOnSuccessListener {
+                            placeRef.delete()
+                            viewModel.removeItem(place.key)
+                            showToast("Место добавлено в выполненные")
+                        }
+                        .addOnFailureListener { e ->
+                            showToast("Ошибка добавления")
+                        }
+                }
+            }
+            .addOnFailureListener { e ->
+                showToast("Ошибка проверки выполненных")
+            }
     }
 
     private fun showToast(message: String) {

@@ -4,4 +4,6 @@ interface OnMyPlansClickListener {
     fun onDeleteItemClick(position: Int)
 
     fun onImageClick(position: Int)
+
+    fun onAcceptClick(position: Int)
 }

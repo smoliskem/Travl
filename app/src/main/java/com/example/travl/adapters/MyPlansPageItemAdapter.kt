@@ -60,6 +60,10 @@ class MyPlansPageItemAdapter(
             placeImg.setOnClickListener {
                 listener.onImageClick(position)
             }
+
+            successBtn.setOnClickListener {
+                listener.onAcceptClick(position)
+            }
         }
     }
 }

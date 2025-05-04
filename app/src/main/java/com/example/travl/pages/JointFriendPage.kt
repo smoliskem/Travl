@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travl.adapters.JointFriendPageItemAdapter
 import com.example.travl.databinding.JointFriendPageBinding
 import com.example.travl.interfaces.OnMyPlansClickListener
+import com.example.travl.items.toMap
 import com.example.travl.viewModels.JointFriendViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -67,9 +68,6 @@ class JointFriendPage : Fragment(), OnMyPlansClickListener {
 
         //Присваивание адаптера
         binding.jointFriendRecycler.adapter = adapter
-
-
-
 
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
@@ -135,6 +133,56 @@ class JointFriendPage : Fragment(), OnMyPlansClickListener {
         )
 
         findNavController().navigate(action)
+    }
+
+    override fun onAcceptClick(position: Int) {
+        val place = adapter.getItem(position)
+        if (uid == null) return
+
+
+        val completeCurrRef = db.collection("users")
+            .document(uid)
+            .collection("complete")
+            .document(place.key)
+
+        val completeFriendRef = db.collection("users")
+            .document(friendUserID)
+            .collection("complete")
+            .document(place.key)
+
+        val placeCurrRef = db.collection("users")
+            .document(uid)
+            .collection("favorites")
+            .document(place.key)
+
+        val placeFriendRef = db.collection("users")
+            .document(friendUserID)
+            .collection("favorites")
+            .document(place.key)
+
+        completeCurrRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    showToast("Это место уже добавлено в выполненные")
+                } else {
+                    completeCurrRef.set(place.toMap())
+                        .addOnSuccessListener {
+                            completeFriendRef.set(place.toMap())
+                                .addOnSuccessListener {
+                                    placeCurrRef.delete()
+                                    placeFriendRef.delete()
+                                    viewModel.removeItem(place.key)
+                                    showToast("Место добавлено в выполненные")
+                                }
+                        }
+                        .addOnFailureListener { e ->
+                            showToast("Ошибка добавления")
+                        }
+                }
+            }
+            .addOnFailureListener { e ->
+                showToast("Ошибка проверки выполненных")
+            }
     }
 
     private fun showToast(message: String) {
