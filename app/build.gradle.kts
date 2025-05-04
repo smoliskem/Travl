@@ -54,6 +54,10 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1") // проверьте последнюю версию
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1") // если используете LiveData
+    implementation ("com.google.firebase:firebase-auth-ktx:22.3.0")
+
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.android.gms:play-services-auth:21.3.0")
