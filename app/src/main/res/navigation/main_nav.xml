@@ -48,7 +48,7 @@
         tools:layout="@layout/joint_plans_page">
         <action
             android:id="@+id/action_jointPlansPage_to_jointFriendPlans"
-            app:destination="@id/jointFriendPage" />
+            app:destination="@id/joint_friend_page" />
         <action
             android:id="@+id/action_jointPlansPage_to_myPlansPage"
             app:destination="@id/my_plans_page" />
@@ -75,20 +75,23 @@
             app:destination="@id/joint_plans" />
         <action
             android:id="@+id/action_profile_page_to_editPage"
-            app:destination="@id/editPage" />
+            app:destination="@id/edit_page" />
         <action
-            android:id="@+id/action_profile_page_to_addFriendPage"
-            app:destination="@id/addFriendPage" />
+            android:id="@+id/action_profilePage_to_addFriendPage"
+            app:destination="@id/add_friend_page" />
         <action
-            android:id="@+id/action_profile_page_to_friendsPage"
-            app:destination="@id/friendsPage" />
+            android:id="@+id/action_profilePage_to_friendsPage"
+            app:destination="@id/friends_page" />
+        <action
+            android:id="@+id/action_profilePage_to_completePlansPage"
+            app:destination="@id/complete_plans_page" />
     </fragment>
 
     <fragment
         android:id="@+id/place_page"
         android:name="com.example.travl.pages.PlacePage"
         android:label="place_page"
-        tools:layout="@layout/profile_page">
+        tools:layout="@layout/place_page">
         <action
             android:id="@+id/action_placePage_to_mainPage"
             app:destination="@id/main_page" />
@@ -109,7 +112,7 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/jointFriendPage"
+        android:id="@+id/joint_friend_page"
         android:name="com.example.travl.pages.JointFriendPage"
         android:label="joint_friends_page"
         tools:layout="@layout/joint_friend_page">
@@ -127,7 +130,7 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/editPage"
+        android:id="@+id/edit_page"
         android:name="com.example.travl.pages.EditProfilePage"
         android:label="edit_profile_page"
         tools:layout="@layout/edit_profile_page">
@@ -136,7 +139,12 @@
             app:destination="@id/profile_page" />
     </fragment>
     <fragment
-        android:id="@+id/addFriendPage"
+        android:id="@+id/complete_plans_page"
+        android:name="com.example.travl.pages.CompletePlansPage"
+        android:label="complete_plans_page"
+        tools:layout="@layout/complete_plans_page" />
+    <fragment
+        android:id="@+id/add_friend_page"
         android:name="com.example.travl.pages.AddFriendPage"
         android:label="add_friend_page"
         tools:layout="@layout/add_friend_page">
@@ -145,7 +153,7 @@
             app:destination="@id/profile_page" />
     </fragment>
     <fragment
-        android:id="@+id/friendsPage"
+        android:id="@+id/friends_page"
         android:name="com.example.travl.pages.FriendsPage"
         android:label="friends_page"
         tools:layout="@layout/friends_page">
@@ -154,15 +162,15 @@
             app:destination="@id/profile_page" />
         <action
             android:id="@+id/action_friendsPage_to_friendsRequestsPage"
-            app:destination="@id/friendsRequestsPage" />
+            app:destination="@id/friends_requests_page" />
     </fragment>
     <fragment
-        android:id="@+id/friendsRequestsPage"
+        android:id="@+id/friends_requests_page"
         android:name="com.example.travl.pages.FriendsRequestsPage"
         android:label="friends_request_page"
         tools:layout="@layout/friends_request_page">
         <action
             android:id="@+id/action_friendsRequestsPage_to_friendsPage"
-            app:destination="@id/friendsPage" />
+            app:destination="@id/friends_page" />
     </fragment>
 </navigation>

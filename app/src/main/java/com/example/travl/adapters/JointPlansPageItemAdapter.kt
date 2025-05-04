@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travl.databinding.FriendCardBinding
-import com.example.travl.interfaces.OnJointPlansClickListener
+import com.example.travl.interfaces.OnClickListener
 import com.example.travl.items.Friend
 
 class JointPlansPageItemAdapter(
     private val context: Context,
-    private val listener: OnJointPlansClickListener
+    private val listener: OnClickListener
 ) :
     RecyclerView.Adapter<JointPlansPageItemAdapter.JointPlansPageItemViewHolder>() {
 

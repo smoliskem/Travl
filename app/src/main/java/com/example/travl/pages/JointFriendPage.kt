@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travl.adapters.JointFriendPageItemAdapter
 import com.example.travl.databinding.JointFriendPageBinding
 import com.example.travl.interfaces.OnMyPlansClickListener
+import com.example.travl.items.toMap
 import com.example.travl.viewModels.JointFriendViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -67,9 +68,6 @@ class JointFriendPage : Fragment(), OnMyPlansClickListener {
 
         //Присваивание адаптера
         binding.jointFriendRecycler.adapter = adapter
-
-
-
 
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
@@ -135,6 +133,58 @@ class JointFriendPage : Fragment(), OnMyPlansClickListener {
         )
 
         findNavController().navigate(action)
+    }
+
+    override fun onAcceptClick(position: Int) {
+        val place = adapter.getItem(position)
+        if (uid == null) return
+
+
+        val completeCurrRef = db.collection("users")
+            .document(uid)
+            .collection("complete")
+            .document(place.key)
+
+        val completeFriendRef = db.collection("users")
+            .document(friendUserID)
+            .collection("complete")
+            .document(place.key)
+
+
+        val placeCurrRef = db.collection("users")
+            .document(uid)
+            .collection("friends")
+            .document(friendUserID)
+            .collection("jointPlans")
+            .document(place.key)
+
+        val placeFriendRef = db.collection("users")
+            .document(friendUserID)
+            .collection("friends")
+            .document(uid)
+            .collection("jointPlans")
+            .document(place.key)
+
+        completeCurrRef.set(place.toMap())
+            .addOnSuccessListener {
+                completeFriendRef.set(place.toMap())
+                    .addOnSuccessListener {
+                        placeCurrRef.delete().addOnSuccessListener {
+                            placeFriendRef.delete().addOnSuccessListener {
+                                viewModel.removeItem(place.key)
+                                showToast("Успешно перенесено")
+                            }.addOnFailureListener { e ->
+                                showToast("Не удалось удалить у друга")
+                            }
+                        }.addOnFailureListener { e ->
+                            showToast("Не удалось удалить у себя")
+                        }
+                    }.addOnFailureListener { e ->
+                        showToast("Не удалось добавить другу")
+                    }
+            }.addOnFailureListener { e ->
+                showToast("Не удалось добавить себе")
+            }
     }
 
     private fun showToast(message: String) {

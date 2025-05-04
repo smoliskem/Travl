@@ -87,10 +87,11 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratalternates_medium"
                     android:text="@string/complete"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -123,6 +124,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratalternates_medium"
                     android:text="@string/friends_count"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -149,10 +151,11 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratalternates_medium"
-                    android:text="@string/plans_count"
+                    android:text="@string/plans"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -198,7 +201,7 @@
             android:paddingVertical="28dp">
 
             <Button
-                android:id="@+id/redactor"
+                android:id="@+id/editor"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
                 android:background="#00000000"

@@ -1,6 +1,7 @@
 package com.example.travl.pages
 
-import com.example.travl.viewModels.FriendsViewModel
+
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,20 +14,20 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.travl.LoginActivity
 import com.example.travl.databinding.ProfilePageBinding
+import com.example.travl.viewModels.CompletePlansViewModel
+import com.example.travl.viewModels.FriendsViewModel
 import com.example.travl.viewModels.MyPlansPageViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 
 
 class ProfilePage : Fragment() {
     private lateinit var binding: ProfilePageBinding
-    private val auth = Firebase.auth
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val friendsViewModel: FriendsViewModel by viewModels()
     private val plansViewModel: MyPlansPageViewModel by viewModels()
-    private val completeCount = "0"
+    private val completePlansViewModel: CompletePlansViewModel by viewModels()
     private val db = FirebaseFirestore.getInstance()
     private val uid = com.google.firebase.Firebase.auth.currentUser?.uid
 
@@ -48,11 +49,16 @@ class ProfilePage : Fragment() {
             binding.plansCount.text = "$count"
         }
 
+        completePlansViewModel.loadData()
+
+        completePlansViewModel.completePlans.observe(viewLifecycleOwner) { count ->
+            binding.completeCount.text = "$count"
+        }
+
         val user = FirebaseAuth.getInstance().currentUser
         val displayName = user?.displayName
 
         binding.username.text = displayName
-        binding.completeCount.text = completeCount
 
         return binding.root
     }
@@ -78,7 +84,11 @@ class ProfilePage : Fragment() {
                 signOut()
             }
 
-            redactor.setOnClickListener {
+            completeStat.setOnClickListener {
+                findNavController().navigate(ProfilePageDirections.actionProfilePageToCompletePlansPage())
+            }
+
+            editor.setOnClickListener {
                 findNavController().navigate(ProfilePageDirections.actionProfilePageToEditPage())
             }
 
@@ -119,8 +129,10 @@ class ProfilePage : Fragment() {
     }
 
     private fun signOut() {
-        auth.signOut() // Выход из аккаунта
+        auth.signOut()
         val intent = Intent(activity, LoginActivity::class.java)
+
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         activity?.finish()
     }
