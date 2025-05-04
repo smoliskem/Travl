@@ -166,7 +166,7 @@ class EditProfilePage : Fragment() {
         }
         // Получите URL изображения из Firestore
         db.collection("usernames")
-            .document("ase") // Замените на актуальный идентификатор документа
+            .document(auth.currentUser?.displayName.toString()) // Замените на актуальный идентификатор документа
             .get()
             .addOnSuccessListener { document ->
                 if (document != null && document.contains("photoUrl")) {
