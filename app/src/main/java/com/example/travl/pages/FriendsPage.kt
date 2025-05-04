@@ -1,6 +1,6 @@
 package com.example.travl.pages
 
-import FriendsViewModel
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travl.adapters.FriendsPageItemAdapter
 import com.example.travl.databinding.FriendsPageBinding
+import com.example.travl.viewModels.FriendsViewModel
 
 class FriendsPage : Fragment() {
     private lateinit var binding: FriendsPageBinding

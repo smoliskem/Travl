@@ -38,8 +38,6 @@ import java.util.*
 
 class EditProfilePage : Fragment() {
     private lateinit var binding: EditProfilePageBinding
-
-
     private lateinit var auth: FirebaseAuth
     private lateinit var user: FirebaseUser
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
@@ -74,10 +72,9 @@ class EditProfilePage : Fragment() {
             return
         }
 
-
         if (uid != null) {
             db.collection("usernames")
-                .document(uid)
+                .document(user.displayName.toString())
                 .update("photoUrl", imageUri.toString())
                 .addOnSuccessListener {
                     showToast("Photo updated successfully")

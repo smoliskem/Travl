@@ -1,7 +1,6 @@
 package com.example.travl.pages
 
-
-import FriendsViewModel
+import com.example.travl.viewModels.FriendsViewModel
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.travl.LoginActivity
 import com.example.travl.databinding.ProfilePageBinding
 import com.example.travl.viewModels.MyPlansPageViewModel
@@ -22,11 +23,11 @@ import com.google.firebase.ktx.Firebase
 
 class ProfilePage : Fragment() {
     private lateinit var binding: ProfilePageBinding
+    private val auth = Firebase.auth
     private val friendsViewModel: FriendsViewModel by viewModels()
     private val plansViewModel: MyPlansPageViewModel by viewModels()
     private val completeCount = "0"
-    private val auth = Firebase.auth
-    private val db: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+    private val db = FirebaseFirestore.getInstance()
     private val uid = com.google.firebase.Firebase.auth.currentUser?.uid
 
     override fun onCreateView(
@@ -96,6 +97,24 @@ class ProfilePage : Fragment() {
             plansStat.setOnClickListener {
                 findNavController().navigate(ProfilePageDirections.actionProfilePageToMyPlansPage())
             }
+        }
+
+        if (uid != null) {
+            db.collection("usernames")
+                .document(auth.currentUser?.displayName.toString()) // Замените на актуальный идентификатор документа
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.contains("photoUrl")) {
+                        val photoUrl = document.getString("photoUrl")
+                        if (photoUrl != null) {
+                            // Используйте Glide для загрузки изображения в ImageView
+                            Glide.with(requireContext())
+                                .load(photoUrl)
+                                .apply(RequestOptions().fitCenter())
+                                .into(binding.imageView) // Замените на ваш ImageView
+                        }
+                    }
+                }
         }
     }
 

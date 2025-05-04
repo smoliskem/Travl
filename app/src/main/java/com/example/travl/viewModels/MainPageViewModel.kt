@@ -9,6 +9,7 @@ import com.example.travl.items.MainPageParentItem
 import com.example.travl.items.PlaceCard
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.FirebaseFirestore
+//import androidx.appcompat.app.AppCompatActivity
 
 class MainPageViewModel : ViewModel() {
     private val _dataList = MutableLiveData<List<MainPageParentItem>>()
