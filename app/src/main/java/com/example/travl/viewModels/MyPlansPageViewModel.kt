@@ -10,6 +10,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 
+
 class MyPlansPageViewModel : ViewModel() {
     private val _dataList = MutableLiveData<List<MyPlansItem>>()
     val dataList: LiveData<List<MyPlansItem>> get() = _dataList
