@@ -38,7 +38,7 @@ class AddFriendPage : Fragment() {
         binding = AddFriendPageBinding.bind(view)
 
         binding.backBtn.setOnClickListener {
-            findNavController().navigate(AddFriendPageDirections.actionAddFriendPageToProfilePage())
+            findNavController().popBackStack()
         }
 
         binding.acceptBtn.setOnClickListener {

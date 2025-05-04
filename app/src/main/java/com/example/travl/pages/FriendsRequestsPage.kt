@@ -54,7 +54,7 @@ class FriendsRequestsPage : Fragment(), OnFriendRequestClickListener {
         binding.friendsRequestsRecycler.adapter = adapter
 
         binding.backBtn.setOnClickListener {
-            findNavController().navigate(FriendsRequestsPageDirections.actionFriendsRequestsPageToFriendsPage())
+            findNavController().popBackStack()
         }
     }
 

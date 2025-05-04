@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+//import androidx.appcompat.app.AppCompatActivity
 
 class JointFriendViewModel : ViewModel() {
     private val _dataList = MutableLiveData<List<MyPlansItem>>()

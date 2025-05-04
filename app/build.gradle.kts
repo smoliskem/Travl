@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.example.travl"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.travl"
@@ -54,7 +54,7 @@ android {
 }
 
 dependencies {
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1") // проверьте последнюю версию
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7") // проверьте последнюю версию
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1") // если используете LiveData
     implementation ("com.google.firebase:firebase-auth-ktx:22.3.0")
 
@@ -65,8 +65,12 @@ dependencies {
     implementation ("com.google.android.gms:play-services-location:21.3.0")
     implementation ("com.google.android.gms:play-services-maps:19.1.0")
 
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.6")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.6")
+
+    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.activity:activity-ktx:1.10.1")
+    implementation ("androidx.fragment:fragment-ktx:1.8.6")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.9")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.9")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.google.firebase:firebase-firestore")
     implementation("androidx.core:core-ktx:1.9.0")

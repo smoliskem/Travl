@@ -1,3 +1,5 @@
+package com.example.travl.viewModels
+
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,6 +9,7 @@ import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
+
 
 class FriendsViewModel : ViewModel() {
     private val _dataList = MutableLiveData<List<Friend>>()
