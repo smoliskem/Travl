@@ -1,7 +1,7 @@
 package com.example.travl.pages
 
 
-import FriendsViewModel
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,12 +15,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.travl.LoginActivity
 import com.example.travl.databinding.ProfilePageBinding
 import com.example.travl.viewModels.CompletePlansViewModel
+import com.example.travl.viewModels.FriendsViewModel
 import com.example.travl.viewModels.MyPlansPageViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 
 
 class ProfilePage : Fragment() {
