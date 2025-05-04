@@ -63,4 +63,5 @@
     <string name="complete">Выполнено</string>
     <string name="friends_count">Друзей</string>
     <string name="plans_count">Всего планов</string>
+    <string name="complete_plans">Выполненные планы</string>
 </resources>
