@@ -142,7 +142,7 @@
         android:id="@+id/complete_plans_page"
         android:name="com.example.travl.pages.CompletePlansPage"
         android:label="complete_plans_page"
-        tools:layout="@layout/complete_plans_page"></fragment>
+        tools:layout="@layout/complete_plans_page" />
     <fragment
         android:id="@+id/add_friend_page"
         android:name="com.example.travl.pages.AddFriendPage"

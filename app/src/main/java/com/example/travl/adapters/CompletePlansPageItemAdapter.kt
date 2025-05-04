@@ -1,21 +1,22 @@
 package com.example.travl.adapters
 
+import com.example.travl.databinding.CompletePlansCardBinding
+
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.travl.databinding.MyPlansPlaceCardBinding
-import com.example.travl.interfaces.OnMyPlansClickListener
+import com.example.travl.interfaces.OnClickListener
 import com.example.travl.items.MyPlansItem
 
 
-class JointFriendPageItemAdapter(
+class CompletePlansPageItemAdapter(
     private val context: Context,
-    private val listener: OnMyPlansClickListener,
+    private val listener: OnClickListener
 ) :
-    RecyclerView.Adapter<JointFriendPageItemAdapter.JointFriendPageViewHolder>() {
+    RecyclerView.Adapter<CompletePlansPageItemAdapter.CompletePlansPageViewHolder>() {
 
     var data: List<MyPlansItem> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
@@ -28,21 +29,24 @@ class JointFriendPageItemAdapter(
         return data[position]
     }
 
-    class JointFriendPageViewHolder(val binding: MyPlansPlaceCardBinding) :
+    class CompletePlansPageViewHolder(val binding: CompletePlansCardBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JointFriendPageViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): CompletePlansPageItemAdapter.CompletePlansPageViewHolder {
         val binding =
-            MyPlansPlaceCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            CompletePlansCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return JointFriendPageViewHolder(binding)
+        return CompletePlansPageViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
 
-    override fun onBindViewHolder(holder: JointFriendPageViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CompletePlansPageViewHolder, position: Int) {
         val item = data[position]
 
         with(holder.binding) {
@@ -54,15 +58,7 @@ class JointFriendPageItemAdapter(
                 .into(holder.binding.placeImg)
 
             deleteBtn.setOnClickListener {
-                listener.onDeleteItemClick(position)
-            }
-
-            placeImg.setOnClickListener {
-                listener.onImageClick(position)
-            }
-
-            successBtn.setOnClickListener {
-                listener.onAcceptClick(position)
+                listener.onClick(position)
             }
         }
     }

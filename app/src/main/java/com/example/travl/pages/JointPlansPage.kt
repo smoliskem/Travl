@@ -6,16 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travl.adapters.JointPlansPageItemAdapter
 import com.example.travl.databinding.JointPlansPageBinding
-import com.example.travl.interfaces.OnJointPlansClickListener
+import com.example.travl.interfaces.OnClickListener
 
 
-class JointPlansPage : Fragment(), OnJointPlansClickListener {
+class JointPlansPage : Fragment(), OnClickListener {
     private val viewModel: FriendsViewModel by viewModels()
     private lateinit var adapter: JointPlansPageItemAdapter
     private lateinit var binding: JointPlansPageBinding

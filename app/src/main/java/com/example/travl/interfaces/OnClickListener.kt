@@ -1,5 +1,5 @@
 package com.example.travl.interfaces
 
-interface OnJointPlansClickListener {
+interface OnClickListener {
     fun onClick(position: Int)
 }

@@ -9,17 +9,13 @@ import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.flow.MutableStateFlow
 
-class JointFriendViewModel : ViewModel() {
+class CompletePlansViewModel : ViewModel() {
     private val _dataList = MutableLiveData<List<MyPlansItem>>()
     val dataList: LiveData<List<MyPlansItem>> get() = _dataList
-    private val _selectedFriendId = MutableStateFlow<String?>(null)
 
-
-    fun setSelectedFriendId(friendId: String) {
-        _selectedFriendId.value = friendId
-    }
+    private val _completePlans = MutableLiveData<Int>()
+    val completePlans: LiveData<Int> get() = _completePlans
 
     private val db = FirebaseFirestore.getInstance()
     private val uid = Firebase.auth.currentUser?.uid
@@ -29,42 +25,43 @@ class JointFriendViewModel : ViewModel() {
     }
 
     fun loadData() {
-        val joints = mutableListOf<MyPlansItem>()
+        val completes = mutableListOf<MyPlansItem>()
 
 
         if (uid != null) {
-            val favoriteTask = getFavorites(db, uid, joints, _selectedFriendId.value.toString())
+            val completeTask = getCompletes(db, uid, completes)
 
-            Tasks.whenAllComplete(favoriteTask)
+            Tasks.whenAllComplete(completeTask)
                 .addOnSuccessListener {
-                    _dataList.value = joints
+                    _dataList.value = completes
+                    _completePlans.value = completes.size
                 }
                 .addOnFailureListener { exception ->
                     Log.e("FirestoreError", "Error loading collections: ", exception)
+                    _completePlans.value = 0
                 }
+        } else {
+            _completePlans.value = 0
         }
     }
 
-    private fun getFavorites(
+    private fun getCompletes(
         db: FirebaseFirestore,
         uid: String,
-        list: MutableList<MyPlansItem>,
-        friendUserID: String
+        list: MutableList<MyPlansItem>
     ) =
         db.collection("users")
             .document(uid)
-            .collection("friends")
-            .document(friendUserID)
-            .collection("jointPlans")
+            .collection("complete")
             .get()
             .addOnSuccessListener { snapshot ->
                 for (document in snapshot.documents) {
                     val place = document.toObject(MyPlansItem::class.java)
                     place?.let { list.add(it) }
                 }
-                Log.d("FirestoreSuccess", "Loaded ${list.size} items from favorites")
+                Log.d("FirestoreSuccess", "Loaded ${list.size} items from completes")
             }
             .addOnFailureListener { exception ->
-                Log.e("FirestoreError", "Error loading favorites: ", exception)
+                Log.e("FirestoreError", "Error loading completes: ", exception)
             }
 }

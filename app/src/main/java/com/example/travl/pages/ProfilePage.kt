@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.travl.LoginActivity
 import com.example.travl.databinding.ProfilePageBinding
+import com.example.travl.viewModels.CompletePlansViewModel
 import com.example.travl.viewModels.MyPlansPageViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -21,7 +22,7 @@ class ProfilePage : Fragment() {
     private lateinit var auth: FirebaseAuth
     private val friendsViewModel: FriendsViewModel by viewModels()
     private val plansViewModel: MyPlansPageViewModel by viewModels()
-    private val completeCount = "0"
+    private val completePlansViewModel: CompletePlansViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,11 +42,16 @@ class ProfilePage : Fragment() {
             binding.plansCount.text = "$count"
         }
 
+        completePlansViewModel.loadData()
+
+        completePlansViewModel.completePlans.observe(viewLifecycleOwner) { count ->
+            binding.completeCount.text = "$count"
+        }
+
         val user = FirebaseAuth.getInstance().currentUser
         val displayName = user?.displayName
 
         binding.username.text = displayName
-        binding.completeCount.text = completeCount
 
         return binding.root
     }

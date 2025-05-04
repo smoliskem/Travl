@@ -150,38 +150,40 @@ class JointFriendPage : Fragment(), OnMyPlansClickListener {
             .collection("complete")
             .document(place.key)
 
+
         val placeCurrRef = db.collection("users")
             .document(uid)
-            .collection("favorites")
+            .collection("friends")
+            .document(friendUserID)
+            .collection("jointPlans")
             .document(place.key)
 
         val placeFriendRef = db.collection("users")
             .document(friendUserID)
-            .collection("favorites")
+            .collection("friends")
+            .document(uid)
+            .collection("jointPlans")
             .document(place.key)
 
-        completeCurrRef.get()
-            .addOnSuccessListener { documentSnapshot ->
-                if (documentSnapshot.exists()) {
-                    showToast("Это место уже добавлено в выполненные")
-                } else {
-                    completeCurrRef.set(place.toMap())
-                        .addOnSuccessListener {
-                            completeFriendRef.set(place.toMap())
-                                .addOnSuccessListener {
-                                    placeCurrRef.delete()
-                                    placeFriendRef.delete()
-                                    viewModel.removeItem(place.key)
-                                    showToast("Место добавлено в выполненные")
-                                }
+        completeCurrRef.set(place.toMap())
+            .addOnSuccessListener {
+                completeFriendRef.set(place.toMap())
+                    .addOnSuccessListener {
+                        placeCurrRef.delete().addOnSuccessListener {
+                            placeFriendRef.delete().addOnSuccessListener {
+                                viewModel.removeItem(place.key)
+                                showToast("Успешно перенесено")
+                            }.addOnFailureListener { e ->
+                                showToast("Не удалось удалить у друга")
+                            }
+                        }.addOnFailureListener { e ->
+                            showToast("Не удалось удалить у себя")
                         }
-                        .addOnFailureListener { e ->
-                            showToast("Ошибка добавления")
-                        }
-                }
-            }
-            .addOnFailureListener { e ->
-                showToast("Ошибка проверки выполненных")
+                    }.addOnFailureListener { e ->
+                        showToast("Не удалось добавить другу")
+                    }
+            }.addOnFailureListener { e ->
+                showToast("Не удалось добавить себе")
             }
     }
 
