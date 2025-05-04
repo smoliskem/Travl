@@ -1,6 +1,6 @@
 package com.example.travl.pages
 
-import FriendsViewModel
+import com.example.travl.viewModels.FriendsViewModel
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

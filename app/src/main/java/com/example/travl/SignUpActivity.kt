@@ -120,11 +120,13 @@ class SignUpActivity : AppCompatActivity() {
     private fun saveUsername(username: String, callback: (Boolean) -> Unit) {
         val usernameLower = username.lowercase(Locale.getDefault())
         val userId = auth.currentUser?.uid
+        val photo = ""
 
         if (userId != null) {
             val data = mapOf(
                 "userId" to userId,
-                "username" to usernameLower
+                "username" to usernameLower,
+                "photoUrl" to photo
             )
 
             db.collection("usernames")

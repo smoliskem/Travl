@@ -10,11 +10,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.travl.LoginActivity
 import com.example.travl.databinding.ProfilePageBinding
 import com.example.travl.viewModels.CompletePlansViewModel
 import com.example.travl.viewModels.MyPlansPageViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 
 class ProfilePage : Fragment() {
@@ -23,6 +29,8 @@ class ProfilePage : Fragment() {
     private val friendsViewModel: FriendsViewModel by viewModels()
     private val plansViewModel: MyPlansPageViewModel by viewModels()
     private val completePlansViewModel: CompletePlansViewModel by viewModels()
+    private val db = FirebaseFirestore.getInstance()
+    private val uid = com.google.firebase.Firebase.auth.currentUser?.uid
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,6 +108,24 @@ class ProfilePage : Fragment() {
             plansStat.setOnClickListener {
                 findNavController().navigate(ProfilePageDirections.actionProfilePageToMyPlansPage())
             }
+        }
+
+        if (uid != null) {
+            db.collection("usernames")
+                .document(auth.currentUser?.displayName.toString()) // Замените на актуальный идентификатор документа
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.contains("photoUrl")) {
+                        val photoUrl = document.getString("photoUrl")
+                        if (photoUrl != null) {
+                            // Используйте Glide для загрузки изображения в ImageView
+                            Glide.with(requireContext())
+                                .load(photoUrl)
+                                .apply(RequestOptions().fitCenter())
+                                .into(binding.imageView) // Замените на ваш ImageView
+                        }
+                    }
+                }
         }
     }
 
