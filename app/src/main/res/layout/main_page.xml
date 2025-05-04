@@ -26,23 +26,25 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-            <LinearLayout
-                android:id="@+id/searchBarLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                >
+<!--            <LinearLayout-->
+<!--                android:id="@+id/searchBarLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="50dp"-->
+<!--                >-->
 
 
-                <SearchView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:iconifiedByDefault="false"
-                    android:searchIcon="@drawable/search_vector"
-                    android:background="@drawable/search_main"
-                    />
+<!--                <SearchView-->
+<!--                    android:id="@+id/searchBar"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:iconifiedByDefault="false"-->
+<!--                    -->
+<!--                    android:searchIcon="@drawable/search_vector"-->
+<!--                    android:background="@drawable/search_main"-->
+<!--                    />-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/main_page_recycler"
